@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Eternity/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Eternity/images/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Eternity/images/eternity.png">
+  <link rel="mask-icon" href="/Eternity/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Eternity/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|方正像素12:300,300italic,400,400italic,700,700italic|方正少儿_GBK:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/Eternity/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"violeteternal.github.io","root":"/Eternity/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数列与极限 #2">
+<meta property="og:url" content="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/learning-note-analytical-mathematics-series-limits-2/index.html">
+<meta property="og:site_name" content="Eternity">
+<meta property="og:description" content="Here&#39;s something encrypted, password is required to continue reading.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-07T05:40:33.000Z">
+<meta property="article:modified_time" content="2022-03-07T05:45:28.330Z">
+<meta property="article:author" content="VioletEternal">
+<meta property="article:tag" content="微积分">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="学习笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/learning-note-analytical-mathematics-series-limits-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数列与极限 #2 | Eternity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Eternity/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Eternity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Until The End</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Eternity/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/Eternity/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/learning-note-analytical-mathematics-series-limits-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Eternity/images/Guess.png">
+      <meta itemprop="name" content="VioletEternal">
+      <meta itemprop="description" content="誰も悪くないから、辛いだな。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eternity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数列与极限 #2
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-03-07 13:40:33 / 修改时间：13:45:28" itemprop="dateCreated datePublished" datetime="2022-03-07T13:40:33+08:00">2022-03-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="b60680f30d0fc5b5285cfc127b6377e60957d0662e2cb7f854881a070b1ef8a4">36c121f6da9c8c2f998a17b7d3a5ec7948dc0db8a7076625c08ea4e0888ec43ac3453cde1c941a772b9a314de016caaecf0e3252847a15b051bd5a12379725cf72ff3dd514b7b70143f1864dc29d73b394a9f6dd0860def4e6506fcefa925f64a4ef4b2289bb075573de7d1db88b32fb71e2a2dd12547fcd9862863a2c94a73928f6ce834739dcc51ad8769153dfd10d1977474fc7444859114d3dcc46b8fa499ff5f5dfbf40a9e071139d46af4d24deb13295e36fb91b6c1f08b6d07c2b474fb3dc2b9e1c716972c5f5c08563d661f965350c1d614b703eee1cf5d418fb3f1646076029fd23b2ecec5b9994ea59c89b416f86be3126839f69d1d1d2ea55c607c5f0e6766b344ce60b4bd41967353ec12e134cddd3c98658487060120335cac7924956eba22ec803d0fd69114a983e681d708c6c58eda670e60a6d84c5a780e6905c974daa7484a92035a5a21277e17972635f42d7a9ff836310f84e91aa0864ad971833e09a9b4ffbd7b10d2fdae431fc626308a0c37a3dd1fe117468ca9c8af0b563e22d79ae48647c1ffb73045f6c6a4dc27a72af6ef73c752240e2f59d6b8dfd3da7bcb7107742bbc05668c1b75125f94f4b8327bae0b15bd24b94cfb07c27623f2322ca06cec042c807981df65590ca4100da6484826de1b29fb24a8f5d2209ef29a84b691b33df4620b57d1a95442c90c4818ab8c4123873653d33cc086be5034060c70747bcc6eb9eaf4cdbca9a1c1c5fc45504abf63a30bd70109228e05ddf89d7c7d44ea22e60f5659a924272a92a1d03c964faf41ca11c84fff5de80a9f1e3ddeca2bee5ec33f561bad738d2b0ca00230cbe8f1990806d5bf2da1fc04c373675b86aa758a46f1fd526082314b873c9cf5ef64b688f79e7b17c4772c630d133a7655930d75cacebeb1fdff6e5d7ab21ff468c87b9ec454f3c0bd249709f8fe8464c0305e0a2514cda0567a9a9277ac0ee2d3a673968e9b2188f23ba76fe86f5bd372c763ffd1d1aedcf597bf0074e9503db56ece84084343531f4b23613caecdc517bb75eedb4b9e666999a695cc7fdafe1936652ca518bf5aca5b61062e83ee324161cc81974377da9f9dfbb2e455af4e21f3c915975ba23f1ff8d89579e20edc38e2b49703388b6bb700a00ff725b38504112dd58c913500d1e736a6fdaf4c79cfb9f2a4869b9e39adb4f3cca68100a75238deced26545651fc6f4a273a88eb828ffaf34ee3e88b83621f7c97e8bef645cb108ae3d09bdc82c002027b08005700366065940a8b150944984e0e334985427ee09921577e2637cb6b165461cd626b66d055e553699f1542d38924053d6a2806971221f7e52e3c887fd525dc0f03cce52c61266adf631702f2bb21259f38536c06ad36b92315b2c9d418125acc90fb37c13b8bd2674c64886d42605e45602c744224ecc006217df95f1206a4a029585a800cfba9ded6bdc46234fd090f18e0fe0c9a74f09d86a7b4f750b556559a07c7afcf8d95e40bebc25cb3c3a7106b0b036c08a2c30cf375cea7bb7293d244d04e3fb1023392dc18acff0c0187196ee1274afa0189f25537883d1bd70e1e6fc610297bf074a00b86af9b4c7a3ab0ed37e18df8dbe199ff0b41f9e736e48d9fa6da41bbdce940712702d3a1959ac2c5006dafbdafefb475d151ae44b5570365918d27e11fe99cad1b22cfd6078a8ad7814e77f473b38d553b7e57a6bc61a67587448f3afdbd86e7dec37b71f602de34411b063a6b34de13e8f3ee4f5f12dcb6f5ea29a3aef4a7fd922c2b38f1cb1bf8c1ff614aa52f425388dc93f84bfd644b47902b3ffe48ff479277e5c61f802246195f07eaf22db6e0d6eb27c5e283ea9e95abd1800e6f1e411a33a771446723c58f024d58730de257a6608da5b819be2c8c4430380a9ecfae5fc2552006c69d57ca8c7d7e2df85a1b46a9664dbfe1ae264ed058615b3834f7d4a6235eb26092446f7ba4c169b68424460b39167886aff46e4dbb847115093f7a71ab325ff72b6e7bcafb030e6d90d994dbdbf4ee8304219774b482e93dfcb8485b399ad7c320d0548b02f21d45b296557224e6b39184b2f91a8288c8ada814f281873b8db3c3be6df9fb98948e6c440233b33e5f1ce0b5f63c8e692f87d6c6799f4404a9a6f9c60ab48c7f842c1bdd97ead0ad8110d41c61657f3bdc25778e020dd6fee2c5fec0de4a226da47027105bd01146718ee265c4fd626601a6942200f6bf036e96bde80122d2997ab4eda2ad89473142e608f8f36aa9e1f25de5aed3ecccd0817fd821d69098bad98c0a7098c3f3b98d805dc5ee6ac7f2b7a0271aa32a84c133e28679d22de8651d4e4bef2bdd502eef70aa14c3f1ef14f881f99ce3fbfad55d7094d668a923ec5f510f3d46a516e3d6e17cf251da62996bf432baff4bf1cce46d93734df41a5b4e6ff1584b38bf3a65dceb2331a0b569f1394fdc239ff95005fc4b7f546c2f9c03c67f4fed888ad8b8a5801e9196aa899307d0249c328c5505983d0b05cabf0c7dfdad58741a835eebfdc828aece5e1fe06b9c7547f47ae5a3badf93bdff0cc8631cc21ee93885b6063e1b11bd6b295d6921c3e5577e543759f0e74c8360f8bfcc87396432e88ce52f18ea09a12d880b8bda24146e013bdd54d172ea7ba970ee3b87cb5fad3d30f2e26fff017fc186ab5675fddec8a418976f38794be9f3a1105a597058b673bcd649180b142967068f2d2377314b016cf63a9f8f8d86152738364be1b2303da86b547b0e28bb4d341709119a2483c0b23a6aee50002b6773180b98ac7aa85fc06624bff84d0ea4b5f9be7bf46f411f1c4957c80193c3a24400f46383a1dc2ee07b9ec4d5992798e0c289883de5d8c5a0f8618e18fd1e28d02f9861bb2f6739ea976e8416bd88e56f97c1c1056f9461307755888fd63ec1d025419d911d281c6e17b09c2a05067919c4478e72d8b25813a4c756e538b67cbfb37bb51c380306b3332ef5afea77d8ec01e88670420f20f1b790aa99654402eeaf3b2fb185d6065d7685db94c6187527c0b00805868c7d64b4cf9ede952d5cfe1bf8262b66c4cf6c75f312fff7448ad83b029f2561a89942f86d3ae1c53f54068b17adabb19f0f5864f33c2eee6fb15d36a5c04349f938f940015c44be1c1dcf16915c1545297bae9b094593901cf316ec79d4cad6b9377d4a88d588ef1e774dddf88a5ca7d0e73acd0238c9df4c42b9263e1dfabfb417763563f9ba30b29f9502d4a424406630c8af46cf0c794413737100e2062528762c215086c63a87fd7aaebceb738221fde8ce6da21c7d102fe1f5180bf451db11554b43bd12450199f7f468a3796148bd917abe79d60c7eb7a9b775abc604a7e2ee07edee68a21bec66a908111cbd3bc578560512e66764ee60e71fc44a5625bcdebd83d81894171edac49024bef3ceb66f032bb97db8b1fc032165e9a9168e828531b821c2cf94dfc8cf115769ca5b016fef903810d23a478c4edca736b5ef57647474c29b315150363b88becc1898164502de35537bdc7c7cc7e3e9f1226d223fb1a01f53f19f2d1b2cff6952c2f6fd23490c6d49e7c4839b9b15f2c868631791173b836a3f5583663cc03d6dc06fae29221e6e52dd4d90ebf2a655a9f9da57b932e7c5dc00f539d3a110083c0044fb29610112b206ae749dabef6cb4e228b75284a61babc8ee7f1372aa6bd84e8f5daceb101dbb791f79a0bcea21917e3498caa80f090ddc2201cf652b97dd993327a36d53e3fd33f676b3991e33e7bac9e74b075de58efcdf476c1bb1986a0b80d0f0fe18dfb4e331f8cd99dbb13c66e069aa994f312c0453886a2c3f677b5d7c4da05b71888d883c06367b2e060071a5a88bb58e91abf8b48c2291781d04d1c977317ef412f58086220c62e100f96756d60683f7e71e19c8be9f49bc3dff735e02e1d1e0cdc88efd5392a356896c1997f7032472dce3d49d5fd196e93fabc320cac1a163e2255af74beaa5179e1c4ac089b18b7491902e88f6e0fbc2adbe7771116b15aee22ec40741903c61f949089fd248d3ea2df8e3b6452c332007c93bdd3d4f39d69362453a2272b76d6e0070e729d0ebedf8bf06fd053f51822b584fe1ba89a37687710079986fb3768f0e159aa3c9237ae7c5251d46b3a7e9daf47db06d0f59188ce57b37b15d764efd656d47093d00a81a400c1db5c631757b19e4e3d971</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">进去后一定要先刷新哦</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/Eternity/lib/hbe.js"></script><link href="/Eternity/css/hbe.style.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Eternity/tags/%E5%BE%AE%E7%A7%AF%E5%88%86/" rel="tag"># 微积分</a>
+              <a href="/Eternity/tags/%E6%95%B0%E8%AE%BA/" rel="tag"># 数论</a>
+              <a href="/Eternity/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag"># 学习笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/learning-note-analytical-mathematics-series-limits/" rel="prev" title="数列与极限">
+      <i class="fa fa-chevron-left"></i> 数列与极限
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/learning-note-congruence/" rel="next" title="同余">
+      同余 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="VioletEternal"
+      src="/Eternity/images/Guess.png">
+  <p class="site-author-name" itemprop="name">VioletEternal</p>
+  <div class="site-description" itemprop="description">誰も悪くないから、辛いだな。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Eternity/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Eternity/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Eternity/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/VioletEternal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VioletEternal" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VioletEternal</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/Eternity/lib/anime.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Eternity/js/utils.js"></script>
+
+<script src="/Eternity/js/motion.js"></script>
+
+
+<script src="/Eternity/js/schemes/pisces.js"></script>
+
+
+<script src="/Eternity/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
