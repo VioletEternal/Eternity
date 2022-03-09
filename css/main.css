@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff0071;
+  background: #38af67;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1970,7 +1970,7 @@ pre .javascript .function {
   text-align: center;
 }
 body {
-  background: url("https://www.imageoss.com/images/2022/03/09/-31216ed0cd5abcfa0f2.jpg");
+  background: url("/Eternity/images/background-2.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
