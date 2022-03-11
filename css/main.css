@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #38af67;
+  background: #ff0b1a;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1969,16 +1969,6 @@ pre .javascript .function {
 #qr p {
   text-align: center;
 }
-body {
-  background: url("/Eternity/images/background-2.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: 50% 50%;
-  background-size: cover;
-}
-.main-inner {
-  opacity: 0.8;
-}
 .category-all-page .category-all-title {
   text-align: center;
 }
@@ -2323,17 +2313,6 @@ mjx-container + br {
   text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
   vertical-align: middle;
 }
-.main-menu .menu-item-active a::after {
-  background: #bbb;
-  border-radius: 50%;
-  content: ' ';
-  height: 6px;
-  margin-top: -3px;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  width: 6px;
-}
 .sub-menu {
   background: var(--content-bg-color);
   border-bottom: 1px solid #ddd;
@@ -2586,4 +2565,12 @@ mjx-container + br {
   .pagination {
     margin: 8px 0 0;
   }
+}
+body {
+  background: url("/Eternity/images/background-2.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+  background-size: cover;
+  opacity: 0.8;
 }
