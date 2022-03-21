@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -17,7 +22,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"violeteternal.github.io","root":"/Eternity/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"violeteternal.github.io","root":"/Eternity/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="$2019-2022$">
@@ -28,7 +33,7 @@
 <meta property="og:description" content="$2019-2022$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-05T04:36:52.000Z">
-<meta property="article:modified_time" content="2022-03-16T04:47:37.010Z">
+<meta property="article:modified_time" content="2022-03-17T05:47:52.408Z">
 <meta property="article:author" content="VioletEternal">
 <meta name="twitter:card" content="summary">
 
@@ -105,6 +110,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -126,24 +132,51 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">10</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">39</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">23</span></a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -186,7 +219,7 @@
       
       <div class="post-body">
           <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="4a0ef753a572c92f399a1f5df5e8168d10f9049df63e78df7f7cadec323b2a72">26666a66e224f5d601c163fbcef4ee96cb5951e286039895f869c6a493681bf158e888b629c6167fa9e266239a0d308bec4c3dd84719dac284b81f934d2b93d789432a2e0e3b5522df0df848084103a0b1a316dab5028f93a3badb29b81b8c9789cb8292c23479476b4db4e78ce5b39a8f36d779548532d005b85577a67a9813d9246b85269e81c34c2a172b73f32a18f36d0480b0d05f2f8de28adc95149276f7d703173e7e263afdc7ab93b9216835b4479f40dd5907e6c9599136af3f2087dd8d71d50a00d94315c59d000c027739a597723876418bf8f00eddcf937fafa58fc476fc285857f1efba179df261efa3f3bb4eead2ad9656609b1c2a7329222a7586d3f5e9052b264037bca50dc8540c627c19a19cfe360a5e45fbed2aed44f8c952a237249cc4f04586ad1015d5345c97a31b9774dca9c98174c519910d1ff2</script>
+  <script id="hbeData" type="hbeData" data-hmacdigest="4aa44d6737f18f9f3b119c95f8036cb691f6c959870e9ae2121edada3b4db3e4">26666a66e224f5d601c163fbcef4ee96cb5951e286039895f869c6a493681bf158e888b629c6167fa9e266239a0d308bec4c3dd84719dac284b81f934d2b93d789432a2e0e3b5522df0df848084103a0b1a316dab5028f93a3badb29b81b8c9789cb8292c23479476b4db4e78ce5b39a8f36d779548532d005b85577a67a9813d9246b85269e81c34c2a172b73f32a18f36d0480b0d05f2f8de28adc95149276f7d703173e7e263afdc7ab93b9216835b4479f40dd5907e6c9599136af3f2087dd8d71d50a00d94315c59d000c027739a597723876418bf8f00eddcf937fafa5f003345d78ac8c9b4d9dc86d2a6ee2d8eaf354ac01739d676e6ef99744743c639f3513f194896b0a04b57c48def8db417abc0168609f873233a531b183fabdcf10e38ad28514c0cc7bf2ef33a53f67eff2ed6da7631f767f82f5d435a03a6d582a8df9dbdbed004bfe105eb2d85f409d27763566b241148320f291e6cae0777c41d2de94117ea689e03972cf381679fac6772fc8a1e46709a32bc468766be7279628a15420b0739966fa3621084048ea98e478788662fc0bb4ac5530854d7ff13edaab20d63eea76fe31a9da934a315a539f985b27ae0dd3290db39df5e0a1c1ff1ce23952096530a9923770ab7d67ce9aeb55674cb72fa1c24b8fbf5334bb3dc3f396267914ad81b3b6ff8f5a54a53782ce8013704fdd44f86f6b9f2870e7497bd18b756189fc6e07a8ff2e3ffb2b8e</script>
   <div class="hbe hbe-content">
     <div class="hbe hbe-input hbe-input-xray">
       <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
@@ -215,6 +248,7 @@
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -276,20 +310,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Eternity/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">39</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -298,9 +332,46 @@
       <span class="links-of-author-item">
         <a href="https://github.com/VioletEternal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VioletEternal" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/356159259?spm_id_from=333.1007.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;356159259?spm_id_from&#x3D;333.1007.0.0" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/444040" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;444040" rel="noopener" target="_blank"><i class="fab fa-luogu fa-fw"></i>Luogu</a>
+      </span>
   </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">机房最巨赵月岑</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://jarroute.github.io/" title="https:&#x2F;&#x2F;jarroute.github.io&#x2F;" rel="noopener" target="_blank">技术总监Jarroute</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://song-gan.github.io/" title="https:&#x2F;&#x2F;song-gan.github.io&#x2F;" rel="noopener" target="_blank">机房奴隶主Crystal_Gan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房老大哥_Live_</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">Ynoi前辈dyd-true</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io&#x2F;" rel="noopener" target="_blank">省队爷mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io&#x2F;" rel="noopener" target="_blank">省队大跌Rusun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://evrgardenviolet.github.io/" title="https:&#x2F;&#x2F;evrgardenviolet.github.io&#x2F;" rel="noopener" target="_blank">Violet前辈闲人</a>
+        </li>
+    </ul>
+  </div>
 
       </div>
 
@@ -326,11 +397,44 @@
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">VioletEternal</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">79k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:12</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
 
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+<span id="busuanzi_container_page_pv">本文热度<span id="busuanzi_value_page_pv"></span>℃</span>
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
 
 
 
@@ -344,6 +448,7 @@
   </div>
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="/Eternity/lib/canvas-ribbon/canvas-ribbon.js"></script>
   <script src="/Eternity/lib/anime.min.js"></script>
   <script src="/Eternity/lib/velocity/velocity.min.js"></script>
   <script src="/Eternity/lib/velocity/velocity.ui.min.js"></script>
@@ -359,14 +464,15 @@
 <script src="/Eternity/js/next-boot.js"></script>
 
 
-  <script defer src="/Eternity/lib/three/three.min.js"></script>
-    <script defer src="/Eternity/lib/three/three-waves.min.js"></script>
-    <script defer src="/Eternity/lib/three/canvas_lines.min.js"></script>
 
 
   
 
 
+
+
+  
+<script src="/Eternity/js/local-search.js"></script>
 
 
 
@@ -441,5 +547,25 @@
 
   
 
-</body>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'c547d8099919a2d14d96',
+      clientSecret: '10a714b915e252d47a7c076cbd8f01fadb85bd41',
+      repo        : 'https://github.com/VioletEternal/GitalkStorage',
+      owner       : 'VioletEternal',
+      admin       : ['VioletEternal'],
+      id          : 'c523b9f98d8f4d59884f6e1e947eb3e8',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/Eternity/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
