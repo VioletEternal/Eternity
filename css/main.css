@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #0e78ff;
+  background: #16f0c2;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2737,6 +2737,14 @@ body {
 }
 .fa-luogu {
   background: url("/Eternity/images/luogu.svg");
+  background-position: 50% 75%;
+  background-repeat: no-repeat;
+  height: 1rem;
+  width: 1rem;
+  opacity: 0.8;
+}
+.fa-cloudmusic {
+  background: url("/Eternity/images/cloudmusic.svg");
   background-position: 50% 75%;
   background-repeat: no-repeat;
   height: 1rem;
