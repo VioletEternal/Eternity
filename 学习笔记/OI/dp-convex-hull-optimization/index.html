@@ -28,21 +28,21 @@
   </script>
 
 
-  <meta name="description" content="“不可名状”">
+  <meta name="description" content="“不可名状。”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="斜率优化dp&#x2F;凸包优化dp">
 <meta property="og:url" content="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/dp-convex-hull-optimization/index.html">
 <meta property="og:site_name" content="Eternity">
-<meta property="og:description" content="“不可名状”">
+<meta property="og:description" content="“不可名状。”">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-13T06:35:26.000Z">
-<meta property="article:modified_time" content="2022-05-27T07:11:05.281Z">
+<meta property="article:modified_time" content="2022-07-15T00:46:18.422Z">
 <meta property="article:author" content="Fallen Shadow">
+<meta property="article:tag" content="数论">
 <meta property="article:tag" content="DP">
 <meta property="article:tag" content="优化">
-<meta property="article:tag" content="数论">
-<meta property="article:tag" content="斜率优化">
 <meta property="article:tag" content="几何">
+<meta property="article:tag" content="斜率优化">
 <meta property="article:tag" content="凸包">
 <meta name="twitter:card" content="summary">
 
@@ -139,7 +139,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">154</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">157</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,12 +149,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
 
   </li>
         <li class="menu-item menu-item-归程">
 
     <a href="/Eternity/road/" rel="section"><i class="fa fa-road fa-fw"></i>归程</a>
+
+  </li>
+        <li class="menu-item menu-item-友人">
+
+    <a href="/Eternity/friends/" rel="section"><i class="fa fa-paper-plane fa-fw"></i>友人</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -240,7 +245,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 15:11:05" itemprop="dateModified" datetime="2022-05-27T15:11:05+08:00">2022-05-27</time>
+                <time title="修改时间：2022-07-15 08:46:18" itemprop="dateModified" datetime="2022-07-15T08:46:18+08:00">2022-07-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -269,14 +274,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>10k</span>
+              <span>13k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>12 分钟</span>
             </span>
 
         </div>
@@ -288,7 +293,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>“不可名状”</p>
+        <p>“不可名状。”</p>
 <span id="more"></span>
 <p>对于一个转移方程，能够表示为：</p>
 <p>$f[i]=Kc[i]+B$ </p>
@@ -306,11 +311,11 @@
 <p>用 $dp[i][j]$ 来表示当前第 $i$ 个工程，已经分了 $j$ 组的最小代价，用 $pret[]$ 和 $prec[]$ 数组表示两个代价的前缀和。</p>
 <p>则有：</p>
 <p>$dp[i,j]=\min\limits_{0\leq k&lt;i}\{dp[k,j-1]+(s\times j+pret[i])\times (prec[i]-prec[k])\}$</p>
-<p>时间复杂度 $O(n^3)$ ，空间复杂度 $O(n^2)$ ，不够</p>
+<p>时间复杂度 $O(n^3)$ ，空间复杂度 $O(n^2)$ ，不够。</p>
 <h4 id="费用提前计算优化"><a href="#费用提前计算优化" class="headerlink" title="费用提前计算优化"></a>费用提前计算优化</h4><p>根据以往的做题经验，我们尝试把二维化成一维，即让 $dp[i]$表示前 $i$ 个任务分批执行的最小费用。</p>
 <p>但是这样我们就不知道机器启动过几次了！</p>
 <p>别慌，冷静分析一下你会发现，如果我们要从 $dp[j]$ 转移到 $dp[i]$ 的话，由于第 $j+1\sim i$ 都是在同一批内完成的，我们只需要把 $s$ 对 $j+1$ 后的影响补充到费用中就可以了！</p>
-<p>$dp[i]=\min\limits_{0\leq k&lt;i}\{dp[j]+pret[i]\times(prec[i]-prec[j])+s\times (prec[n]-prec[j])\}$</p>
+<p>$dp[i]=\min\limits_{0\leq j&lt;i}\{dp[j]+pret[i]\times(prec[i]-prec[j])+s\times (prec[n]-prec[j])\}$</p>
 <p>时间复杂度 $\mathcal O(n^2)$ ，这就是<strong>费用提前计算</strong>的思想。</p>
 <details>
     <summary>AC Code</summary>
@@ -331,7 +336,7 @@
 <hr>
 <p>首先，做出 $x=prec[j],y=dp[j]$ 的图像。并做出相应的散点 $(prec[j],dp[j])$ 。（我们这里首先只说横坐标单调递增的情况）</p>
 <p>对于每一次计算 $i$ 时，我们将一条斜率为 $s+pret[i]$ 的直线从 $-\inf$ 开始向上移动，对于第一个碰到的点，该点对应的截距就是 $\min\{dp[i]\}$ 。</p>
-<p>而对于用 $\mathcal{O}(1)$ 的时间找出最小的点，我们用类似于单调队列优化里的思想维护散点组成的凸包的下凸边即可。</p>
+<p>而对于用 $\mathcal{O}(1)$ 的时间找出最小的点，我们用类似于单调队列优化里的思想维护散点组成的凸包的上下凸边即可。</p>
 <p>对于一个点是否在凸包上，满足：</p>
 <ul>
 <li>该点与上一个凸包点组成直线的斜率小于当前斜率；</li>
@@ -359,7 +364,7 @@
 </details>
 
 <h3 id="P3195-HNOI2008-玩具装箱"><a href="#P3195-HNOI2008-玩具装箱" class="headerlink" title="P3195 [HNOI2008]玩具装箱"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3195">P3195 [HNOI2008]玩具装箱</a></h3><h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><p>这道题看似是紫题，其实也是一道斜率优化的模板题。</p>
-<p>令 $a[i]=sum[i]+i,b[i]=a[i]+L+1$ ，方便表示 </p>
+<p>令 $a[i]=sum[i]+i,b[i]=a[i]+L+1$ ，方便表示 。</p>
 <p>推出转移方程为：</p>
 <p>$dp[i]=dp[j]+(a[i]-b[j])^2$</p>
 <p>然后变成点斜式：</p>
@@ -393,7 +398,34 @@
 
 </details>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>依我看来，斜率优化算是 $\mathcal{dp}$ 一栏里最难的部分了。省选+会涉及，所以根据 <code>wanhui</code> 给我定的目标，我还是不得不学。</p>
+<hr>
+<h3 id="P3628-特别行动队"><a href="#P3628-特别行动队" class="headerlink" title="P3628 特别行动队"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3628">P3628 特别行动队</a></h3><p>当做是我练习推式子的练习题了。发现异常好推。</p>
+<p>令 $s[i]$ 表示为 $x$ 的前缀和，则有：</p>
+<p>$dp[i]=as[i]^2+bs[i]+c+as[j]^2-2as[i]s[j]-bs[j]+dp[j]$</p>
+<p>然后化成函数式表示为：</p>
+<p>$dp[j]+as[j]^2-bs[j]=2as[i]s[j]+dp[i]-as[i]^2-bs[i]-c$ </p>
+<p>$\mathcal{END}$</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gh() getchar()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> re register</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">1e6</span>+<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> ch=<span class="built_in">gh</span>(),t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>) t|=ch==<span class="string">&#x27;-&#x27;</span>,ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(ch^<span class="number">48</span>),ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">if</span>(t) x=-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T,<span class="keyword">class</span> ...T1&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x,T1 &amp;...x1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(x),<span class="built_in">read</span>(x1...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">checkMax</span><span class="params">(T &amp;x,T &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&lt;y?x=y,<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">checkMin</span><span class="params">(T &amp;x,T &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&gt;y?x=y,<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">ll N,a,b,c;</span><br><span class="line">ll s[MAXN],dp[MAXN],val;</span><br><span class="line">ll head,tail,Que[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">K</span><span class="params">(<span class="type">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">2</span>*a*s[id];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">X</span><span class="params">(<span class="type">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> s[id];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">Y</span><span class="params">(<span class="type">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> dp[id]+a*s[id]*s[id]-b*s[id];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">B</span><span class="params">(<span class="type">int</span> id)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> dp[id]-a*dp[id]*dp[id]-b*dp[id]-c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">slope</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">Y</span>(x)-<span class="built_in">Y</span>(y))/(<span class="built_in">X</span>(x)-<span class="built_in">X</span>(y));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;dp-convex.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;dp-convex.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N,a,b,c);</span><br><span class="line">    Que[head=tail=<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">read</span>(val);</span><br><span class="line">        s[i]=s[i<span class="number">-1</span>]+val;</span><br><span class="line">        <span class="keyword">while</span>((<span class="built_in">head</span>&lt;tail)&amp;&amp;(<span class="built_in">Y</span>(Que[head+<span class="number">1</span>])-<span class="built_in">Y</span>(Que[head]))&gt;(<span class="built_in">X</span>(Que[head+<span class="number">1</span>])-<span class="built_in">X</span>(Que[head]))*<span class="built_in">K</span>(i)) ++head;</span><br><span class="line">        <span class="keyword">if</span>(head&lt;=tail) dp[i]=dp[Que[head]]+(s[i]-s[Que[head]])*(s[i]-s[Que[head]])*a+(s[i]-s[Que[head]])*b+c;</span><br><span class="line">        <span class="keyword">while</span>((head&lt;tail)&amp;&amp;(<span class="built_in">Y</span>(Que[tail])-<span class="built_in">Y</span>(Que[tail<span class="number">-1</span>]))*(<span class="built_in">X</span>(i)-<span class="built_in">X</span>(Que[tail]))&lt;=((<span class="built_in">Y</span>(i)-<span class="built_in">Y</span>(Que[tail]))*(<span class="built_in">X</span>(Que[tail])-<span class="built_in">X</span>(Que[tail<span class="number">-1</span>])))) --tail;</span><br><span class="line">        Que[++tail]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,dp[N]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">f[j]+a*s[j]*s[j]-b*s[j]=2*a*s[i]*s[j]+f[i]</span></span><br><span class="line"><span class="comment">4 </span></span><br><span class="line"><span class="comment">-1 10 -20 </span></span><br><span class="line"><span class="comment">2 2 3 4 </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><hr>
+<p>关于 $x,y,k,b$ 的选择：</p>
+<p>首先，明晰斜率优化是用来解决以： $dp[i]=\min/\max\{dp[j]+a[i]+b[j]+a[i]\times b[j]\}$ 的问题，当然 $a[i]$ 和 $b[j]$ 不一定存在，但是 $a[i]\times b[j]$ 一定存在。</p>
+<p>然后，拆下 $\min/\max$ ，并将<strong>只</strong>关于 $j$ 的置于一旁：</p>
+<p>$dp[j]+b[j]=-a[i]\times b[j]+dp[i]-a[i]$</p>
+<p>这个时候，一次函数式就已经列出来了。</p>
+<ol>
+<li><strong>仅</strong>关于 $i$ 的项作为 $b$ ；</li>
+<li><strong>仅</strong>关于 $j$ 的项作为 $y$ ；</li>
+<li><strong>既</strong>关于 $i$ <strong>又</strong>关于 $j$ 的项中，$i$ 项作 $k$ ，$j$ 项作 $x$ 。</li>
+</ol>
+<hr>
+<p>依我看来，斜率优化算是 $\mathcal{dp}$ 一栏里最难的部分了。省选+会涉及，所以根据 <code>wanhui</code> 给我定的目标，我还是不得不学。</p>
 <font style="color:white">说实话，依我而看，我的实力远远不够，后路很长，如果一起前进最后的结果终究是四分五裂。所以，也许，是时候，做出取舍。但即使如此，我也必须努力才行啊。</font>
 
 <p>$\mathcal{finished\ at\ 2022.5.14}$</p>
@@ -406,11 +438,11 @@
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/Eternity/tags/%E6%95%B0%E8%AE%BA/" rel="tag"># 数论</a>
               <a href="/Eternity/tags/DP/" rel="tag"># DP</a>
               <a href="/Eternity/tags/%E4%BC%98%E5%8C%96/" rel="tag"># 优化</a>
-              <a href="/Eternity/tags/%E6%95%B0%E8%AE%BA/" rel="tag"># 数论</a>
-              <a href="/Eternity/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/" rel="tag"># 斜率优化</a>
               <a href="/Eternity/tags/%E5%87%A0%E4%BD%95/" rel="tag"># 几何</a>
+              <a href="/Eternity/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/" rel="tag"># 斜率优化</a>
               <a href="/Eternity/tags/%E5%87%B8%E5%8C%85/" rel="tag"># 凸包</a>
           </div>
 
@@ -487,7 +519,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P2365-%E4%BB%BB%E5%8A%A1%E5%AE%89%E6%8E%92"><span class="nav-number">1.1.</span> <span class="nav-text">P2365 任务安排</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%B4%E7%B4%A0%E6%80%9D%E6%83%B3"><span class="nav-number">1.1.1.</span> <span class="nav-text">朴素思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%B9%E7%94%A8%E6%8F%90%E5%89%8D%E8%AE%A1%E7%AE%97%E4%BC%98%E5%8C%96"><span class="nav-number">1.1.2.</span> <span class="nav-text">费用提前计算优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96"><span class="nav-number">1.1.3.</span> <span class="nav-text">斜率优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3195-HNOI2008-%E7%8E%A9%E5%85%B7%E8%A3%85%E7%AE%B1"><span class="nav-number">1.2.</span> <span class="nav-text">P3195 [HNOI2008]玩具装箱</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">1.2.1.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF311B-Cats-Transport"><span class="nav-number">1.3.</span> <span class="nav-text">CF311B Cats Transport</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P2365-%E4%BB%BB%E5%8A%A1%E5%AE%89%E6%8E%92"><span class="nav-number">1.1.</span> <span class="nav-text">P2365 任务安排</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%B4%E7%B4%A0%E6%80%9D%E6%83%B3"><span class="nav-number">1.1.1.</span> <span class="nav-text">朴素思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%B9%E7%94%A8%E6%8F%90%E5%89%8D%E8%AE%A1%E7%AE%97%E4%BC%98%E5%8C%96"><span class="nav-number">1.1.2.</span> <span class="nav-text">费用提前计算优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96"><span class="nav-number">1.1.3.</span> <span class="nav-text">斜率优化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3195-HNOI2008-%E7%8E%A9%E5%85%B7%E8%A3%85%E7%AE%B1"><span class="nav-number">1.2.</span> <span class="nav-text">P3195 [HNOI2008]玩具装箱</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">1.2.1.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF311B-Cats-Transport"><span class="nav-number">1.3.</span> <span class="nav-text">CF311B Cats Transport</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3628-%E7%89%B9%E5%88%AB%E8%A1%8C%E5%8A%A8%E9%98%9F"><span class="nav-number">1.4.</span> <span class="nav-text">P3628 特别行动队</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -503,7 +535,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -516,7 +548,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">154</span>
+        <span class="site-state-item-count">157</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -543,10 +575,10 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">（已倒戈）机房最巨赵月岑</a>
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">机房最巨赵月岑</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">（已倒戈）技术总监Sukwog</a>
+          <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://song-gan.github.io/" title="https:&#x2F;&#x2F;song-gan.github.io&#x2F;" rel="noopener" target="_blank">机房淦神Crystal_Gan</a>
@@ -607,12 +639,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">557k</span>
+    <span title="站点总字数">599k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:27</span>
+    <span title="站点阅读时长">9:05</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

@@ -1219,7 +1219,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #21ff01;
+  background: #61d74b;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2720,12 +2720,12 @@ mjx-container + br {
   }
 }
 body {
-  background: url("/Eternity/images/background-2.jpg");
+  background: url("/Eternity/images/background-4.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
   background-size: cover;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 .fa-bilibili {
   background: url("/Eternity/images/bilibili.svg");

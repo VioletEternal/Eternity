@@ -28,15 +28,15 @@
   </script>
 
 
-  <meta name="description" content="“每天一遍，MLE再见”">
+  <meta name="description" content="“每天一遍，MLE再见。”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="状态压缩dp">
 <meta property="og:url" content="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/dp-state-compression/index.html">
 <meta property="og:site_name" content="Eternity">
-<meta property="og:description" content="“每天一遍，MLE再见”">
+<meta property="og:description" content="“每天一遍，MLE再见。”">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-08T06:45:55.000Z">
-<meta property="article:modified_time" content="2022-04-27T08:51:03.914Z">
+<meta property="article:modified_time" content="2022-07-14T08:32:27.144Z">
 <meta property="article:author" content="Fallen Shadow">
 <meta property="article:tag" content="DP">
 <meta property="article:tag" content="优化">
@@ -137,7 +137,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">154</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">157</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -147,12 +147,17 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">67</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">68</span></a>
 
   </li>
         <li class="menu-item menu-item-归程">
 
     <a href="/Eternity/road/" rel="section"><i class="fa fa-road fa-fw"></i>归程</a>
+
+  </li>
+        <li class="menu-item menu-item-友人">
+
+    <a href="/Eternity/friends/" rel="section"><i class="fa fa-paper-plane fa-fw"></i>友人</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -238,7 +243,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-27 16:51:03" itemprop="dateModified" datetime="2022-04-27T16:51:03+08:00">2022-04-27</time>
+                <time title="修改时间：2022-07-14 16:32:27" itemprop="dateModified" datetime="2022-07-14T16:32:27+08:00">2022-07-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -267,14 +272,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.5k</span>
+              <span>10k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -286,7 +291,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>“每天一遍，MLE再见”</p>
+        <p>“每天一遍，MLE再见。”</p>
 <span id="more"></span>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对于一类题而言，如果用 $dp$ 来做的话，会有 $m$ 个状态，而作为我们来讲，我们不可能去开一个数组 $dp[2][2][2][2][2][2][2]…[2]$ 来记录，因为空间是动态的。所以我们考虑将这 $m$ 个状态压缩成一个 $m$ 位的二进制数。存储为一位，则空间复杂度与时间复杂度都是 $O(2^m)$ 的话，枚举 $[0,2^m-1]$ ，而对于这个二进制数，它的第 $k$ 位为 $1$ 则满足第 $k$ 个条件，判断语句为 <code>if(i&gt;&gt;k&amp;1)</code> 即可。</p>
 <p>这种题可实行的范围一般都不超过 $10 \sim 20$ ，所以很容易识别。</p>
@@ -298,6 +303,7 @@
 
 </details>
 
+<hr>
 <h3 id="P1896-SCOI2005-互不侵犯"><a href="#P1896-SCOI2005-互不侵犯" class="headerlink" title="P1896 [SCOI2005]互不侵犯"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1896">P1896 [SCOI2005]互不侵犯</a></h3><p>也是一道较为经典的状压dp题，考虑当前行与上一行的状态，满足：</p>
 <ul>
 <li>没有相邻的 $1$ </li>
@@ -311,6 +317,7 @@
 
 </details>
 
+<hr>
 <h3 id="P2704-NOI2001-炮兵阵地"><a href="#P2704-NOI2001-炮兵阵地" class="headerlink" title="P2704 [NOI2001] 炮兵阵地"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2704">P2704 [NOI2001] 炮兵阵地</a></h3><p>这便是一道比较进阶的状压dp题了。因为对于一排而言，我们需要记录前两行的信息才能对该行的信息进行转移。所以需要维护前两行的状态，用 $dp[i][j][k]$ 表示第 $i$ 行的状态是 $j$ 并且 $i-1$ 行的状态是 $k$ 的答案总数。并对 $i-2$ 进行转移。</p>
 <p>但是，这样的时间复杂度是 $2^{3m}n$ ，根本不够。所以，我们需要预处理出对于每一行而言的可行方案，直接在可行方案里计算即可。</p>
 <p>然而，空间复杂度 $O(2^{2m}n)$ ，又超出了空间限制，所以我们可以像背包那样使用滚动数组。</p>
@@ -321,6 +328,20 @@
 
 </details>
 
+<hr>
+<h3 id="P3959-宝藏"><a href="#P3959-宝藏" class="headerlink" title="P3959 宝藏"></a>P3959 宝藏</h3><p>求一个图的最小权生成树，这里的最小权关系到其生成高度。</p>
+<p>定义状态为 $dp[i][s]$ 表示当前生成树的高度为 $i$ ，且点集状态为 $s $ 的情况。每一次转移 $s$ 的子集 $T$ 以及 $s$ 与 $T$ 相异的部分。</p>
+<p>判断子集的方法： <code>T=(T-1)&amp;s</code> 。</p>
+<p>转移为：</p>
+<p>$dp[i][s]=\min\{dp[i-1][T]+temp\times j\}$</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gh() getchar()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> re register</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">15</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXM=<span class="number">5e3</span>+<span class="number">1</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXS=<span class="number">1</span>&lt;&lt;MAXN;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> ch=<span class="built_in">gh</span>(),t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>) t|=ch==<span class="string">&#x27;-&#x27;</span>,ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(ch^<span class="number">48</span>),ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">if</span>(t) x=-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T,<span class="keyword">class</span> ...T1&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x,T1 &amp;...x1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(x),<span class="built_in">read</span>(x1...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">checkMax</span><span class="params">(T &amp;x,T &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&lt;y?x=y,<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">checkMin</span><span class="params">(T &amp;x,T &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&gt;y?x=y,<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> N,M;</span><br><span class="line">ll dp[MAXN][MAXS],w,ans=INF;</span><br><span class="line">ll Path[MAXN][MAXN],Dist[MAXS];</span><br><span class="line"><span class="comment">/*struct G</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    int next,to;</span></span><br><span class="line"><span class="comment">    ll val;</span></span><br><span class="line"><span class="comment">    G(int n=0,int t=0,ll v=0):next(n),to(t),val(v)&#123;&#125;</span></span><br><span class="line"><span class="comment">&#125;Edge[MAXM&lt;&lt;1];</span></span><br><span class="line"><span class="comment">int Head[MAXN],Total;</span></span><br><span class="line"><span class="comment">int Path[MAXN][MAXN];</span></span><br><span class="line"><span class="comment">bool Vis[MAXN];</span></span><br><span class="line"><span class="comment">inline void addEdge(int u,int v,ll w)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    Edge[++Total]=G(Head[u],v,w);Head[u]=Total;</span></span><br><span class="line"><span class="comment">    Edge[++Total]=G(Head[v],u,w);Head[v]=Total;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">inline void Init()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    queue&lt;int&gt;Q;</span></span><br><span class="line"><span class="comment">    for(int s=0;s&lt;N;++s)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        memset(Vis,0,sizeof(Vis));</span></span><br><span class="line"><span class="comment">        for(int i=0;i&lt;N;++i) Path[s][i]=INF;</span></span><br><span class="line"><span class="comment">        Path[s][s]=1;Vis[s]=1;</span></span><br><span class="line"><span class="comment">        Q.push(s);</span></span><br><span class="line"><span class="comment">        while(!Q.empty())</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            int u=Q.front();Q.pop();</span></span><br><span class="line"><span class="comment">            Vis[u]=0;</span></span><br><span class="line"><span class="comment">            for(int e=Head[u];e;e=Edge[e].next)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                int v=Edge[e].to;</span></span><br><span class="line"><span class="comment">                if(Path[s][v]&gt;Path[s][u]+1)</span></span><br><span class="line"><span class="comment">                &#123;</span></span><br><span class="line"><span class="comment">                    Path[s][v]=Path[s][u]+1;</span></span><br><span class="line"><span class="comment">                    if(!Vis[v]) Q.push(v);</span></span><br><span class="line"><span class="comment">                &#125;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        while(!Q.empty()) Q.pop();</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;dp-compressin.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;dp-compressin.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N,M);</span><br><span class="line">    <span class="built_in">memset</span>(Path,<span class="number">0x3f</span>,<span class="built_in">sizeof</span>(Path));</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,u,v;i&lt;=M;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">read</span>(u,v,w);</span><br><span class="line">        --u,--v;</span><br><span class="line">        Path[u][v]=Path[v][u]=<span class="built_in">min</span>(Path[u][v],w);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(dp,<span class="number">0x3f</span>,<span class="built_in">sizeof</span>(dp));</span><br><span class="line">    <span class="type">int</span> S=(<span class="number">1</span>&lt;&lt;N)<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">1</span>;s&lt;=S;++s)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;N;++i)</span><br><span class="line">            <span class="keyword">if</span>((<span class="number">1</span>&lt;&lt;i)|s==s)</span><br><span class="line">            &#123;</span><br><span class="line">                Path[i][i]=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;N;++k)</span><br><span class="line">                    <span class="keyword">if</span>(Path[i][k]!=INF) Dist[s]|=(<span class="number">1</span>&lt;&lt;k);</span><br><span class="line">            &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;N;++i) dp[<span class="number">0</span>][<span class="number">1</span>&lt;&lt;i]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> s=<span class="number">2</span>;s&lt;=S;++s)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> T=s<span class="number">-1</span>;T;T=(T<span class="number">-1</span>)&amp;s)</span><br><span class="line">            <span class="keyword">if</span>((Dist[T]|s)==Dist[T])</span><br><span class="line">            &#123;</span><br><span class="line">                ll res=<span class="number">0</span>;</span><br><span class="line">                <span class="type">int</span> sf=T^s;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> k=<span class="number">0</span>;k&lt;N;++k)</span><br><span class="line">                    <span class="keyword">if</span>((<span class="number">1</span>&lt;&lt;k)&amp;sf)</span><br><span class="line">                    &#123;</span><br><span class="line">                        ll temp=INF;</span><br><span class="line">                        <span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">0</span>;l&lt;N;++l)</span><br><span class="line">                            <span class="keyword">if</span>((<span class="number">1</span>&lt;&lt;l)&amp;T) <span class="built_in">checkMin</span>(temp,Path[l][k]);</span><br><span class="line">                        res+=temp;</span><br><span class="line">                    &#125;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;N;++j)</span><br><span class="line">                    <span class="keyword">if</span>(dp[j<span class="number">-1</span>][T]!=INF)</span><br><span class="line">                        dp[j][s]=<span class="built_in">min</span>(dp[j][s],dp[j<span class="number">-1</span>][T]+res*j);</span><br><span class="line">            &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;N;++i) <span class="built_in">checkMin</span>(ans,dp[i][S]);</span><br><span class="line">    <span class="comment">/*for(int i=1,u,v;i&lt;=M;++i)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        read(u,v,w);</span></span><br><span class="line"><span class="comment">        addEdge(u-1,v-1,w);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    Init();</span></span><br><span class="line"><span class="comment">    for(int start=0;start&lt;N;++start)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        ll res=INF;</span></span><br><span class="line"><span class="comment">        for(int s=0;s&lt;(1&lt;&lt;N);++s)</span></span><br><span class="line"><span class="comment">            for(int i=0;i&lt;N;++i)</span></span><br><span class="line"><span class="comment">                dp[start][s]=INF;</span></span><br><span class="line"><span class="comment">        dp[start][1&lt;&lt;start]=0;</span></span><br><span class="line"><span class="comment">        for(int s=0;s&lt;(1&lt;&lt;N);++s)</span></span><br><span class="line"><span class="comment">            for(int st=0;st&lt;N;++st)</span></span><br><span class="line"><span class="comment">                if((s&gt;&gt;st)&amp;1)</span></span><br><span class="line"><span class="comment">                    for(int e=Head[st],v;e;e=Edge[e].next)</span></span><br><span class="line"><span class="comment">                        if((s&gt;&gt;(v=Edge[e].to))&amp;1)</span></span><br><span class="line"><span class="comment">                            dp[start][s]=min(dp[start][s],dp[start][s-(1&lt;&lt;v)]+Edge[e].val*Path[start][st]);</span></span><br><span class="line"><span class="comment">        checkMin(ans,dp[start][(1&lt;&lt;N)-1]);</span></span><br><span class="line"><span class="comment">    &#125;*/</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">4 5 </span></span><br><span class="line"><span class="comment">1 2 1 </span></span><br><span class="line"><span class="comment">1 3 3 </span></span><br><span class="line"><span class="comment">1 4 1 </span></span><br><span class="line"><span class="comment">2 3 4 </span></span><br><span class="line"><span class="comment">3 4 1 </span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实，状态压缩并不仅限于使用在dp内，很多地方都能用到。方便，但十分难调（机房某巨佬所言）。算是dp一环中比较难的一类了。（之后还会有四边形不等式和斜率优化）</p>
 
     </div>
@@ -410,7 +431,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Acwing91-%E6%9C%80%E7%9F%ADHamilton%E8%B7%AF%E5%BE%84"><span class="nav-number">2.1.</span> <span class="nav-text">Acwing91.最短Hamilton路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P1896-SCOI2005-%E4%BA%92%E4%B8%8D%E4%BE%B5%E7%8A%AF"><span class="nav-number">2.2.</span> <span class="nav-text">P1896 [SCOI2005]互不侵犯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2704-NOI2001-%E7%82%AE%E5%85%B5%E9%98%B5%E5%9C%B0"><span class="nav-number">2.3.</span> <span class="nav-text">P2704 [NOI2001] 炮兵阵地</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Acwing91-%E6%9C%80%E7%9F%ADHamilton%E8%B7%AF%E5%BE%84"><span class="nav-number">2.1.</span> <span class="nav-text">Acwing91.最短Hamilton路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P1896-SCOI2005-%E4%BA%92%E4%B8%8D%E4%BE%B5%E7%8A%AF"><span class="nav-number">2.2.</span> <span class="nav-text">P1896 [SCOI2005]互不侵犯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2704-NOI2001-%E7%82%AE%E5%85%B5%E9%98%B5%E5%9C%B0"><span class="nav-number">2.3.</span> <span class="nav-text">P2704 [NOI2001] 炮兵阵地</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3959-%E5%AE%9D%E8%97%8F"><span class="nav-number">2.4.</span> <span class="nav-text">P3959 宝藏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -426,7 +447,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -439,7 +460,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">154</span>
+        <span class="site-state-item-count">157</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -466,10 +487,10 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">（已倒戈）机房最巨赵月岑</a>
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">机房最巨赵月岑</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">（已倒戈）技术总监Sukwog</a>
+          <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://song-gan.github.io/" title="https:&#x2F;&#x2F;song-gan.github.io&#x2F;" rel="noopener" target="_blank">机房淦神Crystal_Gan</a>
@@ -530,12 +551,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">557k</span>
+    <span title="站点总字数">599k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:27</span>
+    <span title="站点阅读时长">9:05</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
