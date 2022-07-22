@@ -28,33 +28,27 @@
   </script>
 
 
-  <meta name="description" content="“空即是色，色即是空。”">
+  <meta name="description" content="“撕碎的时空下，宇宙终将反演，就如同没有人能够一直站在主峰上。”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分数规划">
-<meta property="og:url" content="https://violeteternal.github.io/Eternity/OI/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/fractional-programming/index.html">
+<meta property="og:title" content="反演">
+<meta property="og:url" content="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/inversion/index.html">
 <meta property="og:site_name" content="Eternity">
-<meta property="og:description" content="“空即是色，色即是空。”">
+<meta property="og:description" content="“撕碎的时空下，宇宙终将反演，就如同没有人能够一直站在主峰上。”">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-12T06:59:34.000Z">
-<meta property="article:modified_time" content="2022-07-13T04:18:18.390Z">
+<meta property="article:published_time" content="2022-07-21T00:59:10.000Z">
+<meta property="article:modified_time" content="2022-07-21T11:24:55.910Z">
 <meta property="article:author" content="Fallen Shadow">
-<meta property="article:tag" content="DP">
 <meta property="article:tag" content="数论">
-<meta property="article:tag" content="图论">
-<meta property="article:tag" content="贪心">
-<meta property="article:tag" content="二分">
 <meta property="article:tag" content="构造">
-<meta property="article:tag" content="生成树">
-<meta property="article:tag" content="背包">
-<meta property="article:tag" content="分析数学">
-<meta property="article:tag" content="分数规划">
-<meta property="article:tag" content="01分数规划">
-<meta property="article:tag" content="网络流">
-<meta property="article:tag" content="最优比例生成树">
-<meta property="article:tag" content="最优比例环">
+<meta property="article:tag" content="欧拉函数">
+<meta property="article:tag" content="欧拉反演">
+<meta property="article:tag" content="莫比乌斯函数">
+<meta property="article:tag" content="莫比乌斯反演">
+<meta property="article:tag" content="狄利克雷卷积">
+<meta property="article:tag" content="狄利克雷函数">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://violeteternal.github.io/Eternity/OI/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/fractional-programming/">
+<link rel="canonical" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/inversion/">
 
 
 <script id="page-configurations">
@@ -66,7 +60,7 @@
     lang   : 'zh-CN'
   };
 </script>
-  <title>分数规划 | Eternity</title>
+  <title>反演 | Eternity</title>
   
 
 
@@ -147,17 +141,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">165</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">190</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">15</span></a>
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">69</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">77</span></a>
 
   </li>
         <li class="menu-item menu-item-归程">
@@ -221,7 +215,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/OI/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/fractional-programming/">
+    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/inversion/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Eternity/images/Guess.png">
@@ -234,7 +228,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          分数规划
+          反演
         </h1>
 
         <div class="post-meta">
@@ -245,27 +239,21 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-07-12 14:59:34" itemprop="dateCreated datePublished" datetime="2022-07-12T14:59:34+08:00">2022-07-12</time>
+              <time title="创建时间：2022-07-21 08:59:10 / 修改时间：19:24:55" itemprop="dateCreated datePublished" datetime="2022-07-21T08:59:10+08:00">2022-07-21</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-13 12:18:18" itemprop="dateModified" datetime="2022-07-13T12:18:18+08:00">2022-07-13</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Eternity/categories/OI/" itemprop="url" rel="index"><span itemprop="name">OI</span></a>
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/Eternity/categories/OI/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/" itemprop="url" rel="index"><span itemprop="name">OI</span></a>
                 </span>
             </span>
 
@@ -282,7 +270,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
+              <span>1.7k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -301,30 +289,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>“空即是色，色即是空。”</p>
+        <p>“撕碎的时空下，宇宙终将反演，就如同没有人能够一直站在主峰上。”</p>
 <span id="more"></span>
-<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>分数规划求一个分式的极值。</p>
-<p>给出 $a_i$ 和 $b_i$ ，求一组 $w_i\in\{0,1\}$ ，最大化/最小化：</p>
+<h2 id="莫比乌斯反演"><a href="#莫比乌斯反演" class="headerlink" title="莫比乌斯反演"></a>莫比乌斯反演</h2><p>莫比乌斯函数 $\mu(n)$ 是常数函数 $I(n)$ 在狄利克雷卷积意义下的逆元，即满足 $\mu\ast I=\epsilon$ ，展开式是 $[n=1]=\sum_{d\mid n}\mu(d)$ 。</p>
+<p>那么，对于 $p$ 是质数，则有 $0=\mu(1)+\mu(p)$ 。</p>
+<p>以此类推，得到 $0=\mu(1)+\mu(p)+\mu(p^2)+…+\mu(p^k)$ 对 $k\ge 2$ 恒成立，从而得到 $\mu(1)=1,\mu(p)=-1$ ，且 $\forall k\ge 2,\mu(p^k)=0$ 。</p>
+<p>那么，得出莫比乌斯函数的通常式：</p>
 <script type="math/tex; mode=display">
-\frac{\sum\limits_{i=1}^n a_i\times w_i}{\sum\limits^n_{i=1}b_i\times w_i}</script><p>当然，毒瘤题中还会有一些特殊限制。</p>
-<h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><h3 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h3><p>令当前答案为 $mid$ ，我们只需要使：（以最大值为例）</p>
+\mu(n)=
+\begin{cases}
+&1,n=1\\
+&0,\exists k_i\ge 2\\
+&-1,\forall k_i=1    \nonumber
+\end{cases}</script><p>其中 $n=\prod p_i^{k_i}$ 。$p_i$ 为 $n$ 的质因数。可以证明 $\mu(n)$ 为积性函数。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>莫比乌斯反演用于解决两个函数 $f,g$ 同时满足：</p>
+<p>$g(n)=\sum_{d\mid n}f(d)$ 与 $f(n)=\sum_{d\mid n}\mu(d)g(\frac{n}{d})$ 。</p>
+<p>也可以写成狄利克雷卷积的形式：</p>
+<p>$f\ast I=g$ 与 $f=g\ast \mu$</p>
+<p>而莫反的题就是构造这个 $f$ 和 $g$ 并求出相应解就可以了。</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="P2398"><a href="#P2398" class="headerlink" title="P2398"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2398">P2398</a></h4><p>题意非常清晰，推推式子：</p>
 <script type="math/tex; mode=display">
-\frac{\sum\limits_{i=1}^n a_i\times w_i}{\sum\limits^n_{i=1}b_i\times w_i}>mid</script><p>然后推得：</p>
+\begin{align}
+ans\nonumber
+=&\nonumber\sum_{i=1}^n\sum_{j=1}^n\gcd(i,j)
+\\=&\nonumber\sum_{d=1}^nd\sum_{i=1}^{\frac{n}{d}}\sum_{j=1}^{\frac{n}{d}}[\gcd(i,j)=1]
+\\=&\nonumber\sum_{d=1}^nd\sum_{i=1}^{\frac{n}{d}}\sum_{j=1}^{\frac{n}{j}}\sum_{k\mid\gcd(i,j)}\mu(k)
+\\=&\nonumber\sum_{d=1}^nd\sum_{i=1}^{\frac{n}{d}}\sum_{j=1}^{\frac{n}{j}}\sum_{k\mid i\wedge k\mid j}\mu(k)
+\\=&\nonumber\sum_{d=1}^nd\sum_{k=1}^{\frac{n}{k}}\mu(k)\left(\frac{n}{kd}\right)^2
+\nonumber\end{align}</script><p>预处理出 $\mu$ 的前缀和，然后两次数论分块。</p>
+<h4 id="P4449"><a href="#P4449" class="headerlink" title="P4449"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4449">P4449</a></h4><p>与上一题差不多，但多了一个 $k$ 次方，依然选择推式子。（分数向下取整）</p>
 <script type="math/tex; mode=display">
-\sum_{i=1}^{n}w_i\times(a_i-mid\times b_i)>0</script><p>即可。最小值类似。</p>
-<h3 id="Dinkelbach-算法"><a href="#Dinkelbach-算法" class="headerlink" title="Dinkelbach 算法"></a>Dinkelbach 算法</h3><p>Dinkelbach 算法的大概思想是每次用上一轮的答案当做新的 $L$ 来输入，不断地迭代，直至答案收敛。说实话，这东西我看了有 $5$ 篇讲解也不是太懂，之后有时间再学学。</p>
-<p>有点类似于构造函数，通过对已知答案的迭代来得出当前答案。并根据更优解移动答案以逼近最优解。</p>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="Talent-Show"><a href="#Talent-Show" class="headerlink" title="Talent Show"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4377">Talent Show</a></h3><p>求最大分数，且需要满足 $\sum w_i\times b_i\ge W$ 的条件。</p>
-<p>其实在开始的时候，就会发现 $w_i\in\{0,1\}$ 十分熟悉，有些像…… $01$ 背包。</p>
-<p>把 $b_i$ 作为 $i$ 物品的重量，将 $a_i-mid\times b_i$ 作为第 $i$ 个物品的价值，作为 dp 来转移，求出 $dp[n][W]$ 即可。</p>
-<p>将大于 $W$ 的 $\sum w_i\times b_i$ 直接视作 $W$ 即可。因为我们并不考虑实际重量和，只关心是否能把背包装满。</p>
-<details>
-    <summary>AC Code</summary>
-
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gh() getchar()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> re register</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">301</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXW=<span class="number">1001</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">double</span> eps=<span class="number">1e-5</span>;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> ch=<span class="built_in">gh</span>(),t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>) t|=ch==<span class="string">&#x27;-&#x27;</span>,ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(ch^<span class="number">48</span>),ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">if</span>(t) x=-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T,<span class="keyword">class</span> ...T1&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x,T1 &amp;...x1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(x),<span class="built_in">read</span>(x1...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">checkMax</span><span class="params">(T &amp;x,T &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&lt;y?x=y,<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">checkMin</span><span class="params">(T &amp;x,T &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&gt;y?x=y,<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> a[MAXN],b[MAXN],W,N;</span><br><span class="line"><span class="type">double</span> dp[MAXW];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">check</span><span class="params">(<span class="type">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=W;++i) dp[i]=<span class="number">-1e9</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=W;j&gt;=<span class="number">0</span>;--j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> k=<span class="built_in">min</span>(W,j+b[i]);</span><br><span class="line">            dp[k]=<span class="built_in">max</span>(dp[k],dp[j]+a[i]-x*b[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[W]&gt;<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;frac-programming.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;frac-programming.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N,W);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i) <span class="built_in">read</span>(b[i],a[i]);</span><br><span class="line">    <span class="type">double</span> l=<span class="number">0</span>,r=<span class="number">1e9</span>;</span><br><span class="line">    <span class="keyword">while</span>(r-l&gt;eps)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">double</span> mid=(l+r)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">check</span>(mid)) l=mid;</span><br><span class="line">        <span class="keyword">else</span> r=mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.0lf&quot;</span>,<span class="built_in">floor</span>(<span class="number">1000</span>*l));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">3 15</span></span><br><span class="line"><span class="comment">20 21</span></span><br><span class="line"><span class="comment">10 11</span></span><br><span class="line"><span class="comment">30 31</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-</details>
-
+ans=\sum_{q=1}^{n}q^k\sum_{d=1}^{\frac{n}{q}}\mu(d)\frac{n}{qd}\frac{m}{qd}\nonumber</script><p>然后得到：</p>
+<script type="math/tex; mode=display">
+ans=\sum_{q=1}^{n}q^k\sum_{q\mid x}^{\frac{n}{q}}\mu(\frac{x}{q})\frac{n}{x}\frac{m}{x}\nonumber</script><p>交换顺序：</p>
+<script type="math/tex; mode=display">
+ans=\sum_{x=1}^{n}\frac{n}{x}\frac{m}{x}\sum_{d\mid x}\mu(\frac{x}{q})q^k\nonumber</script><p>即可。</p>
+<hr>
+<h2 id="欧拉反演"><a href="#欧拉反演" class="headerlink" title="欧拉反演"></a>欧拉反演</h2><p>欧拉函数 $\varphi$ 满足 $\varphi\ast I=id$ ，即 $n=\sum_{d\mid n}\varphi(d)$ ，且欧拉函数是积性函数。</p>
+<p>所谓欧拉反演，就是在使用的时候把 $n$ 拆成 $\sum_{d|n}\phi(d)$ 。</p>
+<p>因为有 $\mu\ast I=\epsilon,\varphi\ast I=id,id\ast \mu=\varphi$ ，所以莫比乌斯和欧拉是可以互相反演的。</p>
+<h3 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h3><h4 id="P2398-1"><a href="#P2398-1" class="headerlink" title="P2398"></a>P2398</h4><p>同样可以用欧拉反演推出式子，省略过程，直接给出结果：</p>
+<p>$ans=\sum\limits_{d=1}^{n}\varphi(d)\left\lfloor\frac{n}{d}\right\rfloor^2$</p>
 
     </div>
 
@@ -334,20 +339,14 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/Eternity/tags/DP/" rel="tag"># DP</a>
               <a href="/Eternity/tags/%E6%95%B0%E8%AE%BA/" rel="tag"># 数论</a>
-              <a href="/Eternity/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
-              <a href="/Eternity/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
-              <a href="/Eternity/tags/%E4%BA%8C%E5%88%86/" rel="tag"># 二分</a>
               <a href="/Eternity/tags/%E6%9E%84%E9%80%A0/" rel="tag"># 构造</a>
-              <a href="/Eternity/tags/%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag"># 生成树</a>
-              <a href="/Eternity/tags/%E8%83%8C%E5%8C%85/" rel="tag"># 背包</a>
-              <a href="/Eternity/tags/%E5%88%86%E6%9E%90%E6%95%B0%E5%AD%A6/" rel="tag"># 分析数学</a>
-              <a href="/Eternity/tags/%E5%88%86%E6%95%B0%E8%A7%84%E5%88%92/" rel="tag"># 分数规划</a>
-              <a href="/Eternity/tags/01%E5%88%86%E6%95%B0%E8%A7%84%E5%88%92/" rel="tag"># 01分数规划</a>
-              <a href="/Eternity/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="tag"># 网络流</a>
-              <a href="/Eternity/tags/%E6%9C%80%E4%BC%98%E6%AF%94%E4%BE%8B%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag"># 最优比例生成树</a>
-              <a href="/Eternity/tags/%E6%9C%80%E4%BC%98%E6%AF%94%E4%BE%8B%E7%8E%AF/" rel="tag"># 最优比例环</a>
+              <a href="/Eternity/tags/%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0/" rel="tag"># 欧拉函数</a>
+              <a href="/Eternity/tags/%E6%AC%A7%E6%8B%89%E5%8F%8D%E6%BC%94/" rel="tag"># 欧拉反演</a>
+              <a href="/Eternity/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%87%BD%E6%95%B0/" rel="tag"># 莫比乌斯函数</a>
+              <a href="/Eternity/tags/%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94/" rel="tag"># 莫比乌斯反演</a>
+              <a href="/Eternity/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%8D%B7%E7%A7%AF/" rel="tag"># 狄利克雷卷积</a>
+              <a href="/Eternity/tags/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%87%BD%E6%95%B0/" rel="tag"># 狄利克雷函数</a>
           </div>
 
         
@@ -356,12 +355,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/Eternity/%E8%AE%B0%E9%9A%8F%E5%BD%B1%E8%90%BD/book-girl/" rel="prev" title="《文学少女》——邂逅之后，才能明晓一切">
-      <i class="fa fa-chevron-left"></i> 《文学少女》——邂逅之后，才能明晓一切
+    <a href="/Eternity/%E9%A2%98%E8%A7%A3/p6217/" rel="prev" title="P6217 简单数论题">
+      <i class="fa fa-chevron-left"></i> P6217 简单数论题
     </a></div>
       <div class="post-nav-item">
-    <a href="/Eternity/%E9%A2%98%E8%A7%A3/p4315/" rel="next" title="P4315 月下“毛景树”">
-      P4315 月下“毛景树” <i class="fa fa-chevron-right"></i>
+    <a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/sieve/" rel="next" title="筛">
+      筛 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -423,7 +422,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">求解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">二分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dinkelbach-%E7%AE%97%E6%B3%95"><span class="nav-number">2.2.</span> <span class="nav-text">Dinkelbach 算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Talent-Show"><span class="nav-number">3.1.</span> <span class="nav-text">Talent Show</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%AB%E6%AF%94%E4%B9%8C%E6%96%AF%E5%8F%8D%E6%BC%94"><span class="nav-number">1.</span> <span class="nav-text">莫比乌斯反演</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P2398"><span class="nav-number">1.2.1.</span> <span class="nav-text">P2398</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P4449"><span class="nav-number">1.2.2.</span> <span class="nav-text">P4449</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%8F%8D%E6%BC%94"><span class="nav-number">2.</span> <span class="nav-text">欧拉反演</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">2.1.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P2398-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">P2398</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -439,20 +438,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Eternity/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">165</span>
+        <span class="site-state-item-count">190</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -479,7 +478,7 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">机房最巨赵月岑</a>
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">机房最巨赵悦岑</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
@@ -543,12 +542,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">629k</span>
+    <span title="站点总字数">612k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9:32</span>
+    <span title="站点阅读时长">9:16</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -626,6 +625,26 @@
 
 
 
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/Eternity/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 
@@ -702,7 +721,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'Eternity',
       owner       : 'VioletEternal',
       admin       : ['VioletEternal'],
-      id          : '57632dbaffef8e64e86942e395e283d6',
+      id          : 'fd396f5582a5c618006c25087e096356',
         language: 'zh-CN',
       distractionFreeMode: true
     });

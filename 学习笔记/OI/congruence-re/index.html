@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Eternity/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Eternity/images/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Eternity/images/eternity.png">
+  <link rel="mask-icon" href="/Eternity/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Eternity/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ma Shan Zheng:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Zhi Mang Xing:300,300italic,400,400italic,700,700italic|Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/Eternity/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="minimal">
+  <script src="true"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"violeteternal.github.io","root":"/Eternity/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"gitalk":null}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <meta name="description" content="$\text{JK_Lover}$ 大帝亲自辅导。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="同余 #2">
+<meta property="og:url" content="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/congruence-re/index.html">
+<meta property="og:site_name" content="Eternity">
+<meta property="og:description" content="$\text{JK_Lover}$ 大帝亲自辅导。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-20T04:40:57.000Z">
+<meta property="article:modified_time" content="2022-07-21T13:21:03.885Z">
+<meta property="article:author" content="Fallen Shadow">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="质数">
+<meta property="article:tag" content="同余">
+<meta property="article:tag" content="中国剩余定理">
+<meta property="article:tag" content="欧几里得算法">
+<meta property="article:tag" content="同余方程">
+<meta property="article:tag" content="扩展欧几里得算法">
+<meta property="article:tag" content="大步小步算法">
+<meta property="article:tag" content="扩展中国剩余定理">
+<meta property="article:tag" content="扩展大步小步算法">
+<meta property="article:tag" content="原根">
+<meta property="article:tag" content="gcd">
+<meta property="article:tag" content="lcm">
+<meta property="article:tag" content="二次剩余">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/congruence-re/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+  <title>同余 #2 | Eternity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Eternity/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Eternity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Until The End</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Eternity/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/Eternity/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">190</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">13</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">77</span></a>
+
+  </li>
+        <li class="menu-item menu-item-归程">
+
+    <a href="/Eternity/road/" rel="section"><i class="fa fa-road fa-fw"></i>归程</a>
+
+  </li>
+        <li class="menu-item menu-item-友人">
+
+    <a href="/Eternity/friends/" rel="section"><i class="fa fa-paper-plane fa-fw"></i>友人</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/congruence-re/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Eternity/images/Guess.png">
+      <meta itemprop="name" content="Fallen Shadow">
+      <meta itemprop="description" content="誰も悪くないから、辛いだな。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eternity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          同余 #2
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-07-20 12:40:57" itemprop="dateCreated datePublished" datetime="2022-07-20T12:40:57+08:00">2022-07-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-21 21:21:03" itemprop="dateModified" datetime="2022-07-21T21:21:03+08:00">2022-07-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/" itemprop="url" rel="index"><span itemprop="name">OI</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>$\text{JK_Lover}$ 大帝亲自辅导。</p>
+<span id="more"></span>
+<h2 id="Exgcd"><a href="#Exgcd" class="headerlink" title="Exgcd"></a>Exgcd</h2><p>给定 $a,b$ ，求解不定方程 $ax+by=\gcd(a,b)$ 的整数解的算法。已知，当 $ax+by=c$ 有解时，当且仅当 $\gcd(a,b)|c$ 满足时。</p>
+<p>我们通过 $bx’+(a\%b)y’=\gcd(b,a\%b)$ 来求解该方程，这个过程与求 $\gcd(a,b)$ 是类似的。而在 $b=0$ 的时候，明显有一组解为 $x=1,y=0$ 。那么，我们从 $bx’+(a\%b)y’=\gcd(b,a\%b)$ 的解 $x=x’,y=y’$ 来递归求解，将 $a\%b$ 展开为 $a-b\times \lfloor \frac{a}{b}\rfloor$ ，将该式带回原式，整理出 $a$ 和 $b$ 的系数，得到 $ay’+b(x’-\lfloor\frac{a}{b}\rfloor\times y’)=\gcd(b,a\%b)=\gcd(a,b)$ ，从而得到 $x=y’,y=x’-\lfloor\frac{a}{b}\rfloor\times y’$ 。</p>
+<p>而对于一般解 $ax+by=c$ 的方程，有 $k=\frac{c}{\gcd(a,b)}$ ，则用 $\text{exgcd}$ 求出一组解之后再将 $x,y$ 扩大 $k$ 倍即可。</p>
+<p>时间复杂度同 $\gcd(a,b)$ 为 $\mathcal O(\log \min(a,b))$ 。</p>
+<hr>
+<h2 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h2><p>如果有 $ax\equiv 1 \pmod m$ 成立，则 $a$ 是 $x$ 在模 $m$ 意义下的<strong>逆元</strong>。记作 $x^{-1}$ ，后也记作 $inv(x)$ 。</p>
+<h3 id="模数为质数的求法"><a href="#模数为质数的求法" class="headerlink" title="模数为质数的求法"></a>模数为质数的求法</h3><p>有费马小定理：$x^{m-1}\equiv 1\pmod m$ ，而显然， $x^{m-2}\times x^{1}\equiv 1\pmod m$ ，那么， $x^{x-2}$ 就是 $x$ 在模 $m$ 意义下的逆元。在使用快速幂的前提下的时间复杂度为 $\mathcal O(\log m)$ 。</p>
+<h3 id="线性递推式"><a href="#线性递推式" class="headerlink" title="线性递推式"></a>线性递推式</h3><p>首先有 $inv(1)=1$ ，对于 $x&gt;1$ 有 $\lfloor\frac{m}{x}\rfloor\times x+(m\%x)\equiv 0\pmod m$ ，然后得到式子 $(m\%x)\equiv m-\lfloor\frac{m}{x}\rfloor\times x\pmod m$ ，然后在式子两端同时乘上 $inv(x)\times inv(m\%x)$ 得到：</p>
+<p>$inv(x)\equiv inv(m\%i)\times (m-\lfloor\frac{m}{i}\rfloor)\pmod m$ </p>
+<p>这样就得出了逆元的线性递推式。这种方法只能用于 $m$ 是质数的情况，且限制情况较多。</p>
+<p>此情况的时间复杂度是 $\mathcal O(n)$ 。</p>
+<hr>
+<h2 id="CRT"><a href="#CRT" class="headerlink" title="CRT"></a>CRT</h2><p>中国剩余定理（$\text{Chinese Remainder Theorem}$），用于求解满足：</p>
+<script type="math/tex; mode=display">
+\left\{\begin{matrix}x \equiv a_1 \pmod {m_1}
+ \\x \equiv a_2 \pmod {m_2}
+ \\x \equiv a_3 \pmod {m_3}
+ \\x \equiv a_4 \pmod {m_4}
+ \\x \equiv a_5 \pmod {m_5}
+ \\......
+ \\x \equiv a_k \pmod {m_k}
+\end{matrix}\right. \nonumber</script><p>其中 $m_1,m_2…m_k$ 两两互质（但不一定是质数），的最小的 $x$ 值。</p>
+<p>设 $M=\prod m_i$ ，利用 $\text{exgcd}$ 求出 $\frac{M}{m_i}$ 的逆元，记为 $p_i$ ，求出一个数 $x_i=\frac{M}{m_i}\times p_i$ ，所以有 $x_i\times a_i\equiv 1\pmod{m_i}$ 且 $x_i\times a_i\equiv 0\pmod{m_j},i\ne j$ ，此时构造出的 $X_i=x_i\times a_i$ 满足了第 $i$ 个方程的限制，且不影响其他方程。那么合并方程解得到 $x=\sum x_i\times a_i\pmod M$ 即可。</p>
+<p>$\text{CRT}$ 的时间复杂度为 $\mathcal O(n\log M)$ 。</p>
+<hr>
+<h2 id="EXCRT"><a href="#EXCRT" class="headerlink" title="EXCRT"></a>EXCRT</h2><p>扩展中国剩余定理，与 $\text{CRT}$ 求解一样的同余方程组，但 $m_1,m_2…m_k$ 不要求两两互质。</p>
+<p>不断将两个同余方程合并为一个等价的同余方程：</p>
+<p>对于 $x\equiv a_1\pmod{m_1},x\equiv a_2\pmod{m_2}$ ，将同余方程转化成不定方程，变成 $x=a_1+k_1\times m_1=a_2+k_2\times m_2$ ，得到 $k_2m_2-k_1m_1=a_1-a_2$ ，通过 $\text{Exgcd}$ 求得 $k_1,k_2$ ，然后代入求得 $x\equiv a_1+k_1m_1\pmod{\text{lcm}(m_1,m_2)}$ ，这就是合并的结果。最后得到一个方程时得到通解。</p>
+<p>$\text{ExCrt}$ 的时间复杂度也是 $\mathcal O(n\log M)$ 。</p>
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4777">P4777 【模板】扩展中国剩余定理（EXCRT）</a></p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">ll N,px[MAXN],bx[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qMul</span><span class="params">(ll a,ll b,ll p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>) res=(res+a)%p;</span><br><span class="line">        a=(a+a)%p;b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qPow</span><span class="params">(ll a,ll b,ll p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll res=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>) res=<span class="built_in">qMul</span>(res,a,p);</span><br><span class="line">        a=<span class="built_in">qMul</span>(a,a,p);b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">Exgcd</span><span class="params">(ll a,ll b,ll &amp;x,ll &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    ll gcd=<span class="built_in">Exgcd</span>(b,a%b,x,y);</span><br><span class="line">    ll z=x;x=y;y=z-a/b*x;</span><br><span class="line">    <span class="keyword">return</span> gcd;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">Excrt</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll x,y,k;</span><br><span class="line">    ll M=bx[<span class="number">1</span>],ans=px[<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=N;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ll a=M,b=bx[i],c=(px[i]-ans%b+b)%b;</span><br><span class="line">        ll Gcd=<span class="built_in">Exgcd</span>(a,b,x,y),Bg=b/Gcd;</span><br><span class="line">        <span class="keyword">if</span>(c%Gcd!=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        x=<span class="built_in">qMul</span>(x,c/Gcd,Bg);</span><br><span class="line">        ans+=x*M;M*=Bg;ans=(ans%M+M)%M;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (ans%M+M)%M;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;excrt.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;excrt.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i) <span class="built_in">read</span>(bx[i],px[i]);</span><br><span class="line">    <span class="built_in">write</span>(<span class="built_in">Excrt</span>());</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">11 6</span></span><br><span class="line"><span class="comment">25 9</span></span><br><span class="line"><span class="comment">33 17</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4774">NOI2018D2T1</a></p>
+<p>在这道题中 $m_i$ 是固定的。</p>
+<p>对于每一次选用的剑，我们可以用 <code>multiset</code> 预处理出来。</p>
+<p>对于每条龙的恢复力 $p_i$ ，我们在砍完之后需要让龙的血量为 $p_i$ 的负 $k$ 倍。则在每次攻击的时候，我们需要满足 $atk_i\times x\ge a_i,atk_i\times x\equiv a_i\pmod{p_i}$ 。</p>
+<p>这道题有一个特性，要么满足 $p_i=1$ ，要么满足 $a_i\le p_i$ 。所以需要分情况讨论。</p>
+<p>对于满足特性 $1$ 的情况：</p>
+<p>对于 $atk_i\times x\ge a_i$ 且 $p_i=1$ 时，只需求出将每只龙的生命值打到非正数的次数，取最大值即可，即 $\max(\frac{a_i}{atk_i})$ ，容易处理。</p>
+<p>对于满足 $a_i\le p_i$ ，我们用 $\text{ExCrt}$ 来解：</p>
+<p>同余式是 $atk_i\times x\equiv a_i\pmod{p_i}$ ，化成单式得到 $x\equiv a_i\times atk_i^{-1}\pmod{p_i}$ ，根据同余的消去律，我们先同时除以 $\gcd(atk_i,a_i,p_i)$ ，此时，如果 $atk_i,p_i$ 不互质，则无解；否则，转化完之后直接套板子求就完事了。</p>
+<p>对于大数据 <code>long long x long long</code> 的情况，则会爆 $1e18$ ，所以使用龟速乘优化模数以免出错。也可以使用 <code>long double</code> 来存储，实现 $\mathcal O(1)$ 快速乘，但出错率较大。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LoveLive;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> LoveLive <span class="title">Multi</span><span class="params">(LoveLive x,LoveLive y,LoveLive Mod)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    LoveLive tmp=(x*y-(LoveLive)((<span class="type">long</span> <span class="type">double</span>)x/mod*y+<span class="number">1.0e-8</span>)*Mod);</span><br><span class="line">    <span class="keyword">return</span> tmp&lt;<span class="number">0</span>?tmp+Mod:tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此定义 <code>typedef</code> 源于 $\text{JK_Lover}$ 大帝。</p>
+<hr>
+<h2 id="BSGS"><a href="#BSGS" class="headerlink" title="BSGS"></a>BSGS</h2><p>大步小步算法（$\text{Baby Step,Giant Step}$），用于求解离散对数问题，求解同余方程 $a^x\equiv b\pmod p$ ，的解 $x$ ，其中 $a,p$ 互质。</p>
+<p>记有 $m=\sqrt p$ ，对于任意的 $x$ ，将 $x$ 写成 $x=im-j(0\le j&lt;m)$ ，则存在一个式子 $a^{i\times m}\equiv b\times a^j\pmod p$ ，则枚举 $j$ ，将 $b\times a^j$ 存到 $\text{hash}$ 表中，第二次枚举 $i$ ，在 $\text{hash}$ 表中查询与 $a^{i\times m}$ 相等的 $b\times a^j$ ，则一对 $i,j$ 确定一个解 $x$ 。如果求取最大或者最小解的话，则安排枚举顺序即可。</p>
+<p>时间复杂度为 $\mathcal O(\sqrt p\times t)$ 。其中 $t$ 表示 $\text{hash}$ 表使用的时间。</p>
+<p>对于最小解，我们首先使 $i$ 尽量小，然后使 $j$ 尽量大。因为有 $0\le j &lt;m$ ，所以 $j$ 对答案的影响没有 $i$ 大。所以我们首先枚举 $a^{im}\equiv ba^j\pmod p$ ，对应出 $h[i]=j$ ，然后从小到大枚举 $i$ 找到与最小的 $i$ 对应的 $j$ ，就是最小解。</p>
+<p>而对于 $a,p$ 互质的使用，则在于将 $a^{im-j}\equiv b\pmod p$ 转化为 $a^{im}\equiv b\times a^j\pmod p$ 时，使用了 $a^j$ 的逆元。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3846">P3846 [TJOI2007] 可爱的质数/【模板】BSGS</a></p>
+<details>
+    <summary>AC Code</summary>
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">ll A,B,P;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qPow</span><span class="params">(ll a,ll b,ll p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll res=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>) res=res*a%p;</span><br><span class="line">        a=a*a%p;b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">Bsgs</span><span class="params">(ll a,ll b,ll p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    std::map&lt;ll,ll&gt;Hash;Hash.<span class="built_in">clear</span>();</span><br><span class="line">    b%=p;</span><br><span class="line">    ll t=std::<span class="built_in">sqrt</span>(p)+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;t;++i) Hash[<span class="function">b*<span class="title">qPow</span><span class="params">(a,i,p)</span>%p]</span>=i;</span><br><span class="line">    a=<span class="built_in">qPow</span>(a,t,p);</span><br><span class="line">    <span class="keyword">if</span>(!a) <span class="keyword">return</span> b==<span class="number">0</span>?<span class="number">1</span>:<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=t;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ll res=<span class="built_in">qPow</span>(a,i,p);</span><br><span class="line">        <span class="type">int</span> j=Hash.<span class="built_in">find</span>(res)==Hash.<span class="built_in">end</span>()?<span class="number">-1</span>:Hash[res];</span><br><span class="line">        <span class="keyword">if</span>(j&gt;=<span class="number">0</span>&amp;&amp;i*t-j&gt;=<span class="number">0</span>) <span class="keyword">return</span> i*t-j;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;bsgs.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;bsgs.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(P,A,B);</span><br><span class="line">    ll ans=<span class="built_in">Bsgs</span>(A,B,P);</span><br><span class="line">    <span class="keyword">if</span>(ans==<span class="number">-1</span>) <span class="built_in">puts</span>(<span class="string">&quot;no solution&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">write</span>(ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h2 id="EXBSGS"><a href="#EXBSGS" class="headerlink" title="EXBSGS"></a>EXBSGS</h2><p>用于求解 $a,p$ 不一定互质的 $a^x\equiv b\pmod p$ 方程。</p>
+<p>令 $d=\gcd(a,p)$ ，显然，在 $d=1$ 时，用 $\text{BSGS}$ 求解即可。</p>
+<p>如果有 $d\not\mid b$ ，则有 $a^{x-1}\times\frac{a}{d}\equiv \frac{b}{d}\pmod {\frac{p}{d}}$ 重复该操作直到 $d=1$ ，得到 $a^{x-k}\times \frac{a}{\prod d}\equiv \frac{b}{\prod d}\pmod{\frac{p}{\prod d}}$ ，此时 $\gcd(a,\frac{p}{\prod d})=1$ ，转化成普通的 $\text{BSGS}$ 问题求解即可。</p>
+<p>还需要判断 $x&lt;k$ 的情况是否有解。此时也是可能有解的，直接枚举$x$ 从 $0\sim k$ ，暴力判断 $a^{x-k}$ 是否同余 $b$ 即可。</p>
+<p>$k$ 是 $\mathcal O(\log p)$ 级的，所以时间复杂度是 $\mathcal O(\sqrt p)$ 。 </p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4195">模板题</a>的<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP3105">双倍经验</a></p>
+<p>数据各有卡点，挺离谱的。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ext/pb_ds/assoc_container.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ext/pb_ds/tree_policy.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gh() getchar()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> re register</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> __gnu_pbds;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line">gp_hash_table&lt;ll,ll&gt;Hash;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> ch=<span class="built_in">gh</span>(),t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>) t|=ch==<span class="string">&#x27;-&#x27;</span>,ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(ch^<span class="number">48</span>),ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">if</span>(t) x=-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T,<span class="keyword">class</span> ...T1&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x,T1 &amp;...x1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(x),<span class="built_in">read</span>(x1...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>),x=-x;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">9</span>) <span class="built_in">write</span>(x/<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">checkMax</span><span class="params">(T &amp;x,T &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&lt;y?x=y,<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">checkMin</span><span class="params">(T &amp;x,T &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x&gt;y?x=y,<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">ll A,B,P;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">qPow</span><span class="params">(ll a,ll b,ll p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll res=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>) res=res*a%p;</span><br><span class="line">        a=a*a%p;b&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">Gcd</span><span class="params">(ll a,ll b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b==<span class="number">0</span>?a:<span class="built_in">Gcd</span>(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Exgcd</span><span class="params">(ll a,ll b,ll &amp;x,ll &amp;y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        x=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Exgcd</span>(b,a%b,x,y);</span><br><span class="line">    ll z=x;x=y;y=z-a/b*y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">Inv</span><span class="params">(ll a,ll b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll x,y;</span><br><span class="line">    <span class="built_in">Exgcd</span>(a,b,x,y);</span><br><span class="line">    <span class="keyword">return</span> (x%b+b)%b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">Bsgs</span><span class="params">(ll a,ll b,ll p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Hash.<span class="built_in">clear</span>();b%=p;</span><br><span class="line">    ll t=<span class="built_in">ceil</span>(std::<span class="built_in">sqrt</span>(p));</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=t;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        b=b*a%p;Hash[b]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    ll tmp=<span class="built_in">qPow</span>(a,t,p);b=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i&lt;=t;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        b=b*tmp%p;</span><br><span class="line">        <span class="keyword">if</span>(Hash[b]) <span class="keyword">return</span> (i*t-Hash[b]+p)%p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> ll <span class="title">ExBsgs</span><span class="params">(ll a,ll b,ll p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b==<span class="number">1</span>||p==<span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    ll d=<span class="built_in">Gcd</span>(a,p),k=<span class="number">0</span>,Na=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(d&gt;<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b%d!=<span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        ++k;b/=d;p/=d;Na=Na*(a/d)%p;</span><br><span class="line">        <span class="keyword">if</span>(Na==b) <span class="keyword">return</span> k;</span><br><span class="line">        d=<span class="built_in">Gcd</span>(a,p);</span><br><span class="line">    &#125;</span><br><span class="line">    ll f=<span class="built_in">Bsgs</span>(a,b*<span class="built_in">Inv</span>(Na,p)%p,p);</span><br><span class="line">    <span class="keyword">if</span>(f==<span class="number">-1</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> f+k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;exBSGS.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;exBSGS.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(A,P,B);</span><br><span class="line">    <span class="keyword">while</span>(A||B||P)</span><br><span class="line">    &#123;</span><br><span class="line">        A%=P,B%=P;</span><br><span class="line">        ll ans=<span class="built_in">ExBsgs</span>(A,B,P);</span><br><span class="line">        <span class="keyword">if</span>(ans==<span class="number">-1</span>) <span class="built_in">puts</span>(<span class="string">&quot;No Solution&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">write</span>(ans),<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="built_in">read</span>(A,P,B);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">5 58 33</span></span><br><span class="line"><span class="comment">2 4 3</span></span><br><span class="line"><span class="comment">0 0 0</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h2 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h2><p>定义一个 $g$ 满足 $g^1,g^2,g^3…g^{\phi(p)}$ 在模 $p$ 的意义下两两不相等，则 $g$ 是 $p$ 的<strong>原根</strong>。其中 $\phi(p)$ 表示与 $p$ 互质的数的个数。</p>
+<p>对于一个质数 $p$ ，当 $g^i\not\equiv g^j\pmod p,i\ne j,i,j\in [0,p-1]$ 成立时， $g$ 是 $p$ 的原根。</p>
+<h3 id="原根存在条件"><a href="#原根存在条件" class="headerlink" title="原根存在条件"></a>原根存在条件</h3><ul>
+<li>奇质数一定存在原根；</li>
+<li>如果 $g$ 是 $p$ 的原根，则 $g+p$ 或 $g$ 是 $p^2$ 的原根。</li>
+<li>只有 $2,4,p^k,2\times p^k$ 的数存在原根，其中 $p$ 为奇质数，$k$ 为正整数。</li>
+<li>若 $p$ 存在原根，则 $p$ 的原根个数为 $\phi(\phi(p))$ 个。</li>
+</ul>
+<h3 id="查找原根"><a href="#查找原根" class="headerlink" title="查找原根"></a>查找原根</h3><p>检验原根，则是枚举 $g$ 的质因数 $x$ ，并验证 $g^{\frac{\phi(p)}{x}}=1$ 是否成立，如果成立，则 $g$ 不是 $p$ 的原根。</p>
+<p>因为有欧拉定理：$a^{\phi(p)}\equiv 1\pmod p$ ，所以如果上述式子提前成立，则证明其循环节不超过 $p-1$ ，则 $g$ 不是 $p$ 的原根。</p>
+<p>经数学家证明，一个数如果存在原根，其最小原根是较小的，因此可以用枚举找原根。</p>
+<hr>
+<h2 id="阶"><a href="#阶" class="headerlink" title="阶"></a>阶</h2><p>对于两个数 $a,m\in\mathbb N_+$ ，有 $a\perp m$ （$a$ 与 $m$ 互质），使 $a^x\equiv 1\pmod m$ 成立的最小正整数 $x $ ，被称为 $a$ 模 $m$ 的<strong>阶</strong>，记作 $\operatorname{ord}_ma$ 。</p>
+<h3 id="阶的性质"><a href="#阶的性质" class="headerlink" title="阶的性质"></a>阶的性质</h3><ol>
+<li>$a^n\equiv 1\pmod m$ 的充要条件是 $\operatorname{ord}_ma\mid n$ 。</li>
+<li>$\operatorname{ord}_ma\mid\varphi(m)$ 。</li>
+<li>若 $a\equiv b\pmod m$ ，则 $\operatorname{ord}_ma=\operatorname{ord}_mb$ 。</li>
+</ol>
+<hr>
+<h2 id="二次剩余-Cipolla"><a href="#二次剩余-Cipolla" class="headerlink" title="二次剩余 - Cipolla"></a>二次剩余 - Cipolla</h2><p>用于在模奇质数 $p$ 意义下开根号，即求方程 $x^2\equiv n\pmod p$ 的解 $x$ 。</p>
+<h3 id="勒让德符号"><a href="#勒让德符号" class="headerlink" title="勒让德符号"></a>勒让德符号</h3><p>定义 $(\frac{n}{p})=n^{\frac{p-1}{2}}$ 称为<strong>勒让德符号</strong>。</p>
+<p>根据<strong>欧拉准则</strong>：</p>
+<ul>
+<li>当 $(\frac{n}{p})\equiv 1\pmod p$ 时，$n$ 是 $p$ 的二次剩余，原方程有解；</li>
+<li>当 $(\frac{n}{p})\equiv -1\pmod p$ 时， $n$ 不是 $p$ 二次剩余，原方程无解；</li>
+<li>当 $(\frac{n}{p})\equiv 0\pmod p$ 时，$n\equiv 0\pmod p$ 。</li>
+</ul>
+<h3 id="求解二次剩余"><a href="#求解二次剩余" class="headerlink" title="求解二次剩余"></a>求解二次剩余</h3><p>对于 $n$ 是 $p$ 的二次剩余，我们随机值一个 $a$ ，使 $a^2-n$ 不为 $p$ 的二次剩余。（期望步数为 $2$ ）记一个 $\omega=\sqrt{a^2-n}$ ，类似于复数的定义，定义一个新数域 $z=x+y\times\omega(x,y\in\mathbb N)$ ，可以得到 $x\equiv \pm(a+\omega)^{\frac{p+1}{2}}\pmod p$ 为原方程的解。</p>
+<hr>
+<p>简单证明：（省略 $\pmod p$ 的书写）</p>
+<p>由 $x\equiv \pm(a+\omega)^{\frac{p+1}{2}}$ 得到：$x^2\equiv(a+\omega)^p(a+\omega)$ ，由二项式定理展开得到：</p>
+<p>$(a+\omega)^p\equiv\sum^p_{i=0}(^p_i)a^i\omega^{p-i}$ </p>
+<p>然后根据 $\text{Lucas}$ 定理得到当且仅当 $i=\{0,p\}$ 时， $(^p_i)$ 模 $p$ 不为 $0$ 。从而得到：</p>
+<p>$(a+\omega)^p\equiv a^p+\omega^p$ 。又有 $a^p\equiv a$ ，则 $\omega^p\equiv \omega\times(\omega^2)^{\frac{p-1}{2}}\equiv-\omega$ 。</p>
+<p>则：</p>
+<p>$x^2\equiv (a-\omega)(a+\omega)\equiv a^2-\omega^2\equiv n$ </p>
+<p>证毕。</p>
+<hr>
+<p>所谓使用的 $\text{Lucas}$ 定理，则是由 $\binom{p}{i}=\frac{p^{\underline{i}}}{i!}$ ，而 $\binom{p}{i}$ 在模 $p$ 意义下当且仅当 $i=\{0,p\}$ 成立时不为 $0$ 。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Eternity/tags/%E6%95%B0%E8%AE%BA/" rel="tag"># 数论</a>
+              <a href="/Eternity/tags/%E8%B4%A8%E6%95%B0/" rel="tag"># 质数</a>
+              <a href="/Eternity/tags/%E5%90%8C%E4%BD%99/" rel="tag"># 同余</a>
+              <a href="/Eternity/tags/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/" rel="tag"># 中国剩余定理</a>
+              <a href="/Eternity/tags/%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/" rel="tag"># 欧几里得算法</a>
+              <a href="/Eternity/tags/%E5%90%8C%E4%BD%99%E6%96%B9%E7%A8%8B/" rel="tag"># 同余方程</a>
+              <a href="/Eternity/tags/%E6%89%A9%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E7%AE%97%E6%B3%95/" rel="tag"># 扩展欧几里得算法</a>
+              <a href="/Eternity/tags/%E5%A4%A7%E6%AD%A5%E5%B0%8F%E6%AD%A5%E7%AE%97%E6%B3%95/" rel="tag"># 大步小步算法</a>
+              <a href="/Eternity/tags/%E6%89%A9%E5%B1%95%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/" rel="tag"># 扩展中国剩余定理</a>
+              <a href="/Eternity/tags/%E6%89%A9%E5%B1%95%E5%A4%A7%E6%AD%A5%E5%B0%8F%E6%AD%A5%E7%AE%97%E6%B3%95/" rel="tag"># 扩展大步小步算法</a>
+              <a href="/Eternity/tags/%E5%8E%9F%E6%A0%B9/" rel="tag"># 原根</a>
+              <a href="/Eternity/tags/gcd/" rel="tag"># gcd</a>
+              <a href="/Eternity/tags/lcm/" rel="tag"># lcm</a>
+              <a href="/Eternity/tags/%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99/" rel="tag"># 二次剩余</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/polynomial/" rel="prev" title="多项式">
+      <i class="fa fa-chevron-left"></i> 多项式
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Eternity/%E9%A2%98%E8%A7%A3/p6217/" rel="next" title="P6217 简单数论题">
+      P6217 简单数论题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Exgcd"><span class="nav-number">1.</span> <span class="nav-text">Exgcd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%86%E5%85%83"><span class="nav-number">2.</span> <span class="nav-text">逆元</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%95%B0%E4%B8%BA%E8%B4%A8%E6%95%B0%E7%9A%84%E6%B1%82%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">模数为质数的求法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E9%80%92%E6%8E%A8%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">线性递推式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRT"><span class="nav-number">3.</span> <span class="nav-text">CRT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXCRT"><span class="nav-number">4.</span> <span class="nav-text">EXCRT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">4.1.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">4.2.</span> <span class="nav-text">例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BSGS"><span class="nav-number">5.</span> <span class="nav-text">BSGS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXBSGS"><span class="nav-number">6.</span> <span class="nav-text">EXBSGS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E6%A0%B9"><span class="nav-number">7.</span> <span class="nav-text">原根</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E6%A0%B9%E5%AD%98%E5%9C%A8%E6%9D%A1%E4%BB%B6"><span class="nav-number">7.1.</span> <span class="nav-text">原根存在条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%8E%9F%E6%A0%B9"><span class="nav-number">7.2.</span> <span class="nav-text">查找原根</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B6"><span class="nav-number">8.</span> <span class="nav-text">阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="nav-number">8.1.</span> <span class="nav-text">阶的性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99-Cipolla"><span class="nav-number">9.</span> <span class="nav-text">二次剩余 - Cipolla</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8B%92%E8%AE%A9%E5%BE%B7%E7%AC%A6%E5%8F%B7"><span class="nav-number">9.1.</span> <span class="nav-text">勒让德符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B1%82%E8%A7%A3%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99"><span class="nav-number">9.2.</span> <span class="nav-text">求解二次剩余</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fallen Shadow"
+      src="/Eternity/images/Guess.png">
+  <p class="site-author-name" itemprop="name">Fallen Shadow</p>
+  <div class="site-description" itemprop="description">誰も悪くないから、辛いだな。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Eternity/archives/">
+        
+          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Eternity/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Eternity/tags/">
+          
+        <span class="site-state-item-count">190</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/VioletEternal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VioletEternal" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/356159259?spm_id_from=333.1007.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;356159259?spm_id_from&#x3D;333.1007.0.0" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/444040" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;444040" rel="noopener" target="_blank"><i class="fab fa-luogu fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/artist?id=52150816" title="CloudMusic → https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;52150816" rel="noopener" target="_blank"><i class="fab fa-cloudmusic fa-fw"></i>CloudMusic</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">机房最巨赵悦岑</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://song-gan.github.io/" title="https:&#x2F;&#x2F;song-gan.github.io&#x2F;" rel="noopener" target="_blank">机房淦神Crystal_Gan</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房老大哥_Live_</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">Ynoi前辈dyd-true</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io&#x2F;" rel="noopener" target="_blank">省队爷mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io&#x2F;" rel="noopener" target="_blank">省队大跌Rusun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://evrgardenviolet.github.io/" title="https:&#x2F;&#x2F;evrgardenviolet.github.io&#x2F;" rel="noopener" target="_blank">Violet前辈闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io&#x2F;" rel="noopener" target="_blank">IOI大跌Lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/2008429483" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;2008429483" rel="noopener" target="_blank">墨逸moki酱</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VioletEternal</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">612k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9:16</span>
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+<span id="busuanzi_container_page_pv">本文热度<span id="busuanzi_value_page_pv"></span>℃</span>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/Eternity/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/Eternity/lib/anime.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Eternity/js/utils.js"></script>
+
+<script src="/Eternity/js/motion.js"></script>
+
+
+<script src="/Eternity/js/schemes/pisces.js"></script>
+
+
+<script src="/Eternity/js/next-boot.js"></script>
+
+
+  <script defer src="true"></script>
+    <script defer src="/Eternity/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/Eternity/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/Eternity/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://rusunoi.github.io/mathjax/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="https://rusunoi.github.io/gitalk/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://rusunoi.github.io/gitalk/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'c547d8099919a2d14d96',
+      clientSecret: '10a714b915e252d47a7c076cbd8f01fadb85bd41',
+      repo        : 'Eternity',
+      owner       : 'VioletEternal',
+      admin       : ['VioletEternal'],
+      id          : 'f22d54373a2fd2695d8fbbd2096b18b0',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+<script src="/Eternity/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
