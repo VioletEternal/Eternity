@@ -37,12 +37,12 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://oi-wiki.org/string/images/trie1.png">
 <meta property="article:published_time" content="2022-06-17T13:41:04.000Z">
-<meta property="article:modified_time" content="2022-07-15T11:54:26.830Z">
+<meta property="article:modified_time" content="2022-08-08T02:05:52.827Z">
 <meta property="article:author" content="Fallen Shadow">
-<meta property="article:tag" content="图论">
-<meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="String">
 <meta property="article:tag" content="字符串">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="树型结构">
 <meta property="article:tag" content="构造">
 <meta property="article:tag" content="Trie树">
@@ -148,7 +148,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">208</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">217</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -158,7 +158,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">83</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">85</span></a>
 
   </li>
         <li class="menu-item menu-item-归程">
@@ -254,7 +254,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-07-15 19:54:26" itemprop="dateModified" datetime="2022-07-15T19:54:26+08:00">2022-07-15</time>
+                <time title="修改时间：2022-08-08 10:05:52" itemprop="dateModified" datetime="2022-08-08T10:05:52+08:00">2022-08-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -309,10 +309,12 @@
 <h2 id="Trie"><a href="#Trie" class="headerlink" title="Trie"></a>Trie</h2><p>中文名<strong>字典树</strong>，也称<strong>前缀树</strong>，是<strong>AC 自动机</strong>的组成部分之二。（另一个是 <a href="https://violeteternal.github.io/Eternity/学习笔记/OI/kmp/">KMP</a> ），用于匹配字符串前缀。大概样子如下图所示：</p>
 <p><img src="https://oi-wiki.org/string/images/trie1.png" alt=""></p>
 <p>对于很多个模式串 $s_i$ ，如果其前缀有相同的部分，则我们就不需要重新创立一些新的节点，而是从两个不同字符串开始不同的地方延申出另一个节点即可。</p>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> u=<span class="number">0</span>,len=<span class="built_in">strlen</span>(s+<span class="number">1</span>);	<span class="comment">//根节点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=len;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!Tre[u][s[i]]) Tre[u][s[i]]=++Cnt;	<span class="comment">//建立新节点</span></span><br><span class="line">        u=Tre[u][s[i]];			<span class="comment">//往后跳</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><p>该代码主要查询到是当前字符串是否在模式串中做过前缀子串。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">insert</span><span class="params">(<span class="type">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> u=<span class="number">0</span>,len=<span class="built_in">strlen</span>(s+<span class="number">1</span>);	<span class="comment">//根节点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=len;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!Tre[u][s[i]]) Tre[u][s[i]]=++Cnt;	<span class="comment">//建立新节点</span></span><br><span class="line">        u=Tre[u][s[i]];			<span class="comment">//往后跳</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>该代码主要查询到是当前字符串是否在模式串中做过前缀子串。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">query</span><span class="params">(<span class="type">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> u=<span class="number">0</span>,len=<span class="built_in">strlen</span>(s+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=len;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(!Tre[u][s[i]]) <span class="keyword">return</span> <span class="number">0</span>;		<span class="comment">//不存在</span></span><br><span class="line">        u=Tre[u][s[i]];</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;		<span class="comment">//存在</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><h3 id="弱化版"><a href="#弱化版" class="headerlink" title="弱化版"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2580">弱化版</a></h3><p>如上，多了一个 <code>REPEAT</code> 操作。将每一个名字的最后一个字母的位置记为 $End[u]=id$ ，然后每次到达时判断 $vis[End[u]]$ 是否到达过，而判断是 <code>REPEAT</code> 还是 <code>RIGHT</code> 。</p>
+<hr>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="弱化版"><a href="#弱化版" class="headerlink" title="弱化版"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2580">弱化版</a></h4><p>如上，多了一个 <code>REPEAT</code> 操作。将每一个名字的最后一个字母的位置记为 $End[u]=id$ ，然后每次到达时判断 $vis[End[u]]$ 是否到达过，而判断是 <code>REPEAT</code> 还是 <code>RIGHT</code> 。</p>
 <details>
     <summary>AC Code</summary>
 
@@ -320,7 +322,7 @@
 
 </details>
 
-<h3 id="加强版"><a href="#加强版" class="headerlink" title="加强版"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8306">加强版</a></h3><p>多了大写字母和数字。所以在建树时需要多建一点（小心爆栈）。当然，如果不太清楚会有多少种情况也是可以用 <code>map</code> 的。（这道题 <code>map</code> 会炸，亲测），因为多组数据，所以要预处理，这道题甚至卡了 <code>memset</code> ，所以就需要手动赋值。<del>本题不卡常</del>。</p>
+<h4 id="加强版"><a href="#加强版" class="headerlink" title="加强版"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P8306">加强版</a></h4><p>多了大写字母和数字。所以在建树时需要多建一点（小心爆栈）。当然，如果不太清楚会有多少种情况也是可以用 <code>map</code> 的。（这道题 <code>map</code> 会炸，亲测），因为多组数据，所以要预处理，这道题甚至卡了 <code>memset</code> ，所以就需要手动赋值。<del>本题不卡常</del>。</p>
 <details>
     <summary>AC Code</summary>
 
@@ -329,7 +331,7 @@
 </details>
 
 <hr>
-<h3 id="CF1312G"><a href="#CF1312G" class="headerlink" title="CF1312G"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1312G">CF1312G</a></h3><p>按题意建 trie 树，并进行 dp 。</p>
+<h4 id="CF1312G"><a href="#CF1312G" class="headerlink" title="CF1312G"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1312G">CF1312G</a></h4><p>按题意建 trie 树，并进行 dp 。</p>
 <details>
     <summary>AC Code</summary>
 
@@ -366,6 +368,10 @@
 <li>重复步骤 $3\sim 5$ 直到字符串遍历完成。</li>
 </ol>
 <p>构建可持久化 $\text{Trie}$ 树所需的空间和时间复杂度都是字符串总长度的线性函数。</p>
+<h3 id="可持久化字典树"><a href="#可持久化字典树" class="headerlink" title="可持久化字典树"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/U236173">可持久化字典树</a></h3><p>数据可能有些问题，我也不太清楚自己写对没有，而且感觉好像暴力了。</p>
+<p>$\text{RE,TLE,MLE}$ 交替表演。</p>
+<p>所以，题面可以给出一个思考，但代码和数据的可行度，不太高。</p>
+<p>欢迎各种方式的 $\text{Hack}$ 。</p>
 <h3 id="最大异或和"><a href="#最大异或和" class="headerlink" title="最大异或和"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4735">最大异或和</a></h3><p>对于查询，很明显有 $a[p]\ xor\ a[p+1]\ xor…\ xor\ a[N]\ xor\ x=s[p-1]\ xor\ s[N]\ xor\ x$ 的性质。</p>
 <p>然后使用类似于 $\text{01-Trie}$ 的方法将所有的 $s$ 都插入到树中，查询其最大值，但是要满足于 $l\le p\le r$ 的条件，所以考虑可持久化。</p>
 <p><del>余下的我也没学懂，贺过去的，想学的自己看题解吧。qwq</del></p>
@@ -406,10 +412,10 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/Eternity/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
-              <a href="/Eternity/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
               <a href="/Eternity/tags/String/" rel="tag"># String</a>
               <a href="/Eternity/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># 字符串</a>
+              <a href="/Eternity/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
+              <a href="/Eternity/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
               <a href="/Eternity/tags/%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84/" rel="tag"># 树型结构</a>
               <a href="/Eternity/tags/%E6%9E%84%E9%80%A0/" rel="tag"># 构造</a>
               <a href="/Eternity/tags/Trie%E6%A0%91/" rel="tag"># Trie树</a>
@@ -494,7 +500,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie"><span class="nav-number">1.</span> <span class="nav-text">Trie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-number">1.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.2.</span> <span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%B1%E5%8C%96%E7%89%88"><span class="nav-number">2.1.</span> <span class="nav-text">弱化版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%BC%BA%E7%89%88"><span class="nav-number">2.2.</span> <span class="nav-text">加强版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF1312G"><span class="nav-number">2.3.</span> <span class="nav-text">CF1312G</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01-Trie"><span class="nav-number">3.</span> <span class="nav-text">01-Trie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%BC%82%E6%88%96%E8%B7%AF%E5%BE%84"><span class="nav-number">3.1.</span> <span class="nav-text">最长异或路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96-Trie"><span class="nav-number">4.</span> <span class="nav-text">可持久化 Trie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C"><span class="nav-number">4.1.</span> <span class="nav-text">最大异或和</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Trie"><span class="nav-number">1.</span> <span class="nav-text">Trie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-number">1.1.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.2.</span> <span class="nav-text">查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%B1%E5%8C%96%E7%89%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">弱化版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E5%BC%BA%E7%89%88"><span class="nav-number">1.2.2.</span> <span class="nav-text">加强版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CF1312G"><span class="nav-number">1.2.3.</span> <span class="nav-text">CF1312G</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01-Trie"><span class="nav-number">2.</span> <span class="nav-text">01-Trie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%BC%82%E6%88%96%E8%B7%AF%E5%BE%84"><span class="nav-number">2.1.</span> <span class="nav-text">最长异或路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96-Trie"><span class="nav-number">3.</span> <span class="nav-text">可持久化 Trie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%97%E5%85%B8%E6%A0%91"><span class="nav-number">3.1.</span> <span class="nav-text">可持久化字典树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%92%8C"><span class="nav-number">3.2.</span> <span class="nav-text">最大异或和</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -510,7 +516,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -523,7 +529,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">208</span>
+        <span class="site-state-item-count">217</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -611,12 +617,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">708k</span>
+    <span title="站点总字数">737k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">10:44</span>
+    <span title="站点阅读时长">11:10</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
