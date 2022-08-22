@@ -37,13 +37,13 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://www.imageoss.com/images/2022/08/09/Fhq-Treapd4fd62af7735fbd4.gif">
 <meta property="article:published_time" content="2022-03-14T04:55:09.000Z">
-<meta property="article:modified_time" content="2022-08-15T02:00:35.951Z">
+<meta property="article:modified_time" content="2022-08-18T12:10:15.576Z">
 <meta property="article:author" content="Fallen Shadow">
-<meta property="article:tag" content="树型结构">
-<meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="线段树">
+<meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="RMQ">
 <meta property="article:tag" content="平衡树">
+<meta property="article:tag" content="树型结构">
 <meta property="article:tag" content="Splay">
 <meta property="article:tag" content="二叉搜索树">
 <meta property="article:tag" content="堆">
@@ -146,7 +146,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">230</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">249</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -156,7 +156,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">100</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">105</span></a>
 
   </li>
         <li class="menu-item menu-item-归程">
@@ -252,7 +252,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-15 10:00:35" itemprop="dateModified" datetime="2022-08-15T10:00:35+08:00">2022-08-15</time>
+                <time title="修改时间：2022-08-18 20:10:15" itemprop="dateModified" datetime="2022-08-18T20:10:15+08:00">2022-08-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -313,14 +313,14 @@
 <blockquote>
 <p>$y.key \leq x.key \leq z.key$</p>
 </blockquote>
-<h3 id="复杂度-代码实现"><a href="#复杂度-代码实现" class="headerlink" title="复杂度/代码实现"></a>复杂度/代码实现</h3><p>均摊 $O(\log n)$</p>
+<h3 id="复杂度-代码实现"><a href="#复杂度-代码实现" class="headerlink" title="复杂度/代码实现"></a>复杂度/代码实现</h3><p>均摊 $O(\log n)$ 。</p>
 <h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><p>从根节点开始，按性质向下查找即可</p>
 <h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>根据性质查找直到空节点，并新建节点。</p>
 <h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><h5 id="叶节点"><a href="#叶节点" class="headerlink" title="叶节点"></a>叶节点</h5><p>直接删除</p>
 <h5 id="仅有一个子节点的父节点"><a href="#仅有一个子节点的父节点" class="headerlink" title="仅有一个子节点的父节点"></a>仅有一个子节点的父节点</h5><p>上移其子节点，删除其本身</p>
 <h5 id="双子节点的父节点"><a href="#双子节点的父节点" class="headerlink" title="双子节点的父节点"></a>双子节点的父节点</h5><p>找到需要删除的节点 $p$ 的直接前驱（或后驱） $s$ ，用 $s$ 代替 $p$ ，并删除 $s$</p>
-<h3 id="另话"><a href="#另话" class="headerlink" title="另话"></a>另话</h3><p>然而，二叉查找树虽然均摊 $O(\log n)$ ，但实际上，当树作为一条链时，其任何操作都是 $O(n)$ ，<del>那做个P啊</del>，所以就会有了<strong>平衡树</strong>这种东西</p>
-<h2 id="Treap"><a href="#Treap" class="headerlink" title="Treap"></a>Treap</h2><p>有两位巨佬告诉我， $Treap$ 这东西不需要学。所以我也就简单提提。</p>
+<h3 id="另话"><a href="#另话" class="headerlink" title="另话"></a>另话</h3><p>然而，二叉查找树虽然均摊 $O(\log n)$ ，但实际上，当树作为一条链时，其任何操作都是 $O(n)$ ，<del>那做个P啊</del>，所以就会有了<strong>平衡树</strong>这种东西。</p>
+<h2 id="Treap"><a href="#Treap" class="headerlink" title="Treap"></a>Treap</h2><p>有两位巨佬告诉我， $\text{Treap}$ 这东西不需要学。所以我也就简单提提。</p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>$Treap$ 实际上是一个合成词，$Tree+Heap$ 的合成。也顾名思义，给每一个节点加入一个随机值 $rand()$ 以达到堆性质而使其基本达到平衡。从而保证树的深度在 $\log n$ 左右。当这棵树的深度达到平衡极限时，进行<strong>左旋</strong>和<strong>右旋</strong>操作使深度降低。</p>
 <h4 id="旋转-rotate"><a href="#旋转-rotate" class="headerlink" title="旋转(rotate)"></a>旋转(rotate)</h4><p>旋转分为<strong>左旋(zig)</strong>和<strong>右旋(zag)</strong>。其目的是使子节点转到根节点处。因为平衡树的操作众多，所以这里重点讲旋转，其他的因题而异即可。</p>
 <p>$rotate(\&amp;p,d)$ 中，以 $p$ 为初始根节点旋转，$d=0$ 时左旋，$d=1$ 时右旋。</p>
@@ -335,8 +335,7 @@
 
 </details>
 
-
-
+<hr>
 <h2 id="Splay"><a href="#Splay" class="headerlink" title="Splay"></a>Splay</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>俗称<strong>伸展树</strong>。也是一种二叉排序树，为了使整个查找时间变小，将被查频率高的那些节点转到靠近根节点的位置。每次查找节点之后对树进行重构，把被查找的节点搬移到树根。</p>
 <p>为了将当前被访问节点旋转到树根，我们通常将节点自底向上旋转，直至该节点成为树根为止。“旋转”的巧妙之处就是在不打乱数列中数据大小关系（指中序遍历结果是全序的）情况下，所有基本操作的平摊复杂度仍为 $O(\log n)$。</p>
 <p>一般来说， $Splay$ 的节点维护信息为：</p>
@@ -473,33 +472,30 @@
     
     
       
+
   <div class="popular-posts-header">相关文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\学习笔记\OI\tree-set\" rel="bookmark">树套树</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\题解\qtree\" rel="bookmark">Q-Tree系列</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\题解\100-text\" rel="bookmark">随机100题(26/100)</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\题解\p3950\" rel="bookmark">P3950 部落冲突</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\学习笔记\OI\tree-chain-segmentation\" rel="bookmark">树链剖分&树上差分</a></div>
-    </li>
+  <ul class="related-posts">
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-set/">树套树</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-chain-segmentation/">树链剖分&树上差分</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/link-cut-tree/">Link-Cut Tree</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/qtree/">Q-Tree系列</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/trie/">字典树</a></li>
+  
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/Eternity/tags/%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84/" rel="tag"># 树型结构</a>
-              <a href="/Eternity/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
               <a href="/Eternity/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/" rel="tag"># 线段树</a>
+              <a href="/Eternity/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
               <a href="/Eternity/tags/RMQ/" rel="tag"># RMQ</a>
               <a href="/Eternity/tags/%E5%B9%B3%E8%A1%A1%E6%A0%91/" rel="tag"># 平衡树</a>
+              <a href="/Eternity/tags/%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84/" rel="tag"># 树型结构</a>
               <a href="/Eternity/tags/Splay/" rel="tag"># Splay</a>
               <a href="/Eternity/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" rel="tag"># 二叉搜索树</a>
               <a href="/Eternity/tags/%E5%A0%86/" rel="tag"># 堆</a>
@@ -597,7 +593,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -610,7 +606,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">230</span>
+        <span class="site-state-item-count">249</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -637,13 +633,16 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">机房最巨赵悦岑</a>
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">痛失网名巨佬赵悦岑</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房老大哥_Live_</a>
+          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房巨佬_Live_</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kney.blog.luogu.org/" title="https:&#x2F;&#x2F;kney.blog.luogu.org&#x2F;" rel="noopener" target="_blank">吟游的诗人kney</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">Ynoi之神dyd-true</a>
@@ -698,12 +697,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">756k</span>
+    <span title="站点总字数">840k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:27</span>
+    <span title="站点阅读时长">12:44</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

@@ -28,25 +28,34 @@
   </script>
 
 
-  <meta name="description" content="考场成绩： $95pt+0+48pt+0&#x3D;143pt$ 现成绩： $100pt+0+100pt+0&#x3D;200pt$">
+  <meta name="description" content="考场成绩： $95pt+0+48pt+0&#x3D;143pt$ 现成绩： $100pt+100pt+100pt+65pt&#x3D;360pt$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2021 CSP-S 第二轮">
 <meta property="og:url" content="https://violeteternal.github.io/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/20220618-csp-s/index.html">
 <meta property="og:site_name" content="Eternity">
-<meta property="og:description" content="考场成绩： $95pt+0+48pt+0&#x3D;143pt$ 现成绩： $100pt+0+100pt+0&#x3D;200pt$">
+<meta property="og:description" content="考场成绩： $95pt+0+48pt+0&#x3D;143pt$ 现成绩： $100pt+100pt+100pt+65pt&#x3D;360pt$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-18T07:01:14.000Z">
-<meta property="article:modified_time" content="2022-08-15T02:09:52.008Z">
+<meta property="article:modified_time" content="2022-08-17T02:30:21.188Z">
 <meta property="article:author" content="Fallen Shadow">
+<meta property="article:tag" content="DP">
+<meta property="article:tag" content="区间dp">
+<meta property="article:tag" content="字符串">
+<meta property="article:tag" content="最短路">
+<meta property="article:tag" content="队列">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="构造">
 <meta property="article:tag" content="模拟">
 <meta property="article:tag" content="双端队列">
-<meta property="article:tag" content="贪心">
 <meta property="article:tag" content="string">
 <meta property="article:tag" content="STL">
-<meta property="article:tag" content="字符串">
 <meta property="article:tag" content="双指针">
-<meta property="article:tag" content="队列">
 <meta property="article:tag" content="指针">
+<meta property="article:tag" content="网络流">
+<meta property="article:tag" content="Dinic">
+<meta property="article:tag" content="图匹配">
+<meta property="article:tag" content="对偶图">
+<meta property="article:tag" content="最小割">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://violeteternal.github.io/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/20220618-csp-s/">
@@ -142,7 +151,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">230</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">249</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -152,7 +161,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">100</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">105</span></a>
 
   </li>
         <li class="menu-item menu-item-归程">
@@ -248,7 +257,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-15 10:09:52" itemprop="dateModified" datetime="2022-08-15T10:09:52+08:00">2022-08-15</time>
+                <time title="修改时间：2022-08-17 10:30:21" itemprop="dateModified" datetime="2022-08-17T10:30:21+08:00">2022-08-17</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,14 +282,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>13k</span>
+              <span>19k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>12 分钟</span>
+              <span>17 分钟</span>
             </span>
 
         </div>
@@ -293,11 +302,11 @@
 
       
         <p>考场成绩： $95pt+0+48pt+0=143pt$</p>
-<p>现成绩： $100pt+0+100pt+0=200pt$</p>
+<p>现成绩： $100pt+100pt+100pt+65pt=360pt$</p>
 <span id="more"></span>
 <h2 id="P7913-CSP-S-2021-廊桥分配"><a href="#P7913-CSP-S-2021-廊桥分配" class="headerlink" title="P7913 [CSP-S 2021] 廊桥分配"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7913">P7913 [CSP-S 2021] 廊桥分配</a></h2><p>实力贪心，当初真考的时候在我们学校，我当时坐在 <code>B003</code> 时有一份代码，我就替那个人交了，结果那人爆零。然后洛谷就一直留着这道题，后来清题的时候就把这道题给做了。所以留有印象。</p>
 <p>分开计算，首先将使用 $1\sim n$ 的国内廊桥能最多停多少和 $1\sim n$ 的国外廊桥能停放多少。然后计算答案则是 $ans=\max(res_{in}[i]+res_{out}[n-i]),0\leq i\leq n$ 。这一步是能够想到的。</p>
-<p>对于计算过程，使用两个优先队列，一个 $lQueue$ 来记录一个二元组 $(x,y)$ 表示当前停靠飞机的离开时间和停靠的廊桥编号。另一个 $wQueue$ 来记录当前空闲的廊桥编号，至于为什么是优先队列，因为整个过程秉承<strong>“先到先得”</strong>的原则，且让廊桥编号尽可能小。最后统计前缀和即可。</p>
+<p>对于计算过程，使用两个优先队列，一个 $lQueue$ 来记录一个二元组 $(x,y)$ 表示当前停靠飞机的离开时间和停靠的廊桥编号。另一个 $wQueue$ 来记录当前空闲的廊桥编号，至于为什么是优先队列，因为整个过程秉承<strong>“先到先得”</strong>的原则，且让廊桥编号尽可能大。最后统计前缀和即可。</p>
 <font style="color:white">好吧，事实上，今天上午并没有做出了这道题，只是翻出了之前的代码，然后贺了上去，虽然之后在摆烂的时候把代码完全搞懂了。但总归不是自己做出来的。</font> 
 
 <details>
@@ -307,6 +316,40 @@
 
 </details>
 
+<hr>
+<p>这道题还有一个思路，是 $\text{LuckyLeaves}$ 的考场思路，用线段树维护廊桥数量的最大停靠数，然后用线段树二分，统计答案时差分即可。</p>
+<p>两种思路差不多，线段树二分就相当于是手写了一个优先队列。总的思路还是模拟题意。</p>
+<hr>
+<h2 id="P7914-CSP-S-2021-括号序列"><a href="#P7914-CSP-S-2021-括号序列" class="headerlink" title="P7914 [CSP-S 2021] 括号序列"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7914">P7914 [CSP-S 2021] 括号序列</a></h2><p>神仙分讨区间 $\text{Dp}$ ，当初参考的是一个不太复杂的做法：</p>
+<p>记状态：$Dp[l][r][6]$ ，表示区间 $[l,r]$ 的 $6$ 种情况。</p>
+<p>（说实话，能够把题读懂已经够呛了）这 $6$ 种情况表示了六种超级括号序列的表示。</p>
+<ol>
+<li>$Dp[l][r][0]$ 表示形如 $\ast\ast\dots\ast\ast$ 的括号序列，即全部都是 $\ast$ 的括号序列；</li>
+<li>$Dp[l][r][1]$ 表示形如 $(\cdots)$ 的括号序列，即正好被包裹的情况；</li>
+<li>$Dp[l][r][2]$ 表示形如 $(\cdots)\ast\ast(\cdots)\ast\ast$ 的括号序列，即左边为完整括号，右边为 $\ast$ 的情况；</li>
+<li>$Dp[l][r][3]$ 表示形如 $(\cdots)\ast\ast(\cdots)\ast\ast(\cdots)$ 的括号序列，即左右为括号，但不为同一组括号；</li>
+<li>$Dp[l][r][4]$ 表示形如 $\ast\ast\ast(\cdots)\ast\ast(\cdots)$ 的括号序列，即 $Dp[l][r][2]$ 的左右翻转；</li>
+<li>$Dp[l][r][5]$ 表示形如 $\ast\ast(\cdots)\ast(\cdots)\ast\ast$ 的括号序列，即左右皆为 $\ast$ ，但中间有完整括号。</li>
+</ol>
+<p>然后就是转移，令函数 $cmp(l,r)$ 进行判断，$S[l],S[r]$ 是否能够配对成括号，如果能，返回 $1$ ，否则返回 $0$。</p>
+<ol>
+<li>$Dp[l][r][0]$ 直接暴力转移，枚举 $Dp[l][r-1][0]$ 是否存在，按位与即可。</li>
+<li>$Dp[l][r][1]=(Dp[l+1][r-1][0]+Dp[l+1][r-1][2]+Dp[l+1][r-1][3]+Dp[l+1][r-1][4])\times cmp(l,r)$ </li>
+<li>$\displaystyle Dp[l][r][2]=\sum_{i=l}^{r}Dp[l][i][3]\times Dp[i+1][r][0]$</li>
+<li>$\displaystyle Dp[l][r][3]=\sum_{i=l}^{r-1}(Dp[l][i][2]+Dp[l][i][3])\times Dp[i+1][r][1]+Dp[l][r][1]$</li>
+<li>$\displaystyle Dp[l][r][4]=\sum_{i=l}^{r}(Dp[l][i][4]+Dp[l][i][5])\times Dp[i+1][r][1]$</li>
+<li>$\displaystyle Dp[l][r][5]=\sum_{i=l}^{r-1}Dp[l][i][4]\times Dp[i+1][r][0]+Dp[l][r][0]$</li>
+</ol>
+<p>其实吧，主要在于能不能把所有的情况全部想到并分类表示，然后转移其实就简单了，$n\leq 500$ 乱搞都可以，实际时间复杂度 $\mathcal O(6n^3)$ ，跑不满。</p>
+<p>虽然要取模，但是还是要开 <code>long long</code> 。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> int long long</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">5e2</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> Mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="type">int</span> N,K,Dp[MAXN][MAXN][<span class="number">10</span>];</span><br><span class="line"><span class="type">char</span> S[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (S[a]==<span class="string">&#x27;(&#x27;</span>||S[a]==<span class="string">&#x27;?&#x27;</span>)&amp;&amp;(S[b]==<span class="string">&#x27;)&#x27;</span>||S[b]==<span class="string">&#x27;?&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld%s&quot;</span>,&amp;N,&amp;K,S+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i) Dp[i][i<span class="number">-1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> len=<span class="number">1</span>;len&lt;=N;++len)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">1</span>;l&lt;=N-len+<span class="number">1</span>;++l)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> r=l+len<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">if</span>(len&lt;=K) Dp[l][r][<span class="number">0</span>]=Dp[l][r<span class="number">-1</span>][<span class="number">0</span>]&amp;&amp;(S[r]==<span class="string">&#x27;*&#x27;</span>||S[r]==<span class="string">&#x27;?&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span>(len&gt;=<span class="number">2</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">cmp</span>(l,r)) Dp[l][r][<span class="number">1</span>]=(Dp[l+<span class="number">1</span>][r<span class="number">-1</span>][<span class="number">0</span>]+Dp[l+<span class="number">1</span>][r<span class="number">-1</span>][<span class="number">2</span>]+Dp[l+<span class="number">1</span>][r<span class="number">-1</span>][<span class="number">3</span>]+Dp[l+<span class="number">1</span>][r<span class="number">-1</span>][<span class="number">4</span>])%Mod;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> k=l;k&lt;=r<span class="number">-1</span>;++k)</span><br><span class="line">                &#123;</span><br><span class="line">                    Dp[l][r][<span class="number">2</span>]=(Dp[l][r][<span class="number">2</span>]+Dp[l][k][<span class="number">3</span>]*Dp[k+<span class="number">1</span>][r][<span class="number">0</span>])%Mod;</span><br><span class="line">                    Dp[l][r][<span class="number">3</span>]=(Dp[l][r][<span class="number">3</span>]+(Dp[l][k][<span class="number">2</span>]+Dp[l][k][<span class="number">3</span>])*Dp[k+<span class="number">1</span>][r][<span class="number">1</span>])%Mod;</span><br><span class="line">                    Dp[l][r][<span class="number">4</span>]=(Dp[l][r][<span class="number">4</span>]+(Dp[l][k][<span class="number">4</span>]+Dp[l][k][<span class="number">5</span>])*Dp[k+<span class="number">1</span>][r][<span class="number">1</span>])%Mod;</span><br><span class="line">                    Dp[l][r][<span class="number">5</span>]=(Dp[l][r][<span class="number">5</span>]+Dp[l][k][<span class="number">4</span>]*Dp[k+<span class="number">1</span>][r][<span class="number">0</span>])%Mod;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Dp[l][r][<span class="number">5</span>]=(Dp[l][r][<span class="number">5</span>]+Dp[l][r][<span class="number">0</span>])%Mod;</span><br><span class="line">            Dp[l][r][<span class="number">3</span>]=(Dp[l][r][<span class="number">3</span>]+Dp[l][r][<span class="number">1</span>])%Mod;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,Dp[<span class="number">1</span>][N][<span class="number">3</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">10 2</span></span><br><span class="line"><span class="comment">???(*??(?)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
 <h2 id="P7915-CSP-S-2021-回文"><a href="#P7915-CSP-S-2021-回文" class="headerlink" title="P7915 [CSP-S 2021] 回文"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7915">P7915 [CSP-S 2021] 回文</a></h2><p>考场暴力，居然只是 T 和 M ，比较顺利。</p>
 <h3 id="暴力思路"><a href="#暴力思路" class="headerlink" title="暴力思路"></a>暴力思路</h3><p>直接 $dfs$ 或者 $bfs$ ，对于一些优化，我后来思考了一下。因为我们要查找的是字典序最小的，所以肯定是优先 $L$ 才会使用 $R$ 。而对于 $bfs$ 而言，大部分的答案都是一并算出来的，所以在比较答案是必须要全部比较，十分消耗时间。而在使用 $dfs$ 的时候，我们可以在前几次搜索时就搜出了一个备选答案，然后可以在中间段的时候就比较当前搜出的答案和原有答案，减少之后的搜索，可能会有一定优化。</p>
 <p><del>后来发现两个方法的得分是一样的</del>。</p>
@@ -338,8 +381,35 @@
 
 </details>
 
+<hr>
+<h2 id="P7916-CSP-S-2021-交通规划"><a href="#P7916-CSP-S-2021-交通规划" class="headerlink" title="P7916 [CSP-S 2021] 交通规划"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7916">P7916 [CSP-S 2021] 交通规划</a></h2><p>第一次考的时候甚至连题都不想读，然后第二次考的时候做了一下，发现还是可以稍稍做一点部分分的。</p>
+<h3 id="纳米暴力，小子"><a href="#纳米暴力，小子" class="headerlink" title="纳米暴力，小子"></a>纳米暴力，小子</h3><p>当时想到的，结果还写挂了，不如写网络流。</p>
+<p>因为一共有 $nm$ 个点需要我们来染色，那么，一共就有 $2^{nm}$ 种染色方案，暴力跑一遍后求出最小权值即可，时间复杂度 $\mathcal O(nm2^{nm})$ ，目测能跑过 $10pts$ ，结果写挂了，爆蛋。</p>
+<p>不贴代码，没意义。</p>
+<hr>
+<h3 id="纳米网络流，小子"><a href="#纳米网络流，小子" class="headerlink" title="纳米网络流，小子"></a>纳米网络流，小子</h3><p>可以想到，我们需要使两端颜色不同的边权值和最小，也就意味着要使颜色相同的边权值最大，可以想到最小割，考虑建图：</p>
+<ol>
+<li>连接超级源点和初始颜色为黑色的点，容量为 $inf$ ；</li>
+<li>连接超级汇点和初始颜色为白色的点，容量为 $inf$ ；</li>
+<li>连接应该连接的所有边，边权为应该有的边权。</li>
+</ol>
+<p>然后跑最大流即可。</p>
+<p>但是，点数 $NM+K$ ，边数更是无法计算。</p>
+<p>更何况，每一次询问还要单独建图，所以还需要重置询问。</p>
+<p>不过，还是有 $65pts$ ，似乎实测 $\operatorname{CCF}$ 只有 $60pts$ 。</p>
+<details>
+    <summary>TLE Code</summary>
 
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> re register</span></span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> ch=<span class="built_in">getchar</span>(),t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>) t|=ch==<span class="string">&#x27;-&#x27;</span>,ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(ch^<span class="number">48</span>),ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">if</span>(t) x=-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T,<span class="keyword">class</span> ...T1&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x,T1 &amp;...x1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(x),<span class="built_in">read</span>(x1...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>),x=-x;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">9</span>) <span class="built_in">write</span>(x/<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="number">48</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXV=<span class="number">25e4</span>+<span class="number">60</span>,MAXE=<span class="number">5e6</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="type">int</span> Test,N,M,S,T;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Net</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> next,to,val;</span><br><span class="line">&#125;Edge[MAXE&lt;&lt;<span class="number">1</span>],EdgeCopy[MAXE&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> Head[MAXV],HeadCopy[MAXV],Cur[MAXV],Total=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">addEdge</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v,<span class="type">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Edge[++Total]=(Net)&#123;Head[u],v,w&#125;;Head[u]=Total;</span><br><span class="line">    Edge[++Total]=(Net)&#123;Head[v],u,w&#125;;Head[v]=Total;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getId</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> M*(i<span class="number">-1</span>)+j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getBack</span><span class="params">(<span class="type">int</span> p)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> x,y;</span><br><span class="line">    <span class="keyword">if</span>(p&lt;=M) x=<span class="number">1</span>,y=p;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(p&lt;=N+M) x=p-M,y=M;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(p&lt;=N+M+M) x=N,y=N+M+M+<span class="number">1</span>-p;</span><br><span class="line">    <span class="keyword">else</span> x=N+N+M+M+<span class="number">1</span>-p,y=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">getId</span>(x,y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Fl[MAXV];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">Bfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(Fl,<span class="number">-1</span>,<span class="built_in">sizeof</span>(Fl));</span><br><span class="line">    Fl[S]=<span class="number">0</span>,Cur[S]=Head[S];</span><br><span class="line">    std::queue&lt;<span class="type">int</span>&gt;Q;</span><br><span class="line">    Q.<span class="built_in">push</span>(S);</span><br><span class="line">    <span class="keyword">while</span>(!Q.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> u=Q.<span class="built_in">front</span>();Q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> e=Head[u],v;e;e=Edge[e].next)</span><br><span class="line">        &#123;</span><br><span class="line">            v=Edge[e].to;</span><br><span class="line">            <span class="keyword">if</span>(Fl[v]==<span class="number">-1</span>&amp;&amp;Edge[e].val)</span><br><span class="line">            &#123;</span><br><span class="line">                Fl[v]=Fl[u]+<span class="number">1</span>;</span><br><span class="line">                Cur[v]=Head[v];</span><br><span class="line">                <span class="keyword">if</span>(v==T) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">                Q.<span class="built_in">push</span>(v);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Dfs</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> inf)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x==T) <span class="keyword">return</span> inf;</span><br><span class="line">    <span class="type">int</span> flow=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> e=Cur[x],v;e&amp;&amp;flow&lt;inf;e=Edge[e].next)</span><br><span class="line">    &#123;</span><br><span class="line">        Cur[x]=e;v=Edge[e].to;</span><br><span class="line">        <span class="keyword">if</span>(Fl[v]==Fl[x]+<span class="number">1</span>&amp;&amp;Edge[e].val)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> k=<span class="built_in">Dfs</span>(v,std::<span class="built_in">min</span>(Edge[e].val,inf-flow));</span><br><span class="line">            <span class="keyword">if</span>(!k) Fl[v]=<span class="number">-1</span>;</span><br><span class="line">            Edge[e].val-=k,Edge[e^<span class="number">1</span>].val+=k,flow+=k;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> flow;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">Dinic</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> r=<span class="number">0</span>,flow;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">Bfs</span>()) <span class="keyword">while</span>(flow=<span class="built_in">Dfs</span>(S,INF)) r+=flow;</span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;traffic.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;traffic.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N,M,Test);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=<span class="number">1</span>;i&lt;=N<span class="number">-1</span>;++i)</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=<span class="number">1</span>,x;j&lt;=M;++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">read</span>(x);</span><br><span class="line">            <span class="built_in">addEdge</span>(<span class="built_in">getId</span>(i,j),<span class="built_in">getId</span>(i+<span class="number">1</span>,j),x);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i)</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=<span class="number">1</span>,x;j&lt;=M<span class="number">-1</span>;++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">read</span>(x);</span><br><span class="line">            <span class="built_in">addEdge</span>(<span class="built_in">getId</span>(i,j),<span class="built_in">getId</span>(i,j+<span class="number">1</span>),x);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="type">int</span> TotCopy=Total;</span><br><span class="line">    <span class="built_in">memcpy</span>(HeadCopy,Head,<span class="built_in">sizeof</span>(Head));</span><br><span class="line">    <span class="built_in">memcpy</span>(EdgeCopy,Edge,<span class="built_in">sizeof</span>(Edge));</span><br><span class="line">    <span class="keyword">while</span>(Test--)</span><br><span class="line">    &#123;</span><br><span class="line">        Total=TotCopy;</span><br><span class="line">        <span class="built_in">memcpy</span>(Head,HeadCopy,<span class="built_in">sizeof</span>(HeadCopy));</span><br><span class="line">        <span class="built_in">memcpy</span>(Edge,EdgeCopy,<span class="built_in">sizeof</span>(EdgeCopy));</span><br><span class="line">        <span class="type">int</span> K;<span class="built_in">read</span>(K);</span><br><span class="line">        S=<span class="number">0</span>,T=N*M+K+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> i=<span class="number">1</span>,col,ex,val;i&lt;=K;++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">read</span>(val,ex,col);</span><br><span class="line">            <span class="built_in">addEdge</span>(<span class="built_in">getBack</span>(ex),N*M+i,val);</span><br><span class="line">            <span class="keyword">if</span>(col) <span class="built_in">addEdge</span>(S,N*M+i,INF);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">addEdge</span>(N*M+i,T,INF);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">write</span>(<span class="built_in">Dinic</span>()),<span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">2 3 3</span></span><br><span class="line"><span class="comment">9 4 7</span></span><br><span class="line"><span class="comment">3 8</span></span><br><span class="line"><span class="comment">10 5</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">19 3 1</span></span><br><span class="line"><span class="comment">17 9 0</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
+</details>
+
+<hr>
+<h3 id="纳米正解，小子"><a href="#纳米正解，小子" class="headerlink" title="纳米正解，小子"></a>纳米正解，小子</h3><p>已经想到了要在网格图上求最小割，那么就考虑优化网络流。</p>
+<p>先考虑网络流的本质：把颜色不同的点隔开。</p>
+<p>就需要一个新的知识——对偶图。（这个东西比较抽象，之后再写篇笔记，先搁着）对偶图是网络在网格图上的一个变形图，使得可以使用 $\text{Dijkstra}$ 在 $\mathcal O(n\log m)$ 的时间复杂度内求出最小割。</p>
+<p>构造关键点（可以证明关键点一定是附加点），然后用 $Dist[i][j]$ 储存两两关键点之间的最短路径，可以证明最有构造方案中的路径一定不交叉。</p>
+<p>有这个性质，还有 $k\leq 50$ ，考虑区间 $\operatorname{Dp}$ 来求解（今年居然把考点考得这么重，两道贪心，两道区间 $\text{Dp}$）。</p>
 
     </div>
 
@@ -347,37 +417,43 @@
     
     
       
+
   <div class="popular-posts-header">相关文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\题解\100-text\" rel="bookmark">随机100题(26/100)</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\学习笔记\OI\manacher\" rel="bookmark">Manacher算法</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\学习笔记\OI\mo-algo\" rel="bookmark">莫队</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\学习笔记\OI\heap-and-leftist-tree\" rel="bookmark">堆与左偏树</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\题解\p4008\" rel="bookmark">P4008 [NOI2003]文本编辑器</a></div>
-    </li>
+  <ul class="related-posts">
+  
+      <li class="related-posts-item"><a href="/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/202208xx/">夏记，但是被吊打</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/100-text/">随机100题(26/100)</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/network-flow/">网络流</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/fractional-programming/">分数规划</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/dcoj2008/">dcoj2008 蜜雪冰城</a></li>
+  
   </ul>
 
 
       <footer class="post-footer">
           <div class="post-tags">
+              <a href="/Eternity/tags/DP/" rel="tag"># DP</a>
+              <a href="/Eternity/tags/%E5%8C%BA%E9%97%B4dp/" rel="tag"># 区间dp</a>
+              <a href="/Eternity/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># 字符串</a>
+              <a href="/Eternity/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" rel="tag"># 最短路</a>
+              <a href="/Eternity/tags/%E9%98%9F%E5%88%97/" rel="tag"># 队列</a>
+              <a href="/Eternity/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+              <a href="/Eternity/tags/%E6%9E%84%E9%80%A0/" rel="tag"># 构造</a>
               <a href="/Eternity/tags/%E6%A8%A1%E6%8B%9F/" rel="tag"># 模拟</a>
               <a href="/Eternity/tags/%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97/" rel="tag"># 双端队列</a>
-              <a href="/Eternity/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
               <a href="/Eternity/tags/string/" rel="tag"># string</a>
               <a href="/Eternity/tags/STL/" rel="tag"># STL</a>
-              <a href="/Eternity/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># 字符串</a>
               <a href="/Eternity/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"># 双指针</a>
-              <a href="/Eternity/tags/%E9%98%9F%E5%88%97/" rel="tag"># 队列</a>
               <a href="/Eternity/tags/%E6%8C%87%E9%92%88/" rel="tag"># 指针</a>
+              <a href="/Eternity/tags/%E7%BD%91%E7%BB%9C%E6%B5%81/" rel="tag"># 网络流</a>
+              <a href="/Eternity/tags/Dinic/" rel="tag"># Dinic</a>
+              <a href="/Eternity/tags/%E5%9B%BE%E5%8C%B9%E9%85%8D/" rel="tag"># 图匹配</a>
+              <a href="/Eternity/tags/%E5%AF%B9%E5%81%B6%E5%9B%BE/" rel="tag"># 对偶图</a>
+              <a href="/Eternity/tags/%E6%9C%80%E5%B0%8F%E5%89%B2/" rel="tag"># 最小割</a>
           </div>
 
         
@@ -453,7 +529,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#P7913-CSP-S-2021-%E5%BB%8A%E6%A1%A5%E5%88%86%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text">P7913 [CSP-S 2021] 廊桥分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P7915-CSP-S-2021-%E5%9B%9E%E6%96%87"><span class="nav-number">2.</span> <span class="nav-text">P7915 [CSP-S 2021] 回文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9A%B4%E5%8A%9B%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text">暴力思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E8%A7%A3"><span class="nav-number">2.2.</span> <span class="nav-text">正解</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#P7913-CSP-S-2021-%E5%BB%8A%E6%A1%A5%E5%88%86%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text">P7913 [CSP-S 2021] 廊桥分配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P7914-CSP-S-2021-%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97"><span class="nav-number">2.</span> <span class="nav-text">P7914 [CSP-S 2021] 括号序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P7915-CSP-S-2021-%E5%9B%9E%E6%96%87"><span class="nav-number">3.</span> <span class="nav-text">P7915 [CSP-S 2021] 回文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9A%B4%E5%8A%9B%E6%80%9D%E8%B7%AF"><span class="nav-number">3.1.</span> <span class="nav-text">暴力思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E8%A7%A3"><span class="nav-number">3.2.</span> <span class="nav-text">正解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#P7916-CSP-S-2021-%E4%BA%A4%E9%80%9A%E8%A7%84%E5%88%92"><span class="nav-number">4.</span> <span class="nav-text">P7916 [CSP-S 2021] 交通规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%B3%E7%B1%B3%E6%9A%B4%E5%8A%9B%EF%BC%8C%E5%B0%8F%E5%AD%90"><span class="nav-number">4.1.</span> <span class="nav-text">纳米暴力，小子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%B3%E7%B1%B3%E7%BD%91%E7%BB%9C%E6%B5%81%EF%BC%8C%E5%B0%8F%E5%AD%90"><span class="nav-number">4.2.</span> <span class="nav-text">纳米网络流，小子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%B3%E7%B1%B3%E6%AD%A3%E8%A7%A3%EF%BC%8C%E5%B0%8F%E5%AD%90"><span class="nav-number">4.3.</span> <span class="nav-text">纳米正解，小子</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -469,7 +545,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -482,7 +558,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">230</span>
+        <span class="site-state-item-count">249</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -509,13 +585,16 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">机房最巨赵悦岑</a>
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">痛失网名巨佬赵悦岑</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房老大哥_Live_</a>
+          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房巨佬_Live_</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kney.blog.luogu.org/" title="https:&#x2F;&#x2F;kney.blog.luogu.org&#x2F;" rel="noopener" target="_blank">吟游的诗人kney</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">Ynoi之神dyd-true</a>
@@ -570,12 +649,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">756k</span>
+    <span title="站点总字数">840k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:27</span>
+    <span title="站点阅读时长">12:44</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

@@ -36,7 +36,7 @@
 <meta property="og:description" content="无论哪个学科，最难的部分永远是数学">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-26T07:06:38.000Z">
-<meta property="article:modified_time" content="2022-08-15T02:06:31.380Z">
+<meta property="article:modified_time" content="2022-08-22T10:38:41.182Z">
 <meta property="article:author" content="Fallen Shadow">
 <meta property="article:tag" content="数论">
 <meta property="article:tag" content="质数">
@@ -139,7 +139,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">230</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">249</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -149,7 +149,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">100</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">105</span></a>
 
   </li>
         <li class="menu-item menu-item-归程">
@@ -245,7 +245,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-15 10:06:31" itemprop="dateModified" datetime="2022-08-15T10:06:31+08:00">2022-08-15</time>
+                <time title="修改时间：2022-08-22 18:38:41" itemprop="dateModified" datetime="2022-08-22T18:38:41+08:00">2022-08-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,7 +270,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.9k</span>
+              <span>4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -296,13 +296,13 @@
 </blockquote>
 <p>一道完美的数学题，指不推公式你完全不知道它居然求的是**<del>（暂且保密）</del>。</p>
 <p>因为每一次都需要从B中随机一个数，那么第一次取到了 $a_i$ 的话，求到的 $ans$ 应该加上 $\frac{a_i}{2}$ ，以此类推，当第二次取到了 $a_j$ 的时候，求到了 $ans$ 就取到 $\frac{a_i+a_j}{3}$ ，然后继续计算，我们会发现 $B$ 中的所有数对最终答案的贡献系数都是一样的，并且其贡献系数与其在 $B$ 中的位置没有关系，只会和 $B$ 的大小有关系，然后继续推算，答案就<del>显而易见</del>了：<br>$ans=f(|B|)\sum_{x\in B}{a_x}$</p>
-<p>那么现在的问题就在于求出 $f(i)$ 了，我们可以模拟从 $B$ 移动到 $A$ 的过程，花费 $O{m}$ 的时间，这也是 $40pt$ 的做法。然而这道题的关键在于：我们最后求出的期望值是一个有理数 $frac{a}{b}$ ，所以我们需要进行<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2613">有理数取余</a>，而进行<strong>逆元</strong>操作。（逆元便是这道题的正解）</p>
+<p>那么现在的问题就在于求出 $f(i)$ 了，我们可以模拟从 $B$ 移动到 $A$ 的过程，花费 $\mathcal O(m)$ 的时间，这也是 $40pt$ 的做法。然而这道题的关键在于：我们最后求出的期望值是一个有理数 $frac{a}{b}$ ，所以我们需要进行<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2613">有理数取余</a>，而进行<strong>逆元</strong>操作。（逆元便是这道题的正解）</p>
 <h3 id="怎么想到使用逆元的"><a href="#怎么想到使用逆元的" class="headerlink" title="怎么想到使用逆元的"></a>怎么想到使用逆元的</h3><p>首先，我们已经推出了 $ans=f(|B|)\sum_{x\in B}{a}$ ，设 $i$ 为当前 $A$ ，即已经已过去了的数的个数，那么 $|B|=\frac{i-1}{i}$ 了。我们需要在计算的过程中取模，也就自然想到使用逆元了。<del>（虽然考的时候完全没有想到）</del></p>
 <p>具体来说：</p>
 <ul>
 <li>暴力模拟求逆元可得 $70pt$</li>
 <li>线性求逆元可得 $100pt$</li>
-<li>事实上，我们需要的也是这些逆元的和即可，根据原作者的话来说，会有一种<del>强力的</del>的多项式<del>高科技</del>能使求逆元的复杂度达到 $O(\sqrt{nm}\log{nm})$ 。但在这道题来说($n<em>m \leq 2</em>10^7$)，线性求逆元已经完全足够了。</li>
+<li>事实上，我们需要的也是这些逆元的和即可，根据原作者的话来说，会有一种<del>强力的</del>的多项式<del>高科技</del>能使求逆元的复杂度达到 $O(\sqrt{nm}\log{nm})$ 。但在这道题来说($n\times m \leq 2\times10^7$)，线性求逆元已经完全足够了。</li>
 </ul>
 <h2 id="Task-One-Ac-Code"><a href="#Task-One-Ac-Code" class="headerlink" title="Task One Ac Code"></a>Task One Ac Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> gh() getchar()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> underMax(x,y) ((x)&gt;(y)?(x):(y))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> underMin(x,y) ((x)&lt;(y)?(x):(y))</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">2e7</span>+<span class="number">1</span>;</span><br><span class="line"><span class="type">const</span> ll Mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">underRead</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> ch=<span class="built_in">gh</span>(),t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>) t|=ch==<span class="string">&#x27;-&#x27;</span>,ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(ch^<span class="number">48</span>),ch=<span class="built_in">gh</span>();</span><br><span class="line">    <span class="keyword">if</span>(t) x=-x;</span><br><span class="line">&#125;</span><br><span class="line">ll n,m,x,Num[MAXN],Sum,Inv[MAXN];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;mos.in&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;mos.out&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="built_in">underRead</span>(n),<span class="built_in">underRead</span>(m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;++i) <span class="built_in">underRead</span>(Num[i]),Sum+=Num[i];</span><br><span class="line">    Sum%=Mod;</span><br><span class="line">    Sum=(Sum*m)%Mod;</span><br><span class="line">    Inv[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n*m+<span class="number">1</span>;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        Inv[i]=(Mod-Mod/i)*Inv[Mod%i]%Mod;</span><br><span class="line">        x=(x+(i<span class="number">-1</span>)*Inv[i])%Mod;</span><br><span class="line">    &#125;</span><br><span class="line">    x=(x*Inv[n*m])%Mod;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld&quot;</span>,Sum*x%Mod);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">3 3</span></span><br><span class="line"><span class="comment">1 2 3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 <h2 id="题目II——聚烷撑乙二醇-pag"><a href="#题目II——聚烷撑乙二醇-pag" class="headerlink" title="题目II——聚烷撑乙二醇(pag)"></a>题目II——聚烷撑乙二醇(pag)</h2><blockquote>
@@ -325,7 +325,7 @@
 <p>那我们将 $i$ 与 $i+1$ 扩展到 $1$ 到 $n$ 的思路。对于每一组来说，我们都这样来扩展答案，就可以得到下面的算式：</p>
 <blockquote>
 <p>当 $ans&lt;L_i$ 时 $ans=\frac{L_i+R_i}{2}$</p>
-<p>当 $L_i&lt;ans&lt;R_i$ 时 $ans=\frac{ans<em>(ans-L_i)+\frac{ans+R_i}{2}</em>(R_i-ans)}{R_i-L_i}$</p>
+<p>当 $L_i&lt;ans&lt;R_i$ 时 $ans=\frac{ans\times(ans-L_i)+\frac{ans+R_i}{2}\times(R_i-ans)}{R_i-L_i}$</p>
 <p>否则， $ans=ans$ ，当然，这步不用在代码里体现。</p>
 </blockquote>
 <p>明白这件事之后，还有一个需要注意的，那就是：</p>
@@ -339,23 +339,20 @@
     
     
       
+
   <div class="popular-posts-header">相关文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\题解\100-text\" rel="bookmark">随机100题(26/100)</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\题解\at5200\" rel="bookmark">AT5200 [AGC038C] LCMs</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\学习笔记\OI\sqrt-decomposition-and-dirichlet-product\" rel="bookmark">数论分块&狄利克雷卷积</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\学习笔记\Math\group-theory\" rel="bookmark">群论</a></div>
-    </li>
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\Eternity\学习笔记\OI\sieve\" rel="bookmark">筛</a></div>
-    </li>
+  <ul class="related-posts">
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/100-text/">随机100题(26/100)</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/at5200/">AT5200 [AGC038C] LCMs</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/sqrt-decomposition-and-dirichlet-product/">数论分块&狄利克雷卷积</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/202208xx/">夏记，但是被吊打</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/sieve/">筛</a></li>
+  
   </ul>
 
 
@@ -458,7 +455,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">100</span>
+          <span class="site-state-item-count">105</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -471,7 +468,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">230</span>
+        <span class="site-state-item-count">249</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -498,13 +495,16 @@
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">机房最巨赵悦岑</a>
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">痛失网名巨佬赵悦岑</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房老大哥_Live_</a>
+          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房巨佬_Live_</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kney.blog.luogu.org/" title="https:&#x2F;&#x2F;kney.blog.luogu.org&#x2F;" rel="noopener" target="_blank">吟游的诗人kney</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">Ynoi之神dyd-true</a>
@@ -559,12 +559,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">756k</span>
+    <span title="站点总字数">840k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:27</span>
+    <span title="站点阅读时长">12:44</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
