@@ -50,6 +50,7 @@
 <meta property="article:tag" content="STL">
 <meta property="article:tag" content="双指针">
 <meta property="article:tag" content="树链剖分">
+<meta property="article:tag" content="可持久化数据结构">
 <meta property="article:tag" content="离线">
 <meta property="article:tag" content="差分约束">
 <meta property="article:tag" content="倍增">
@@ -60,7 +61,6 @@
 <meta property="article:tag" content="第十四分块">
 <meta property="article:tag" content="大分块系列">
 <meta property="article:tag" content="Ynoi">
-<meta property="article:tag" content="可持久化数据结构">
 <meta property="article:tag" content="树上莫队">
 <meta property="article:tag" content="map">
 <meta property="article:tag" content="欧拉序列">
@@ -159,7 +159,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">249</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">251</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -554,11 +554,11 @@
   
       <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/qtree/">Q-Tree系列</a></li>
   
+      <li class="related-posts-item"><a href="/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/202208xx/">夏记，但是被吊打</a></li>
+  
       <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-chain-segmentation/">树链剖分&树上差分</a></li>
   
       <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/100-text/">随机100题(26/100)</a></li>
-  
-      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/lca/">树上最近公共祖先(LCA)</a></li>
   
   </ul>
 
@@ -577,6 +577,7 @@
               <a href="/Eternity/tags/STL/" rel="tag"># STL</a>
               <a href="/Eternity/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"># 双指针</a>
               <a href="/Eternity/tags/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" rel="tag"># 树链剖分</a>
+              <a href="/Eternity/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 可持久化数据结构</a>
               <a href="/Eternity/tags/%E7%A6%BB%E7%BA%BF/" rel="tag"># 离线</a>
               <a href="/Eternity/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" rel="tag"># 差分约束</a>
               <a href="/Eternity/tags/%E5%80%8D%E5%A2%9E/" rel="tag"># 倍增</a>
@@ -587,7 +588,6 @@
               <a href="/Eternity/tags/%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%88%86%E5%9D%97/" rel="tag"># 第十四分块</a>
               <a href="/Eternity/tags/%E5%A4%A7%E5%88%86%E5%9D%97%E7%B3%BB%E5%88%97/" rel="tag"># 大分块系列</a>
               <a href="/Eternity/tags/Ynoi/" rel="tag"># Ynoi</a>
-              <a href="/Eternity/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 可持久化数据结构</a>
               <a href="/Eternity/tags/%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F/" rel="tag"># 树上莫队</a>
               <a href="/Eternity/tags/map/" rel="tag"># map</a>
               <a href="/Eternity/tags/%E6%AC%A7%E6%8B%89%E5%BA%8F%E5%88%97/" rel="tag"># 欧拉序列</a>
@@ -666,7 +666,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9A%B4%E5%8A%9B%E8%8E%AB%E9%98%9F"><span class="nav-number">1.</span> <span class="nav-text">暴力莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB"><span class="nav-number">1.1.</span> <span class="nav-text">转移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%8E%AB%E9%98%9F"><span class="nav-number">2.</span> <span class="nav-text">基础莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-number">2.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-number">2.2.</span> <span class="nav-text">模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HH-%E7%9A%84%E9%A1%B9%E9%93%BE"><span class="nav-number">2.3.1.</span> <span class="nav-text">HH 的项链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P1494"><span class="nav-number">2.3.2.</span> <span class="nav-text">P1494</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P2709"><span class="nav-number">2.3.3.</span> <span class="nav-text">P2709</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%87%E5%81%B6%E5%8C%96%E6%8E%92%E5%BA%8F"><span class="nav-number">2.4.</span> <span class="nav-text">奇偶化排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E8%AF%9D"><span class="nav-number">2.5.</span> <span class="nav-text">后话</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F"><span class="nav-number">3.</span> <span class="nav-text">带修莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-2"><span class="nav-number">3.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-number">3.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P1903"><span class="nav-number">3.3.1.</span> <span class="nav-text">P1903</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P2464"><span class="nav-number">3.3.2.</span> <span class="nav-text">P2464</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E6%BB%9A%E8%8E%AB%E9%98%9F"><span class="nav-number">4.</span> <span class="nav-text">回滚莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-3"><span class="nav-number">4.1.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">4.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="nav-number">4.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AT1219"><span class="nav-number">4.3.1.</span> <span class="nav-text">AT1219</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P5906"><span class="nav-number">4.3.2.</span> <span class="nav-text">P5906</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F"><span class="nav-number">5.</span> <span class="nav-text">树上莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%BA%8F%E5%88%97"><span class="nav-number">5.1.</span> <span class="nav-text">欧拉序列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%BA%8F%E5%88%97%E6%9F%A5%E6%89%BE-LCA"><span class="nav-number">5.1.1.</span> <span class="nav-text">欧拉序列查找 LCA</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C"><span class="nav-number">5.2.</span> <span class="nav-text">操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-3"><span class="nav-number">5.3.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SP10707"><span class="nav-number">5.3.1.</span> <span class="nav-text">SP10707</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WC2013-%E7%B3%96%E6%9E%9C%E5%85%AC%E5%9B%AD"><span class="nav-number">5.3.2.</span> <span class="nav-text">WC2013 糖果公园</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF"><span class="nav-number">6.</span> <span class="nav-text">莫队二次离线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-number">6.1.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">6.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9A%B4%E5%8A%9B%E8%8E%AB%E9%98%9F"><span class="nav-text">暴力莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E7%A7%BB"><span class="nav-text">转移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%8E%AB%E9%98%9F"><span class="nav-text">基础莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-text">模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HH-%E7%9A%84%E9%A1%B9%E9%93%BE"><span class="nav-text">HH 的项链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P1494"><span class="nav-text">P1494</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P2709"><span class="nav-text">P2709</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A5%87%E5%81%B6%E5%8C%96%E6%8E%92%E5%BA%8F"><span class="nav-text">奇偶化排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8E%E8%AF%9D"><span class="nav-text">后话</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%A6%E4%BF%AE%E8%8E%AB%E9%98%9F"><span class="nav-text">带修莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-2"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P1903"><span class="nav-text">P1903</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P2464"><span class="nav-text">P2464</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E6%BB%9A%E8%8E%AB%E9%98%9F"><span class="nav-text">回滚莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-3"><span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-1"><span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-2"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AT1219"><span class="nav-text">AT1219</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P5906"><span class="nav-text">P5906</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E8%8E%AB%E9%98%9F"><span class="nav-text">树上莫队</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%BA%8F%E5%88%97"><span class="nav-text">欧拉序列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AC%A7%E6%8B%89%E5%BA%8F%E5%88%97%E6%9F%A5%E6%89%BE-LCA"><span class="nav-text">欧拉序列查找 LCA</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C"><span class="nav-text">操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-3"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SP10707"><span class="nav-text">SP10707</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WC2013-%E7%B3%96%E6%9E%9C%E5%85%AC%E5%9B%AD"><span class="nav-text">WC2013 糖果公园</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%AB%E9%98%9F%E4%BA%8C%E6%AC%A1%E7%A6%BB%E7%BA%BF"><span class="nav-text">莫队二次离线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-text">内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0-2"><span class="nav-text">实现</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -695,7 +695,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">249</span>
+        <span class="site-state-item-count">251</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -786,12 +786,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">847k</span>
+    <span title="站点总字数">857k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:50</span>
+    <span title="站点阅读时长">12:59</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
