@@ -30,13 +30,13 @@
 
   <meta name="description" content="“作为这一年的奋斗目标，难度：提高左右”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随机100题(26&#x2F;100)">
-<meta property="og:url" content="https://violeteternal.github.io/Eternity/%E9%A2%98%E8%A7%A3/100-text/index.html">
+<meta property="og:title" content="随机100题(29&#x2F;100)">
+<meta property="og:url" content="https://violeteternal.github.io/Eternity/%E9%A2%98%E8%A7%A3/100-test/index.html">
 <meta property="og:site_name" content="Eternity">
 <meta property="og:description" content="“作为这一年的奋斗目标，难度：提高左右”">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-10T01:00:00.000Z">
-<meta property="article:modified_time" content="2022-08-24T07:44:24.449Z">
+<meta property="article:modified_time" content="2022-08-30T12:31:14.030Z">
 <meta property="article:author" content="Fallen Shadow">
 <meta property="article:tag" content="DP">
 <meta property="article:tag" content="区间dp">
@@ -75,9 +75,11 @@
 <meta property="article:tag" content="斜率优化">
 <meta property="article:tag" content="线段树优化dp">
 <meta property="article:tag" content="质数">
+<meta property="article:tag" content="差分约束">
+<meta property="article:tag" content="分治">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://violeteternal.github.io/Eternity/%E9%A2%98%E8%A7%A3/100-text/">
+<link rel="canonical" href="https://violeteternal.github.io/Eternity/%E9%A2%98%E8%A7%A3/100-test/">
 
 
 <script id="page-configurations">
@@ -89,7 +91,7 @@
     lang   : 'zh-CN'
   };
 </script>
-  <title>随机100题(26/100) | Eternity</title>
+  <title>随机100题(29/100) | Eternity</title>
   
 
 
@@ -170,17 +172,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">254</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">268</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a>
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">108</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">119</span></a>
 
   </li>
         <li class="menu-item menu-item-归程">
@@ -244,7 +246,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/%E9%A2%98%E8%A7%A3/100-text/">
+    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/%E9%A2%98%E8%A7%A3/100-test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/Eternity/images/Guess.png">
@@ -257,7 +259,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          随机100题(26/100)
+          随机100题(29/100)
         </h1>
 
         <div class="post-meta">
@@ -276,7 +278,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-24 15:44:24" itemprop="dateModified" datetime="2022-08-24T15:44:24+08:00">2022-08-24</time>
+                <time title="修改时间：2022-08-30 20:31:14" itemprop="dateModified" datetime="2022-08-30T20:31:14+08:00">2022-08-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -301,14 +303,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>56k</span>
+              <span>58k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>51 分钟</span>
+              <span>52 分钟</span>
             </span>
 
         </div>
@@ -603,7 +605,8 @@ dp[i][j]=\left\{
 
 </details>
 
-<h3 id="26-CF987C-Three-displays"><a href="#26-CF987C-Three-displays" class="headerlink" title="26.CF987C Three displays"></a>26.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF987C">CF987C Three displays</a></h3><p>线段树优化dp ，<del>因为数据过水不需要优化。</del></p>
+<h3 id="26-CF987C-Three-displays"><a href="#26-CF987C-Three-displays" class="headerlink" title="26.CF987C Three displays"></a>26.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF987C">CF987C Three displays</a></h3><p>$\text{date:2022.6.16}$</p>
+<p>线段树优化dp ，<del>因为数据过水不需要优化。</del></p>
 <p>暴力 dp 时间复杂度 $\mathcal O(n^2)$ 勉强能过，优化后复杂度 $\mathcal O(n\log n)$ ，Live 巨佬应该会打，也可以看题解，我只会暴力。</p>
 <p>记着不要把题看错了，也不要完全相信翻译，适量读读原文。</p>
 <details>
@@ -613,6 +616,45 @@ dp[i][j]=\left\{
 
 </details>
 
+<hr>
+<h3 id="27-SP1030-EIGHTS-Triple-Fat-Ladies"><a href="#27-SP1030-EIGHTS-Triple-Fat-Ladies" class="headerlink" title="27.SP1030 EIGHTS - Triple Fat Ladies"></a>27.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/SP1030">SP1030 EIGHTS - Triple Fat Ladies</a></h3><p>$\text{date:2022.8.26}$</p>
+<p>时隔多日终于还是回来惹。</p>
+<p>因为发现自己实力真的不足，所以根本不敢随机题目，就算随机了也最后还是看着题解做，这样没什么太大意思。</p>
+<p>这道题而言，看到大的离谱的数据，就知道肯定要找规律。</p>
+<p>因为只是看最后三位，所以前面的根本不看。我们把 $1000$ 以内的数据打表，发现只有尾数为 $192,442,692,942$ 的满足条件，之后的就是在千位依次增加。</p>
+<p>那么，答案就是 $1000\lfloor\frac{k-1}{4}\rfloor+ans[((k-1)\bmod 4+1)],ans[]=\{192,442,692,942\}$ 。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> Test;</span><br><span class="line">ll k;</span><br><span class="line"><span class="type">int</span> ans[]=&#123;<span class="number">0</span>,<span class="number">192</span>,<span class="number">442</span>,<span class="number">692</span>,<span class="number">942</span>&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(Test);</span><br><span class="line">    <span class="keyword">while</span>(Test--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">read</span>(k);</span><br><span class="line">        <span class="keyword">if</span>(k&lt;=<span class="number">4</span>) <span class="built_in">write</span>(ans[k],<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">write</span>((k<span class="number">-1</span>)/<span class="number">4</span>,ans[(k<span class="number">-1</span>)%<span class="number">4</span>+<span class="number">1</span>],<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">192 442 692 942</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h3 id="28-CF1203C-Common-Divisors"><a href="#28-CF1203C-Common-Divisors" class="headerlink" title="28.CF1203C Common Divisors"></a>28.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF1203C">CF1203C Common Divisors</a></h3><p>$\text{date:2022.8.30}$</p>
+<p>小清新数筛题。</p>
+<p>首先发现一个显然的结论，所有满足的数都是满足的数中的最大数的约数，那么题目转换为，求出整个数列的最大公约数的约数个数。</p>
+<p>然后一波线性 $\gcd$ ，时间复杂度 $\mathcal O(n\log n)$ ，然后直接枚举约数时间复杂度 $\mathcal O(\sqrt n)$ ，特判一下是不是平方数即可。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">4e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> N;</span><br><span class="line">ll Gcd,ans;</span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll a,ll b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> b==<span class="number">0</span>?a:<span class="built_in">gcd</span>(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ll x;<span class="built_in">read</span>(x);</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">1</span>) Gcd=x;</span><br><span class="line">        <span class="keyword">else</span> Gcd=<span class="built_in">gcd</span>(Gcd,x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">1</span>;i*i&lt;=Gcd;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i*i==Gcd) --ans;</span><br><span class="line">        <span class="keyword">if</span>(Gcd%i==<span class="number">0</span>) ans+=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">write</span>(ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">6</span></span><br><span class="line"><span class="comment">6 90 12 18 30 18</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h3 id="29-CF702C-Cellular-Network"><a href="#29-CF702C-Cellular-Network" class="headerlink" title="29.CF702C Cellular Network"></a>29.<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF702C">CF702C Cellular Network</a></h3><p>$\text{date:2022.8.30}$</p>
+<p><del>手写二分容易炸锅不是传说</del>。</p>
+<p>手写二分还真容易炸锅，考虑人类智慧贪心，然后对于每一座城市，找到左边离它最近的基站和右边离它最近的基站，求两个中较小值的最大值即可。需要建立两个哨兵 $\pm inf$ 。这个哨兵需要满足 $|inf|\geq 3\times 10^9$ 。</p>
+<p>因为已经是非严格递增输入了，所以就不需要再次排序了。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> ll INF=<span class="number">0x1145141919810</span>;</span><br><span class="line"><span class="type">int</span> N,M;</span><br><span class="line">ll Val[MAXN],Pos[MAXN],ans;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N,M);</span><br><span class="line">    Pos[<span class="number">0</span>]=-INF,Pos[M+<span class="number">1</span>]=INF;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i) <span class="built_in">read</span>(Val[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=M;++i) <span class="built_in">read</span>(Pos[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        ll l=<span class="number">1</span>,r=M+<span class="number">1</span>,res,x=Val[i];</span><br><span class="line">        <span class="keyword">while</span>(l&lt;=r)</span><br><span class="line">        &#123;</span><br><span class="line">            ll mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(Pos[mid]&gt;=x) res=mid,r=mid<span class="number">-1</span>;</span><br><span class="line">            <span class="keyword">else</span> l=mid+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">checkMax</span>(ans,std::<span class="built_in">min</span>(Pos[res]-x,x-Pos[res<span class="number">-1</span>]));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">write</span>(ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">5 3</span></span><br><span class="line"><span class="comment">1 5 10 14 17</span></span><br><span class="line"><span class="comment">4 11 15</span></span><br><span class="line"><span class="comment">10 10</span></span><br><span class="line"><span class="comment">1 1 2 2 2 4 4 6 7 9</span></span><br><span class="line"><span class="comment">0 1 3 3 3 6 7 8 9 10</span></span><br><span class="line"><span class="comment">*/</span>    </span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
 
     </div>
 
@@ -630,9 +672,9 @@ dp[i][j]=\left\{
   
       <li class="related-posts-item"><a href="/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/20220704/">2022.07.04练习题</a></li>
   
-      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-chain-segmentation/">树链剖分&树上差分</a></li>
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-chain-segmentation/">树链剖分 & 树上差分</a></li>
   
-      <li class="related-posts-item"><a href="/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/20220305/">OIP2022.03.05模拟赛</a></li>
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/csp-preliminary-contest/">CSP第一轮测试复习资料整合</a></li>
   
   </ul>
 
@@ -676,6 +718,8 @@ dp[i][j]=\left\{
               <a href="/Eternity/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/" rel="tag"># 斜率优化</a>
               <a href="/Eternity/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91%E4%BC%98%E5%8C%96dp/" rel="tag"># 线段树优化dp</a>
               <a href="/Eternity/tags/%E8%B4%A8%E6%95%B0/" rel="tag"># 质数</a>
+              <a href="/Eternity/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" rel="tag"># 差分约束</a>
+              <a href="/Eternity/tags/%E5%88%86%E6%B2%BB/" rel="tag"># 分治</a>
           </div>
 
         
@@ -751,7 +795,7 @@ dp[i][j]=\left\{
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-P4170-CQOI2007-%E6%B6%82%E8%89%B2"><span class="nav-text">1.P4170 [CQOI2007]涂色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-CF1109A-Sasha-and-a-Bit-of-Relax"><span class="nav-text">2.CF1109A Sasha and a Bit of Relax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-P8179-%E3%80%8CEZEC-11%E3%80%8DTyres"><span class="nav-text">3.P8179 「EZEC-11」Tyres</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-CF986A-Fair"><span class="nav-text">4.CF986A Fair</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-P5810-SCOI2004-%E6%96%87%E6%9C%AC%E7%9A%84%E8%BE%93%E5%85%A5"><span class="nav-text">5.P5810 [SCOI2004]文本的输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-P1934-%E5%B0%81%E5%8D%B0"><span class="nav-text">6.P1934 封印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-P7224-RC-04-%E5%AD%90%E9%9B%86%E7%A7%AF"><span class="nav-text">7.P7224 [RC-04] 子集积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-P7228-COCI2015-2016-3-MOLEKULE"><span class="nav-text">8.P7228 [COCI2015-2016#3] MOLEKULE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-P4763-CERC2014-Bricks"><span class="nav-text">9.P4763 [CERC2014]Bricks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-CF1562C-Rings"><span class="nav-text">10.CF1562C Rings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-P2620-%E8%99%AB%E6%B4%9E"><span class="nav-text">11.P2620 虫洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-P1879-USACO06NOV-Corn-Fields-G"><span class="nav-text">12.P1879 [USACO06NOV]Corn Fields G</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-CF803D-Magazine-Ad"><span class="nav-text">13.CF803D Magazine Ad</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-P1471-%E6%96%B9%E5%B7%AE"><span class="nav-text">14.P1471 方差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-P4162-SCOI2009-%E6%9C%80%E9%95%BF%E8%B7%9D%E7%A6%BB"><span class="nav-text">15.P4162 [SCOI2009]最长距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-P6870-COCI2019-2020-5-Zapina"><span class="nav-text">16.P6870 [COCI2019-2020#5] Zapina</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-CF1119B-Alyona-and-a-Narrow-Fridge"><span class="nav-text">17.CF1119B Alyona and a Narrow Fridge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-P7159-%E3%80%8CdWoi-R1%E3%80%8DSweet-Fruit-Chocolate"><span class="nav-text">18.P7159 「dWoi R1」Sweet Fruit Chocolate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-CF747B-Mammoth%E2%80%99s-Genome-Decoding"><span class="nav-text">19.CF747B Mammoth’s Genome Decoding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-CF1136A-Nastya-Is-Reading-a-Book"><span class="nav-text">20.CF1136A Nastya Is Reading a Book</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-P3912-%E7%B4%A0%E6%95%B0%E4%B8%AA%E6%95%B0"><span class="nav-text">21.P3912 素数个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-P5131-%E8%8D%B7%E5%8F%96%E8%9E%8D%E5%90%88"><span class="nav-text">22.P5131 荷取融合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-P5997-PA2014-Pakowanie"><span class="nav-text">23.P5997 [PA2014]Pakowanie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-CF1512E-Permutation-by-Sum"><span class="nav-text">24.CF1512E Permutation by Sum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-P5017-NOIP2018-%E6%99%AE%E5%8F%8A%E7%BB%84-%E6%91%86%E6%B8%A1%E8%BD%A6"><span class="nav-text">25.P5017 [NOIP2018 普及组] 摆渡车</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-CF987C-Three-displays"><span class="nav-text">26.CF987C Three displays</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-P4170-CQOI2007-%E6%B6%82%E8%89%B2"><span class="nav-text">1.P4170 [CQOI2007]涂色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-CF1109A-Sasha-and-a-Bit-of-Relax"><span class="nav-text">2.CF1109A Sasha and a Bit of Relax</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-P8179-%E3%80%8CEZEC-11%E3%80%8DTyres"><span class="nav-text">3.P8179 「EZEC-11」Tyres</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-CF986A-Fair"><span class="nav-text">4.CF986A Fair</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-P5810-SCOI2004-%E6%96%87%E6%9C%AC%E7%9A%84%E8%BE%93%E5%85%A5"><span class="nav-text">5.P5810 [SCOI2004]文本的输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-P1934-%E5%B0%81%E5%8D%B0"><span class="nav-text">6.P1934 封印</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-P7224-RC-04-%E5%AD%90%E9%9B%86%E7%A7%AF"><span class="nav-text">7.P7224 [RC-04] 子集积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-P7228-COCI2015-2016-3-MOLEKULE"><span class="nav-text">8.P7228 [COCI2015-2016#3] MOLEKULE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-P4763-CERC2014-Bricks"><span class="nav-text">9.P4763 [CERC2014]Bricks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-CF1562C-Rings"><span class="nav-text">10.CF1562C Rings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-P2620-%E8%99%AB%E6%B4%9E"><span class="nav-text">11.P2620 虫洞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-P1879-USACO06NOV-Corn-Fields-G"><span class="nav-text">12.P1879 [USACO06NOV]Corn Fields G</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-CF803D-Magazine-Ad"><span class="nav-text">13.CF803D Magazine Ad</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-P1471-%E6%96%B9%E5%B7%AE"><span class="nav-text">14.P1471 方差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-P4162-SCOI2009-%E6%9C%80%E9%95%BF%E8%B7%9D%E7%A6%BB"><span class="nav-text">15.P4162 [SCOI2009]最长距离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-P6870-COCI2019-2020-5-Zapina"><span class="nav-text">16.P6870 [COCI2019-2020#5] Zapina</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-CF1119B-Alyona-and-a-Narrow-Fridge"><span class="nav-text">17.CF1119B Alyona and a Narrow Fridge</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-P7159-%E3%80%8CdWoi-R1%E3%80%8DSweet-Fruit-Chocolate"><span class="nav-text">18.P7159 「dWoi R1」Sweet Fruit Chocolate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-CF747B-Mammoth%E2%80%99s-Genome-Decoding"><span class="nav-text">19.CF747B Mammoth’s Genome Decoding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-CF1136A-Nastya-Is-Reading-a-Book"><span class="nav-text">20.CF1136A Nastya Is Reading a Book</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-P3912-%E7%B4%A0%E6%95%B0%E4%B8%AA%E6%95%B0"><span class="nav-text">21.P3912 素数个数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-P5131-%E8%8D%B7%E5%8F%96%E8%9E%8D%E5%90%88"><span class="nav-text">22.P5131 荷取融合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-P5997-PA2014-Pakowanie"><span class="nav-text">23.P5997 [PA2014]Pakowanie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-CF1512E-Permutation-by-Sum"><span class="nav-text">24.CF1512E Permutation by Sum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-P5017-NOIP2018-%E6%99%AE%E5%8F%8A%E7%BB%84-%E6%91%86%E6%B8%A1%E8%BD%A6"><span class="nav-text">25.P5017 [NOIP2018 普及组] 摆渡车</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-CF987C-Three-displays"><span class="nav-text">26.CF987C Three displays</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-SP1030-EIGHTS-Triple-Fat-Ladies"><span class="nav-text">27.SP1030 EIGHTS - Triple Fat Ladies</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#28-CF1203C-Common-Divisors"><span class="nav-text">28.CF1203C Common Divisors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#29-CF702C-Cellular-Network"><span class="nav-text">29.CF702C Cellular Network</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -767,20 +811,20 @@ dp[i][j]=\left\{
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Eternity/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">254</span>
+        <span class="site-state-item-count">268</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -871,12 +915,12 @@ dp[i][j]=\left\{
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">880k</span>
+    <span title="站点总字数">947k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:20</span>
+    <span title="站点阅读时长">14:21</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -1050,7 +1094,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'Eternity',
       owner       : 'VioletEternal',
       admin       : ['VioletEternal'],
-      id          : '7d992c8b5dd0661ed2acd04cba5d5a05',
+      id          : '69d040bad850adc2db07e06fd023fec4',
         language: 'zh-CN',
       distractionFreeMode: true
     });

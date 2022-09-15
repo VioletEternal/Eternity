@@ -30,14 +30,14 @@
 
   <meta name="description" content="“枷锁层深纵横，末路穷途糜烂。”">
 <meta property="og:type" content="article">
-<meta property="og:title" content="树链剖分&amp;树上差分">
+<meta property="og:title" content="树链剖分 &amp; 树上差分">
 <meta property="og:url" content="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-chain-segmentation/index.html">
 <meta property="og:site_name" content="Eternity">
 <meta property="og:description" content="“枷锁层深纵横，末路穷途糜烂。”">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://oi-wiki.org/graph/images/hld.png">
 <meta property="article:published_time" content="2022-07-06T10:32:58.000Z">
-<meta property="article:modified_time" content="2022-08-03T01:27:53.124Z">
+<meta property="article:modified_time" content="2022-09-05T13:06:10.567Z">
 <meta property="article:author" content="Fallen Shadow">
 <meta property="article:tag" content="图论">
 <meta property="article:tag" content="搜索">
@@ -47,12 +47,12 @@
 <meta property="article:tag" content="树状数组">
 <meta property="article:tag" content="建图">
 <meta property="article:tag" content="树型结构">
+<meta property="article:tag" content="差分约束">
 <meta property="article:tag" content="Dfs序">
 <meta property="article:tag" content="LCA">
 <meta property="article:tag" content="树链剖分">
 <meta property="article:tag" content="Splay">
 <meta property="article:tag" content="二叉搜索树">
-<meta property="article:tag" content="差分约束">
 <meta property="article:tag" content="树上差分">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://oi-wiki.org/graph/images/hld.png">
@@ -69,7 +69,7 @@
     lang   : 'zh-CN'
   };
 </script>
-  <title>树链剖分&树上差分 | Eternity</title>
+  <title>树链剖分 & 树上差分 | Eternity</title>
   
 
 
@@ -150,17 +150,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">254</span></a>
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">268</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">14</span></a>
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">108</span></a>
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">119</span></a>
 
   </li>
         <li class="menu-item menu-item-归程">
@@ -237,7 +237,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          树链剖分&树上差分
+          树链剖分 & 树上差分
         </h1>
 
         <div class="post-meta">
@@ -256,7 +256,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-03 09:27:53" itemprop="dateModified" datetime="2022-08-03T09:27:53+08:00">2022-08-03</time>
+                <time title="修改时间：2022-09-05 21:06:10" itemprop="dateModified" datetime="2022-09-05T21:06:10+08:00">2022-09-05</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -285,14 +285,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>39k</span>
+              <span>41k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>35 分钟</span>
+              <span>37 分钟</span>
             </span>
 
         </div>
@@ -485,6 +485,18 @@
 </details>
 
 <hr>
+<h3 id="CF191C"><a href="#CF191C" class="headerlink" title="CF191C"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/CF191C">CF191C</a></h3><p>边差分模板题。</p>
+<p>可以理解一下统计答案操作，实际上的答案应该是整个子树的差分和，所以写成</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Diff[Dfn[i]+Siz[i]<span class="number">-1</span>]-Diff[Dfn[i]<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<p>这样统计的原因和树链剖分的子树修改是一个道理。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> N,Q;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">TC</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> next,to;</span><br><span class="line">&#125;Edge[MAXN&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> Head[MAXN],Total;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">addEdge</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Edge[++Total]=(TC)&#123;Head[u],v&#125;;Head[u]=Total;</span><br><span class="line">    Edge[++Total]=(TC)&#123;Head[v],u&#125;;Head[v]=Total;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Fa[MAXN],Siz[MAXN],Son[MAXN],Dep[MAXN];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfsTree</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> last)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Fa[x]=last,Siz[x]=<span class="number">1</span>,Dep[x]=Dep[last]+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> e=Head[x],v;e;e=Edge[e].next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>((v=Edge[e].to)==last) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfsTree</span>(v,x);</span><br><span class="line">        Siz[x]+=Siz[v];</span><br><span class="line">        <span class="keyword">if</span>(!Son[x]||Siz[v]&gt;Siz[Son[x]]) Son[x]=v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Top[MAXN],Dfn[MAXN],Cnt;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfsChain</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> topf)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Top[x]=topf,Dfn[x]=++Cnt;</span><br><span class="line">    <span class="keyword">if</span>(!Son[x]) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="built_in">dfsChain</span>(Son[x],topf);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> e=Head[x],v;e;e=Edge[e].next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>((v=Edge[e].to)==Son[x]||v==Fa[x]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfsChain</span>(v,v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getLca</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(Top[x]!=Top[y])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(Dep[Top[x]]&lt;Dep[Top[y]]) std::<span class="built_in">swap</span>(x,y);</span><br><span class="line">        x=Fa[Top[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Dep[x]&gt;Dep[y]?y:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Diff[MAXN];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edges</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> u,v,ans;</span><br><span class="line">&#125;Ed[MAXN];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>,u,v;i&lt;=N;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">read</span>(u,v);<span class="built_in">addEdge</span>(u,v);</span><br><span class="line">        Ed[i<span class="number">-1</span>]=(Edges)&#123;u,v&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfsTree</span>(<span class="number">1</span>,<span class="number">0</span>),<span class="built_in">dfsChain</span>(<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">read</span>(Q);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N<span class="number">-1</span>;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> &amp;e=Ed[i];</span><br><span class="line">        <span class="keyword">if</span>(Fa[e.u]==e.v) e.ans=e.u;</span><br><span class="line">        <span class="keyword">else</span> e.ans=e.v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> u,v;Q--;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">read</span>(u,v);</span><br><span class="line">        <span class="type">int</span> o=<span class="built_in">getLca</span>(u,v);</span><br><span class="line">        ++Diff[Dfn[u]],++Diff[Dfn[v]],Diff[Dfn[o]]-=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i) Diff[i]+=Diff[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=N<span class="number">-1</span>;++i) <span class="built_in">write</span>(Diff[Dfn[Ed[i].ans]+Siz[Ed[i].ans]<span class="number">-1</span>]-Diff[Dfn[Ed[i].ans]<span class="number">-1</span>],<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">5</span></span><br><span class="line"><span class="comment">1 2</span></span><br><span class="line"><span class="comment">1 3</span></span><br><span class="line"><span class="comment">2 4</span></span><br><span class="line"><span class="comment">2 5</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">1 4</span></span><br><span class="line"><span class="comment">3 5</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
 <h3 id="P2680"><a href="#P2680" class="headerlink" title="P2680"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2680">P2680</a></h3><p>这是一道较为进阶的树上差分。我们要求此时所有运输的时间最大值最小。这样就会想到去二分时间，然后用 $\mathcal O(m)$ 的时间去判断减去一条边之后是否能达到给出的时间。</p>
 <p>然后就是查找 $\text{LCA}$ ，我还是选择了树剖，似乎这道题的倍增会被卡，<del>不过幸好我不会</del>。（有生以来树剖的预处理居然写炸了）</p>
 <details>
@@ -509,9 +521,9 @@
   
       <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-set/">树套树</a></li>
   
-      <li class="related-posts-item"><a href="/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/202208xx/">夏记，但是被吊打</a></li>
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/100-test/">随机100题(29/100)</a></li>
   
-      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/100-text/">随机100题(26/100)</a></li>
+      <li class="related-posts-item"><a href="/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/202208xx/">夏记，但是被吊打</a></li>
   
       <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/mo-algo/">莫队</a></li>
   
@@ -528,12 +540,12 @@
               <a href="/Eternity/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" rel="tag"># 树状数组</a>
               <a href="/Eternity/tags/%E5%BB%BA%E5%9B%BE/" rel="tag"># 建图</a>
               <a href="/Eternity/tags/%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84/" rel="tag"># 树型结构</a>
+              <a href="/Eternity/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" rel="tag"># 差分约束</a>
               <a href="/Eternity/tags/Dfs%E5%BA%8F/" rel="tag"># Dfs序</a>
               <a href="/Eternity/tags/LCA/" rel="tag"># LCA</a>
               <a href="/Eternity/tags/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" rel="tag"># 树链剖分</a>
               <a href="/Eternity/tags/Splay/" rel="tag"># Splay</a>
               <a href="/Eternity/tags/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" rel="tag"># 二叉搜索树</a>
-              <a href="/Eternity/tags/%E5%B7%AE%E5%88%86%E7%BA%A6%E6%9D%9F/" rel="tag"># 差分约束</a>
               <a href="/Eternity/tags/%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86/" rel="tag"># 树上差分</a>
           </div>
 
@@ -610,7 +622,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86"><span class="nav-text">树链剖分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BB%E9%87%8D%E9%93%BE%E5%89%96%E5%88%86-%E5%90%AF%E5%8F%91%E5%BC%8F%E5%89%96%E5%88%86"><span class="nav-text">轻重链剖分&#x2F;启发式剖分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF"><span class="nav-text">节点信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C"><span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84"><span class="nav-text">映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E9%93%BE%E6%93%8D%E4%BD%9C"><span class="nav-text">树链操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E6%9F%A5%E8%AF%A2%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="nav-text">路径查询与修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E6%A0%91%E6%9F%A5%E8%AF%A2%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="nav-text">子树查询与修改</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98"><span class="nav-text">模板题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="nav-text">最近公共祖先</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3128"><span class="nav-text">P3128</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3258"><span class="nav-text">P3258</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E6%9D%83%E6%8C%82%E7%82%B9"><span class="nav-text">边权挂点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A-k-%E7%BA%A7%E7%A5%96%E5%85%88"><span class="nav-text">树上 k 级祖先</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2%E6%A0%B9%E6%A0%91%E5%89%96"><span class="nav-text">换根树剖</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86"><span class="nav-text">树上差分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%AE%E5%88%86"><span class="nav-text">差分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86-1"><span class="nav-text">树上差分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E5%B7%AE%E5%88%86"><span class="nav-text">点差分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E5%B7%AE%E5%88%86"><span class="nav-text">边差分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1083"><span class="nav-text">P1083</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5542"><span class="nav-text">P5542</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3128-1"><span class="nav-text">P3128</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2680"><span class="nav-text">P2680</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86"><span class="nav-text">树链剖分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%BB%E9%87%8D%E9%93%BE%E5%89%96%E5%88%86-%E5%90%AF%E5%8F%91%E5%BC%8F%E5%89%96%E5%88%86"><span class="nav-text">轻重链剖分&#x2F;启发式剖分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E4%BF%A1%E6%81%AF"><span class="nav-text">节点信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C"><span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%A0%E5%B0%84"><span class="nav-text">映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E9%93%BE%E6%93%8D%E4%BD%9C"><span class="nav-text">树链操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E6%9F%A5%E8%AF%A2%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="nav-text">路径查询与修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%90%E6%A0%91%E6%9F%A5%E8%AF%A2%E4%B8%8E%E4%BF%AE%E6%94%B9"><span class="nav-text">子树查询与修改</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98"><span class="nav-text">模板题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="nav-text">最近公共祖先</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3128"><span class="nav-text">P3128</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3258"><span class="nav-text">P3258</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E6%9D%83%E6%8C%82%E7%82%B9"><span class="nav-text">边权挂点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A-k-%E7%BA%A7%E7%A5%96%E5%85%88"><span class="nav-text">树上 k 级祖先</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2%E6%A0%B9%E6%A0%91%E5%89%96"><span class="nav-text">换根树剖</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86"><span class="nav-text">树上差分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%AE%E5%88%86"><span class="nav-text">差分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E4%B8%8A%E5%B7%AE%E5%88%86-1"><span class="nav-text">树上差分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E5%B7%AE%E5%88%86"><span class="nav-text">点差分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E5%B7%AE%E5%88%86"><span class="nav-text">边差分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98-1"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#P1083"><span class="nav-text">P1083</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P5542"><span class="nav-text">P5542</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P3128-1"><span class="nav-text">P3128</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CF191C"><span class="nav-text">CF191C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P2680"><span class="nav-text">P2680</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -626,20 +638,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/Eternity/archives/">
         
-          <span class="site-state-item-count">108</span>
+          <span class="site-state-item-count">119</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/Eternity/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/Eternity/tags/">
           
-        <span class="site-state-item-count">254</span>
+        <span class="site-state-item-count">268</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -730,12 +742,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">880k</span>
+    <span title="站点总字数">947k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">13:20</span>
+    <span title="站点阅读时长">14:21</span>
 </div>
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

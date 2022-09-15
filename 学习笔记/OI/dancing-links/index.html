@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Eternity/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Eternity/images/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Eternity/images/eternity.png">
+  <link rel="mask-icon" href="/Eternity/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Eternity/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ma Shan Zheng:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Zhi Mang Xing:300,300italic,400,400italic,700,700italic|Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/Eternity/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="minimal">
+  <script src="true"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"violeteternal.github.io","root":"/Eternity/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"gitalk":null}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <meta name="description" content="优雅爆搜。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跳舞链 &amp; 十字链表">
+<meta property="og:url" content="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/dancing-links/index.html">
+<meta property="og:site_name" content="Eternity">
+<meta property="og:description" content="优雅爆搜。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/04/26/yS57XrATOf8CkZb.png">
+<meta property="article:published_time" content="2022-09-01T06:18:01.000Z">
+<meta property="article:modified_time" content="2022-09-03T09:09:45.284Z">
+<meta property="article:author" content="Fallen Shadow">
+<meta property="article:tag" content="优化">
+<meta property="article:tag" content="搜索">
+<meta property="article:tag" content="bfs">
+<meta property="article:tag" content="dfs">
+<meta property="article:tag" content="枚举，暴力">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="模拟">
+<meta property="article:tag" content="DLX">
+<meta property="article:tag" content="迭代加深">
+<meta property="article:tag" content="十字链表">
+<meta property="article:tag" content="A*">
+<meta property="article:tag" content="IDA*">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/04/26/yS57XrATOf8CkZb.png">
+
+<link rel="canonical" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/dancing-links/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+  <title>跳舞链 & 十字链表 | Eternity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Eternity/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Eternity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Until The End</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Eternity/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/Eternity/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">268</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">119</span></a>
+
+  </li>
+        <li class="menu-item menu-item-归程">
+
+    <a href="/Eternity/road/" rel="section"><i class="fa fa-road fa-fw"></i>归程</a>
+
+  </li>
+        <li class="menu-item menu-item-友人">
+
+    <a href="/Eternity/friends/" rel="section"><i class="fa fa-paper-plane fa-fw"></i>友人</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/dancing-links/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Eternity/images/Guess.png">
+      <meta itemprop="name" content="Fallen Shadow">
+      <meta itemprop="description" content="誰も悪くないから、辛いだな。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eternity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          跳舞链 & 十字链表
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-01 14:18:01" itemprop="dateCreated datePublished" datetime="2022-09-01T14:18:01+08:00">2022-09-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-03 17:09:45" itemprop="dateModified" datetime="2022-09-03T17:09:45+08:00">2022-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/" itemprop="url" rel="index"><span itemprop="name">OI</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>9.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>优雅爆搜。</p>
+<span id="more"></span>
+<h2 id="Dancing-Links"><a href="#Dancing-Links" class="headerlink" title="Dancing Links"></a>Dancing Links</h2><p>$\mathbf{D}\text{ancing }\mathbf{L}\text{inks }\mathbf{X}$ 是一种高效的数据结构，用于优化搜索。</p>
+<p>一般可以解决<strong>精准覆盖问题</strong>和<strong>重复覆盖问题</strong>两种问题。其中<strong>重复覆盖问题</strong>需要配合迭代加深搜索（$\text{IDA}\ast$）。</p>
+<h2 id="精准覆盖问题"><a href="#精准覆盖问题" class="headerlink" title="精准覆盖问题"></a>精准覆盖问题</h2><p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4929">原题指路</a></p>
+<blockquote>
+<p>从一个大小为 $n\times m$ 的 $01$ 矩阵中选出 $k$ 行使每一<strong>列</strong>刚好只有一个 $1$ ，其它为 $0$ 。可能无解。</p>
+<p>$n,m\leq 500,\sum matrix\leq 5000$ ，即 $1$ 的个数不超过 $5000$ 。</p>
+</blockquote>
+<p>考虑到有一个特殊条件是 $1$ 的个数，所以考虑对于 $1$ 的点建立结点，否则不建立，以省下时空优化爆搜。</p>
+<p>可以先考虑直接爆搜，判断每一行取不取，并与前面所有列比较，时间复杂度 $\mathcal O(m2^n)$ ，极其不优秀的时间。</p>
+<p>那么，我们有没有可以在多项式时间里解决这个问题的方法呢。</p>
+<p>答案是，没有。这是一个 $\text{NP}$ 完全问题，无解。（至少现在来看）</p>
+<h3 id="十字链表"><a href="#十字链表" class="headerlink" title="十字链表"></a>十字链表</h3><p>一个 $head$ 作为行列链的头点，初始化为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}\nonumber
+&head\to col[0]\to col[1]\to col[2]\to\cdots\to col[m-1]
+\nonumber
+\\
+&\downarrow
+\\
+&row[0]
+\\
+&\downarrow
+\\
+&row[1]
+\\
+&\downarrow
+\\
+&\dots
+\\
+&\downarrow
+\\
+&row[n-1]
+\end{aligned}\nonumber</script><p>这就是十字链表的初始化状态，那么，现在我们的矩阵中 $(1,1)$ 有一个 $1$ ，十字链表就会相应做出改变：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}\nonumber
+&head&\to &col[0]&\to &col[1]&\to &col[2]&\to&\cdots&\to &col[m-1]
+\nonumber
+\\
+&\downarrow
+\\
+&row[0]&&&&\Uparrow
+\\
+&\downarrow
+\\
+&row[1]&&\Leftarrow&&(1,1)
+\\
+&\downarrow
+\\
+&\dots
+\\
+&\downarrow
+\\
+&row[n-1]
+\end{aligned}\nonumber</script><p><del>虽然丑，但是应该是很直观的。</del></p>
+<p>然后搬一张洛谷博客上比较好看的图：</p>
+<p><img src="https://i.loli.net/2021/04/26/yS57XrATOf8CkZb.png" alt=""></p>
+<blockquote>
+<p>摘自<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/blog/Rainy7/Dancing-Links-X-note">「舞蹈链 $\text{DLX}$ 」学习笔记</a> 。</p>
+</blockquote>
+<h3 id="参数声明"><a href="#参数声明" class="headerlink" title="参数声明"></a>参数声明</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$Idx$</th>
+<th style="text-align:center">$ans$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">当前 $1$ 的编号</td>
+<td style="text-align:center">答案数组</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$cnt[x]$</th>
+<th style="text-align:center">$row[i]$</th>
+<th style="text-align:center">$col[i]$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">第 $x$ 列里 $1$ 的个数</td>
+<td style="text-align:center">第 $i$ 个 $1$ 的行</td>
+<td style="text-align:center">第 $i$ 个 $1$ 的列</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$Le[i]$</th>
+<th style="text-align:center">$Ri[i]$</th>
+<th style="text-align:center">$Up[i]$</th>
+<th style="text-align:center">$Do[i]$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">左指针</td>
+<td style="text-align:center">右指针</td>
+<td style="text-align:center">上指针</td>
+<td style="text-align:center">下指针</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>回到 $\text{DLX}$ 问题，假设当前我们现在要选择第 $x$ 行，第 $x$ 行在 $p_1,p_2,p_3$ 有 $1$ 那么显然地，我们不可能再选择包含了 $p_1,p_2,p_3$ 的行，假如有 $y_1,y_2$ ，那么，我们把 $p_1,p_2,p_3$ 列和 $y_1,y_2$ 行全部删除，并再未被删除的地方继续搜索，如果当整个矩阵都被删除的话，即表示有解。</p>
+<p>所以，现在的问题在于，如何快速处理删除和恢复操作。这个时候<strong>十字链表</strong>就起作用了。</p>
+<p>直接把链表指针指空即可，这里给出删除和恢复的模板，基本不变：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> Le[MAXN],Ri[MAXN],Up[MAXN],Do[MAXN];</span><br><span class="line"><span class="comment">//十字链表的左右上下指针</span></span><br><span class="line"><span class="type">int</span> Cnt[MAXN],Row[MAXN],Col[MAXN];</span><br><span class="line"><span class="comment">//链表长度，行列信息</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> p)</span>	<span class="comment">//删除</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Ri[Le[p]]=Ri[p],Le[Ri[p]]=Le[p];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Do[p];i!=p;i=Do[i])</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=Ri[i];j!=i;j=Ri[j])</span><br><span class="line">        &#123;</span><br><span class="line">            --Cnt[Col[j]];</span><br><span class="line">            Up[Do[j]]=Up[j],Do[Up[j]]=Do[j];</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">recover</span><span class="params">(<span class="type">int</span> p)</span>	<span class="comment">//恢复</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Up[p];i!=p;i=Up[i])</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=Le[i];j!=i;j=Le[j])</span><br><span class="line">        &#123;</span><br><span class="line">            Up[Do[j]]=j,Do[Up[j]]=j;</span><br><span class="line">            ++Cnt[Col[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    Ri[Le[p]]=p,Le[Ri[p]]=p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为已经说过了 $\text{DLX}$ 是建立在 $1$ 上优化的，所以每次加点也只加 $1$ 。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;he,<span class="type">int</span> &amp;ta,<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Row[Idx]=x,Col[Idx]=y,++Cnt[y];</span><br><span class="line">    Up[Idx]=y,Do[Idx]=Do[y],Up[Do[y]]=Idx,Do[y]=Idx;</span><br><span class="line">    Ri[he]=Le[ti]=Idx,Ri[Idx]=ta,Le[Idx]=he;</span><br><span class="line">    ta=Idx++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看出，十字链表的实现就是数组套数组的实现，理解可能有些费力，可以尝试在背诵的基础上理解。</p>
+<p>下面是爆搜函数的实现（以此题为例）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!Ri[<span class="number">0</span>]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> p=Ri[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Ri[<span class="number">0</span>];i;i=Ri[i])</span><br><span class="line">        	<span class="keyword">if</span>(Cnt[i]&lt;Cnt[p]) p=i;</span><br><span class="line">    <span class="built_in">remove</span>(p);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Do[p];i!=p;i=Do[i])</span><br><span class="line">    &#123;</span><br><span class="line">        ans[++Top]=Row[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=Ri[i];j!=i;j=Ri[j]) <span class="built_in">remove</span>(Col[j]);</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>()) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=Le[i];j!=i;j=Le[j]) <span class="built_in">recover</span>(Col[j]);</span><br><span class="line">        --Top;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">recover</span>(p);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>爆搜有两个剪枝：</p>
+<ol>
+<li>每一次选择 $1$ 个数最少的列，这样保证更有概率有解；</li>
+</ol>
+<p>前面也提及过，十字链表需要初始化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=<span class="number">0</span>;i&lt;=M;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        Le[i]=i<span class="number">-1</span>,Ri[i]=i+<span class="number">1</span>;</span><br><span class="line">        Up[i]=Do[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    Le[<span class="number">0</span>]=M,Ri[M]=<span class="number">0</span>;</span><br><span class="line">    Idx=M+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后这道题基本上就完成了。说起来，关于空间的问题的话，一般而言，十字链表所需要的空间是 $\mathcal O(\max(n,m)+cnt[1])$ ，即行列数加上 $1$ 的个数，差不多。</p>
+<p>$\textcolor{green}{Accepted}\text{ Code:}$</p>
+<details>
+    <summary>查看代码</summary>
+
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">5.5e3</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> N,M,Idx,Top;</span><br><span class="line"><span class="type">int</span> Le[MAXN],Ri[MAXN],Up[MAXN],Do[MAXN];</span><br><span class="line"><span class="comment">//十字链表的左右上下指针</span></span><br><span class="line"><span class="type">int</span> Cnt[MAXN],Row[MAXN],Col[MAXN];</span><br><span class="line"><span class="comment">//链表长度，行列信息</span></span><br><span class="line"><span class="type">int</span> ans[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=<span class="number">0</span>;i&lt;=M;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        Le[i]=i<span class="number">-1</span>,Ri[i]=i+<span class="number">1</span>;</span><br><span class="line">        Up[i]=Do[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    Le[<span class="number">0</span>]=M,Ri[M]=<span class="number">0</span>;</span><br><span class="line">    Idx=M+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;he,<span class="type">int</span> &amp;ta,<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Row[Idx]=x,Col[Idx]=y,++Cnt[y];</span><br><span class="line">    Up[Idx]=y,Do[Idx]=Do[y],Up[Do[y]]=Idx,Do[y]=Idx;</span><br><span class="line">    Ri[he]=Le[ta]=Idx,Ri[Idx]=ta,Le[Idx]=he;</span><br><span class="line">    ta=Idx++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> p)</span>	<span class="comment">//删除</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Ri[Le[p]]=Ri[p],Le[Ri[p]]=Le[p];</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=Do[p];i!=p;i=Do[i])</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=Ri[i];j!=i;j=Ri[j])</span><br><span class="line">        &#123;</span><br><span class="line">            --Cnt[Col[j]];</span><br><span class="line">            Up[Do[j]]=Up[j],Do[Up[j]]=Do[j];</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">recover</span><span class="params">(<span class="type">int</span> p)</span>	<span class="comment">//恢复</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=Up[p];i!=p;i=Up[i])</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=Le[i];j!=i;j=Le[j])</span><br><span class="line">        &#123;</span><br><span class="line">            Up[Do[j]]=j,Do[Up[j]]=j;</span><br><span class="line">            ++Cnt[Col[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    Ri[Le[p]]=p,Le[Ri[p]]=p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!Ri[<span class="number">0</span>]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> p=Ri[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=Ri[<span class="number">0</span>];i;i=Ri[i])</span><br><span class="line">        	<span class="keyword">if</span>(Cnt[i]&lt;Cnt[p]) p=i;</span><br><span class="line">    <span class="built_in">remove</span>(p);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=Do[p];i!=p;i=Do[i])</span><br><span class="line">    &#123;</span><br><span class="line">        ans[++Top]=Row[i];</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=Ri[i];j!=i;j=Ri[j]) <span class="built_in">remove</span>(Col[j]);</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>()) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=Le[i];j!=i;j=Le[j]) <span class="built_in">recover</span>(Col[j]);</span><br><span class="line">        --Top;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">recover</span>(p);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N,M);</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=<span class="number">1</span>;i&lt;=N;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> he=Idx,ta=Idx;</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=<span class="number">1</span>,x;j&lt;=M;++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">read</span>(x);</span><br><span class="line">            <span class="keyword">if</span>(x) <span class="built_in">add</span>(he,ta,i,j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">dfs</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> i=<span class="number">1</span>;i&lt;=Top;++i) <span class="built_in">write</span>(ans[i],<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">write</span>(<span class="string">&quot;No Solution!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">3 3</span></span><br><span class="line"><span class="comment">0 0 1</span></span><br><span class="line"><span class="comment">1 0 0</span></span><br><span class="line"><span class="comment">0 1 0</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h2 id="重复覆盖问题"><a href="#重复覆盖问题" class="headerlink" title="重复覆盖问题"></a>重复覆盖问题</h2><blockquote>
+<p>从一个大小为 $n\times m$ 的 $01$ 矩阵中选出 $k$ 行使每一列<strong>至少</strong>有一个 $1$ ，其它为 $0$ 。可能无解。</p>
+<p>$n,m\leq 500,\sum matrix\leq 5000$ ，即 $1$ 的个数不超过 $5000$ 。</p>
+</blockquote>
+<p>需要前置知识：迭代加深优先搜索 $\text{IDA}\ast$ 算法，我不会，所以先搁着。</p>
+<p>不同于精确覆盖问题要求的是矩阵必须<strong>稀疏</strong>，重复覆盖问题发挥作用的条件在于<strong>答案不能太大</strong>，这个条件来源于其运行方式——$\text{IDA}\ast$ 。</p>
+<hr>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><blockquote>
+<p>如果要用 $\text{DLX}$ 做题的话，你就不能把它当作矩阵看。——$\text{Rainy7}$</p>
+</blockquote>
+<p>事实上，因为 $\text{DLX}$ 的时间复杂度真正与 $1$ 的个数有关，所以矩阵大小甚至可以达到 $10000$ 左右，但是，这个矩阵必须是<strong>稀疏</strong>的。</p>
+<h3 id="数独"><a href="#数独" class="headerlink" title="数独"></a>数独</h3><p>其实的话，稍微给 $\operatorname{dfs}$ 减减枝都能过的。</p>
+<p>考虑构造一个能满足要求的 $01$ 矩阵。</p>
+<p>第 $i$ 行表示第 $i$ 个格子选哪个数，则一共有 $9^3$ 行。</p>
+<p>列有四种内容：</p>
+<ol>
+<li>每一个格子必须填一个数，$1\sim9^2$ 列；</li>
+<li>每一行 $1\sim9$ 都必须出现，$9^2+1\sim2\times9^2$ 列；</li>
+<li>每一列 $1\sim9$ 都必须出现，$2\times 9^2+1\sim3\times9^3$ 列；</li>
+<li>每一个块里 $ 1\sim9$ 都必须出现，$3\times9^2+1\sim4\times9^2$ 列。</li>
+</ol>
+<p>这样就可以构造一个非常非常大的 $01$ 矩阵来运行我们的 $\text{DLX}$ 惹。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">2e4</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXC=<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> M=<span class="number">9</span>*<span class="number">9</span>*<span class="number">4</span>;</span><br><span class="line"><span class="type">int</span> Le[MAXN],Ri[MAXN],Up[MAXN],Do[MAXN];</span><br><span class="line"><span class="type">int</span> Cnt[MAXN],Col[MAXN],Row[MAXN],Idx;</span><br><span class="line"><span class="type">int</span> ans[MAXN],Top;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Operation</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x,y,c;</span><br><span class="line">&#125;Op[MAXN];</span><br><span class="line"><span class="type">int</span> G[MAXC][MAXC];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=M;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        Le[i]=i<span class="number">-1</span>,Ri[i]=i+<span class="number">1</span>;</span><br><span class="line">        Cnt[i]=<span class="number">0</span>,Do[i]=Up[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    Le[<span class="number">0</span>]=M,Ri[M]=<span class="number">0</span>;</span><br><span class="line">    Idx=M+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;he,<span class="type">int</span> &amp;ta,<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Row[Idx]=x,Col[Idx]=y,++Cnt[y];</span><br><span class="line">    Up[Idx]=y,Do[Idx]=Do[y],Up[Do[y]]=Idx,Do[y]=Idx;</span><br><span class="line">    Ri[he]=Le[ta]=Idx,Ri[Idx]=ta,Le[Idx]=he;</span><br><span class="line">    ta=Idx++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> p)</span>	<span class="comment">//删除</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Ri[Le[p]]=Ri[p],Le[Ri[p]]=Le[p];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Do[p];i!=p;i=Do[i])</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=Ri[i];j!=i;j=Ri[j])</span><br><span class="line">        &#123;</span><br><span class="line">            --Cnt[Col[j]];</span><br><span class="line">            Up[Do[j]]=Up[j],Do[Up[j]]=Do[j];</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">recover</span><span class="params">(<span class="type">int</span> p)</span>	<span class="comment">//恢复</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Up[p];i!=p;i=Up[i])</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=Le[i];j!=i;j=Le[j])</span><br><span class="line">        &#123;</span><br><span class="line">            Up[Do[j]]=j,Do[Up[j]]=j;</span><br><span class="line">            ++Cnt[Col[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    Ri[Le[p]]=p,Le[Ri[p]]=p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!Ri[<span class="number">0</span>]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> p=Ri[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Ri[<span class="number">0</span>];i;i=Ri[i])</span><br><span class="line">        	<span class="keyword">if</span>(Cnt[i]&lt;Cnt[p]) p=i;</span><br><span class="line">    <span class="built_in">remove</span>(p);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Do[p];i!=p;i=Do[i])</span><br><span class="line">    &#123;</span><br><span class="line">        ans[++Top]=Row[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=Ri[i];j!=i;j=Ri[j]) <span class="built_in">remove</span>(Col[j]);</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>()) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=Le[i];j!=i;j=Le[j]) <span class="built_in">recover</span>(Col[j]);</span><br><span class="line">        --Top;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">recover</span>(p);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Test;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">9</span>;++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">9</span>;++j)</span><br><span class="line">            <span class="built_in">read</span>(G[i][j]),--G[i][j];</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>,N=<span class="number">1</span>;i&lt;<span class="number">9</span>;++i)</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">9</span>;++j)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> a=<span class="number">0</span>,b=<span class="number">8</span>;</span><br><span class="line">            <span class="keyword">if</span>(G[i][j]!=<span class="number">-1</span>) a=b=G[i][j];</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> k=a;k&lt;=b;++k,++N)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">int</span> hd=Idx,tl=Idx;</span><br><span class="line">                Op[N]=&#123;i,j,k&#125;;</span><br><span class="line">                <span class="built_in">add</span>(hd,tl,N,i*<span class="number">9</span>+j+<span class="number">1</span>);</span><br><span class="line">                <span class="built_in">add</span>(hd,tl,N,<span class="number">81</span>+i*<span class="number">9</span>+k+<span class="number">1</span>);</span><br><span class="line">                <span class="built_in">add</span>(hd,tl,N,<span class="number">81</span>*<span class="number">2</span>+j*<span class="number">9</span>+k+<span class="number">1</span>);</span><br><span class="line">                <span class="built_in">add</span>(hd,tl,N,<span class="number">81</span>*<span class="number">3</span>+(i/<span class="number">3</span>*<span class="number">3</span>+j/<span class="number">3</span>)*<span class="number">9</span>+k+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">dfs</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=Top;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> t=Op[ans[i]];</span><br><span class="line">        G[t.x][t.y]=t.c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">9</span>;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">9</span>;++j) <span class="built_in">write</span>(G[i][j]+<span class="number">1</span>,<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">8 0 0 0 0 0 0 0 0 </span></span><br><span class="line"><span class="comment">0 0 3 6 0 0 0 0 0 </span></span><br><span class="line"><span class="comment">0 7 0 0 9 0 2 0 0 </span></span><br><span class="line"><span class="comment">0 5 0 0 0 7 0 0 0 </span></span><br><span class="line"><span class="comment">0 0 0 0 4 5 7 0 0 </span></span><br><span class="line"><span class="comment">0 0 0 1 0 0 0 3 0 </span></span><br><span class="line"><span class="comment">0 0 1 0 0 0 0 6 8 </span></span><br><span class="line"><span class="comment">0 0 8 5 0 0 0 1 0 </span></span><br><span class="line"><span class="comment">0 9 0 0 0 0 4 0 0</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h3 id="八皇后"><a href="#八皇后" class="headerlink" title="八皇后"></a>八皇后</h3><hr>
+<h3 id="超级数独"><a href="#超级数独" class="headerlink" title="超级数独"></a>超级数独</h3><p>黑色的双倍经验。</p>
+<p>所谓的超级数独，其实就是十六进制的数独。</p>
+<p>如数独题类似，构造四种情况的 $01$ 矩阵，然后得到需要的方式即可。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">2e4</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXC=<span class="number">20</span>;</span><br><span class="line"><span class="type">int</span> M=<span class="number">16</span>*<span class="number">16</span>*<span class="number">4</span>;</span><br><span class="line"><span class="type">int</span> Le[MAXN],Ri[MAXN],Up[MAXN],Do[MAXN];</span><br><span class="line"><span class="type">int</span> Cnt[MAXN],Col[MAXN],Row[MAXN],Idx;</span><br><span class="line"><span class="type">int</span> ans[MAXN],Top;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Operation</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x,y;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">&#125;Op[MAXN];</span><br><span class="line"><span class="type">char</span> G[MAXC][MAXC];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=M;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        Le[i]=i<span class="number">-1</span>,Ri[i]=i+<span class="number">1</span>;</span><br><span class="line">        Cnt[i]=<span class="number">0</span>,Do[i]=Up[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    Le[<span class="number">0</span>]=M,Ri[M]=<span class="number">0</span>;</span><br><span class="line">    Idx=M+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> &amp;he,<span class="type">int</span> &amp;ta,<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Row[Idx]=x,Col[Idx]=y,++Cnt[y];</span><br><span class="line">    Up[Idx]=y,Do[Idx]=Do[y],Up[Do[y]]=Idx,Do[y]=Idx;</span><br><span class="line">    Ri[he]=Le[ta]=Idx,Ri[Idx]=ta,Le[Idx]=he;</span><br><span class="line">    ta=Idx++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">remove</span><span class="params">(<span class="type">int</span> p)</span>	<span class="comment">//删除</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Ri[Le[p]]=Ri[p],Le[Ri[p]]=Le[p];</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=Do[p];i!=p;i=Do[i])</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=Ri[i];j!=i;j=Ri[j])</span><br><span class="line">        &#123;</span><br><span class="line">            --Cnt[Col[j]];</span><br><span class="line">            Up[Do[j]]=Up[j],Do[Up[j]]=Do[j];</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">recover</span><span class="params">(<span class="type">int</span> p)</span>	<span class="comment">//恢复</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=Up[p];i!=p;i=Up[i])</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=Le[i];j!=i;j=Le[j])</span><br><span class="line">        &#123;</span><br><span class="line">            Up[Do[j]]=j,Do[Up[j]]=j;</span><br><span class="line">            ++Cnt[Col[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    Ri[Le[p]]=p,Le[Ri[p]]=p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!Ri[<span class="number">0</span>]) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> p=Ri[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=Ri[<span class="number">0</span>];i;i=Ri[i])</span><br><span class="line">        	<span class="keyword">if</span>(Cnt[i]&lt;Cnt[p]) p=i;</span><br><span class="line">    <span class="built_in">remove</span>(p);</span><br><span class="line">    <span class="keyword">for</span>(re <span class="type">int</span> i=Do[p];i!=p;i=Do[i])</span><br><span class="line">    &#123;</span><br><span class="line">        ans[++Top]=Row[i];</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=Ri[i];j!=i;j=Ri[j]) <span class="built_in">remove</span>(Col[j]);</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">dfs</span>()) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(re <span class="type">int</span> j=Le[i];j!=i;j=Le[j]) <span class="built_in">recover</span>(Col[j]);</span><br><span class="line">        --Top;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">recover</span>(p);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Test;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(Test);</span><br><span class="line">    <span class="keyword">while</span>(Test--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">16</span>;++i) <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,G[i]);</span><br><span class="line">        <span class="built_in">init</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>,N=<span class="number">1</span>;i&lt;<span class="number">16</span>;++i)</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">16</span>;++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">int</span> a=<span class="number">0</span>,b=<span class="number">15</span>;</span><br><span class="line">                <span class="keyword">if</span>(G[i][j]!=<span class="string">&#x27;-&#x27;</span>) a=b=G[i][j]-<span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> k=a;k&lt;=b;++k,++N)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="type">int</span> hd=Idx,tl=Idx;</span><br><span class="line">                    Op[N]=&#123;i,j,<span class="built_in">char</span>(k+<span class="string">&#x27;A&#x27;</span>)&#125;;</span><br><span class="line">                    <span class="built_in">add</span>(hd,tl,N,i*<span class="number">16</span>+j+<span class="number">1</span>);</span><br><span class="line">                    <span class="built_in">add</span>(hd,tl,N,<span class="number">256</span>+i*<span class="number">16</span>+k+<span class="number">1</span>);</span><br><span class="line">                    <span class="built_in">add</span>(hd,tl,N,<span class="number">256</span>*<span class="number">2</span>+j*<span class="number">16</span>+k+<span class="number">1</span>);</span><br><span class="line">                    <span class="built_in">add</span>(hd,tl,N,<span class="number">256</span>*<span class="number">3</span>+(i/<span class="number">4</span>*<span class="number">4</span>+j/<span class="number">4</span>)*<span class="number">16</span>+k+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="built_in">dfs</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=Top;++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">auto</span> t=Op[ans[i]];</span><br><span class="line">            G[t.x][t.y]=t.c;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">16</span>;++i) <span class="built_in">puts</span>(G[i]);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">--A----C-----O-I </span></span><br><span class="line"><span class="comment">-J--A-B-P-CGF-H-</span></span><br><span class="line"><span class="comment">--D--F-I-E----P-</span></span><br><span class="line"><span class="comment">-G-EL-H----M-J--</span></span><br><span class="line"><span class="comment">----E----C--G---</span></span><br><span class="line"><span class="comment">-I--K-GA-B---E-J </span></span><br><span class="line"><span class="comment">D-GP--J-F----A--</span></span><br><span class="line"><span class="comment">-E---C-B--DP--O-</span></span><br><span class="line"><span class="comment">E--F-M--D--L-K-A </span></span><br><span class="line"><span class="comment">-C--------O-I-L-</span></span><br><span class="line"><span class="comment">H-P-C--F-A--B---</span></span><br><span class="line"><span class="comment">---G-OD---J----H </span></span><br><span class="line"><span class="comment">K---J----H-A-P-L </span></span><br><span class="line"><span class="comment">--B--P--E--K--A-</span></span><br><span class="line"><span class="comment">-H--B--K--FI-C--</span></span><br><span class="line"><span class="comment">--F---C--D--H-N-</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+
+    </div>
+
+    
+    
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="related-posts">
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/100-test/">随机100题(29/100)</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/202208xx/">夏记，但是被吊打</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/mo-algo/">莫队</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/automaton/">自动机&最小表示法</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/randomization-algorithm/">随机化算法</a></li>
+  
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Eternity/tags/%E4%BC%98%E5%8C%96/" rel="tag"># 优化</a>
+              <a href="/Eternity/tags/%E6%90%9C%E7%B4%A2/" rel="tag"># 搜索</a>
+              <a href="/Eternity/tags/bfs/" rel="tag"># bfs</a>
+              <a href="/Eternity/tags/dfs/" rel="tag"># dfs</a>
+              <a href="/Eternity/tags/%E6%9E%9A%E4%B8%BE%EF%BC%8C%E6%9A%B4%E5%8A%9B/" rel="tag"># 枚举，暴力</a>
+              <a href="/Eternity/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/Eternity/tags/%E6%A8%A1%E6%8B%9F/" rel="tag"># 模拟</a>
+              <a href="/Eternity/tags/DLX/" rel="tag"># DLX</a>
+              <a href="/Eternity/tags/%E8%BF%AD%E4%BB%A3%E5%8A%A0%E6%B7%B1/" rel="tag"># 迭代加深</a>
+              <a href="/Eternity/tags/%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8/" rel="tag"># 十字链表</a>
+              <a href="/Eternity/tags/A/" rel="tag"># A*</a>
+              <a href="/Eternity/tags/IDA/" rel="tag"># IDA*</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Eternity/%E9%A2%98%E8%A7%A3/p1110/" rel="prev" title="P1110 [ZJOI2007] 报表统计">
+      <i class="fa fa-chevron-left"></i> P1110 [ZJOI2007] 报表统计
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/two-dimensional-binary-indexed-tree/" rel="next" title="二维树状数组">
+      二维树状数组 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dancing-Links"><span class="nav-text">Dancing Links</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E5%87%86%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="nav-text">精准覆盖问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8"><span class="nav-text">十字链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%A3%B0%E6%98%8E"><span class="nav-text">参数声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%A4%8D%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98"><span class="nav-text">重复覆盖问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%8B%AC"><span class="nav-text">数独</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E7%9A%87%E5%90%8E"><span class="nav-text">八皇后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B6%85%E7%BA%A7%E6%95%B0%E7%8B%AC"><span class="nav-text">超级数独</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fallen Shadow"
+      src="/Eternity/images/Guess.png">
+  <p class="site-author-name" itemprop="name">Fallen Shadow</p>
+  <div class="site-description" itemprop="description">誰も悪くないから、辛いだな。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Eternity/archives/">
+        
+          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Eternity/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Eternity/tags/">
+          
+        <span class="site-state-item-count">268</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/VioletEternal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VioletEternal" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/356159259?spm_id_from=333.1007.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;356159259?spm_id_from&#x3D;333.1007.0.0" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/444040" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;444040" rel="noopener" target="_blank"><i class="fab fa-luogu fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/artist?id=52150816" title="CloudMusic → https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;52150816" rel="noopener" target="_blank"><i class="fab fa-cloudmusic fa-fw"></i>CloudMusic</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">痛失网名巨佬赵悦岑</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房巨佬_Live_</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kney.blog.luogu.org/" title="https:&#x2F;&#x2F;kney.blog.luogu.org&#x2F;" rel="noopener" target="_blank">吟游的诗人kney</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">Ynoi之神dyd-true</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io&#x2F;" rel="noopener" target="_blank">Au爷mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io&#x2F;" rel="noopener" target="_blank">省队大跌Rusun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://evrgardenviolet.github.io/" title="https:&#x2F;&#x2F;evrgardenviolet.github.io&#x2F;" rel="noopener" target="_blank">Violet前辈闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io&#x2F;" rel="noopener" target="_blank">IOI大跌Lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/2008429483" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;2008429483" rel="noopener" target="_blank">墨逸moki酱</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VioletEternal</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">947k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">14:21</span>
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+<span id="busuanzi_container_page_pv">本文热度<span id="busuanzi_value_page_pv"></span>℃</span>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/Eternity/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/Eternity/lib/anime.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Eternity/js/utils.js"></script>
+
+<script src="/Eternity/js/motion.js"></script>
+
+
+<script src="/Eternity/js/schemes/pisces.js"></script>
+
+
+<script src="/Eternity/js/next-boot.js"></script>
+
+
+  <script defer src="true"></script>
+    <script defer src="/Eternity/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/Eternity/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/Eternity/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://rusunoi.github.io/mathjax/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="https://rusunoi.github.io/gitalk/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://rusunoi.github.io/gitalk/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'c547d8099919a2d14d96',
+      clientSecret: '10a714b915e252d47a7c076cbd8f01fadb85bd41',
+      repo        : 'Eternity',
+      owner       : 'VioletEternal',
+      admin       : ['VioletEternal'],
+      id          : '4173e24d90ea6c62c9ab7fb734a88dec',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

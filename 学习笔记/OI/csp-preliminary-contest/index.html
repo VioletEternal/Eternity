@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Eternity/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Eternity/images/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Eternity/images/eternity.png">
+  <link rel="mask-icon" href="/Eternity/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Eternity/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ma Shan Zheng:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Zhi Mang Xing:300,300italic,400,400italic,700,700italic|Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/Eternity/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="minimal">
+  <script src="true"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"violeteternal.github.io","root":"/Eternity/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"gitalk":null}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <meta name="description" content="给大伙表演一个原地退役。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSP第一轮测试复习资料整合">
+<meta property="og:url" content="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/csp-preliminary-contest/index.html">
+<meta property="og:site_name" content="Eternity">
+<meta property="og:description" content="给大伙表演一个原地退役。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-31T00:01:34.000Z">
+<meta property="article:modified_time" content="2022-09-01T09:21:19.918Z">
+<meta property="article:author" content="Fallen Shadow">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="队列">
+<meta property="article:tag" content="bfs">
+<meta property="article:tag" content="dfs">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="进制">
+<meta property="article:tag" content="二分">
+<meta property="article:tag" content="树型结构">
+<meta property="article:tag" content="分治">
+<meta property="article:tag" content="指针">
+<meta property="article:tag" content="I.T">
+<meta property="article:tag" content="排序">
+<meta property="article:tag" content="链表">
+<meta property="article:tag" content="主定理">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/csp-preliminary-contest/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+  <title>CSP第一轮测试复习资料整合 | Eternity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Eternity/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Eternity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Until The End</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Eternity/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/Eternity/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">268</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">119</span></a>
+
+  </li>
+        <li class="menu-item menu-item-归程">
+
+    <a href="/Eternity/road/" rel="section"><i class="fa fa-road fa-fw"></i>归程</a>
+
+  </li>
+        <li class="menu-item menu-item-友人">
+
+    <a href="/Eternity/friends/" rel="section"><i class="fa fa-paper-plane fa-fw"></i>友人</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/csp-preliminary-contest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Eternity/images/Guess.png">
+      <meta itemprop="name" content="Fallen Shadow">
+      <meta itemprop="description" content="誰も悪くないから、辛いだな。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eternity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSP第一轮测试复习资料整合
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-31 08:01:34" itemprop="dateCreated datePublished" datetime="2022-08-31T08:01:34+08:00">2022-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-01 17:21:19" itemprop="dateModified" datetime="2022-09-01T17:21:19+08:00">2022-09-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/" itemprop="url" rel="index"><span itemprop="name">OI</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>给大伙表演一个原地退役。</p>
+<span id="more"></span>
+<h2 id="信息学历史"><a href="#信息学历史" class="headerlink" title="信息学历史"></a>信息学历史</h2><h2 id="计算机组成"><a href="#计算机组成" class="headerlink" title="计算机组成"></a>计算机组成</h2><p>字长：$32$ 位和 $64$ 位。<br><br>主频：$2.4\text{GHz}$ 。<br><br>内存：$8\text{GB}$ 。</p>
+<p>位（$\text{Bit}$）：一个 $01$ 。<br><br>字节（$\text{Byte}$）：八个 $01$ 。</p>
+<h3 id="内存换算"><a href="#内存换算" class="headerlink" title="内存换算"></a>内存换算</h3><p>$\text{1KB=1024Byte}$<br><br>$\text{1MB=1024KB}$<br><br>$\text{1GB=1024MB}$<br><br>$\text{1TB=1024GB}$</p>
+<h3 id="摩尔定律"><a href="#摩尔定律" class="headerlink" title="摩尔定律"></a>摩尔定律</h3><p>$18$ 个月翻倍。其核心内容为：集成电路上可以容纳的晶体管数目在大约每经过 $18$ 个月到 $24$ 个月便会增加一倍。换言之，处理器的性能大约每两年翻一倍，同时价格下降为之前的一半。</p>
+<h3 id="软件系统"><a href="#软件系统" class="headerlink" title="软件系统"></a>软件系统</h3><p>操作系统：$\text{Windows,DOS,UNIX,Linux,MaxOS,Android,iOS,}$ 鸿蒙（华为）。</p>
+<p>应用软件：浏览器，办公软件，游戏等。</p>
+<p>软件由机器语言，汇编语言，高级语言编写。</p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>文字，图片，声音等都会转化成 $01$ 串编码。</p>
+<p>编码有：$\text{ASCII}$ 码，$\text{GBK}$ 码（$\text{2 byte}$），$\text{utf-8}$ 码（$\text{3 byte}$ ）等。</p>
+<p>图片文件格式：$\text{jpg,png,jpeg,tiff,raw,bmp,gif}$ 等。<br><br>视频文件格式：$\text{wmv,mp4,m4v,avi,flv,mkv,dat}$ 等。<br><br>声音文件格式：$\text{wav,mp3,midi,wma,cda}$ 等。</p>
+<h2 id="NOI-系列"><a href="#NOI-系列" class="headerlink" title="NOI 系列"></a>NOI 系列</h2><p>$\text{NOI}$ 开始于 $1984$ ，由中国计算机学会（$\text{CCF}$）举办。<br><br>$\text{NOIp}$ 生于 $1995$ ，死于 $2019$ ，复活于 $2020$ 。</p>
+<p>在 $2022$ 后，$\text{NOI}$ 仅支持 <code>C++</code> 。</p>
+<p>考场仅能携带文具（无纸张），衣物，证件。</p>
+<h2 id="程序设计"><a href="#程序设计" class="headerlink" title="程序设计"></a>程序设计</h2><p>所谓编译，就是把代码变成可执行文件（机器码），使用 <code>C++</code> ，<code>Pascal</code> 等媒介。<br><br>解释性语言指的是一行一行的运行，如 <code>Python</code> ，<code>JavaScript</code> ，<code>PHP</code> ，<code>BASIC</code> 。</p>
+<p>两者的区别在于，编译不允许局部错误，解释允许局部错误。</p>
+<p>时间复杂度：数据规模增长和运行时间增长的趋势。</p>
+<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p>排序中的<strong>稳定</strong>指的是对于相同的数而言，其相对排名在排序后不变，则称为稳定。</p>
+<h4 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h4><p>不基于比较，时间复杂度 $\mathcal O(a+n)$ ，仅能求出最大值。</p>
+<p>$a$ 是选票数，$n$ 是候选人数。</p>
+<hr>
+<h4 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h4><p>不稳定，时间复杂度 $\mathcal O(n^2)$ 。</p>
+<hr>
+<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><p>稳定，时间复杂度 $\mathcal O(n^2)$ 。</p>
+<hr>
+<h4 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h4><p>稳定，时间复杂度 $\mathcal O(n^2)$ 。</p>
+<hr>
+<h4 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h4><p>稳定，时间复杂度 $\mathcal O(n\log n)$ ，需要额外辅助空间。</p>
+<hr>
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p>不稳定，$\Omega(n\log n)-\mathcal O(n^2)$ 。</p>
+<hr>
+<h4 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h4><p>不稳定，时间复杂度 $\mathcal O(n\log n)$ 。</p>
+<hr>
+<h3 id="贪心"><a href="#贪心" class="headerlink" title="贪心"></a>贪心</h3><p>需要证明的可能不正确算法。</p>
+<hr>
+<h3 id="二分"><a href="#二分" class="headerlink" title="二分"></a>二分</h3><p>在有序中折半查找，时间复杂度 $\mathcal O(\lceil\log_2 n\rceil)$ 。</p>
+<hr>
+<h3 id="递推递归"><a href="#递推递归" class="headerlink" title="递推递归"></a>递推递归</h3><p>递推是<strong>从小到大顺推</strong>。<br><br>递归是<strong>从大到小逆推后反推回去</strong>。</p>
+<p>使用示例：斐波那契，杨辉三角，动态规划等。</p>
+<hr>
+<h3 id="分治"><a href="#分治" class="headerlink" title="分治"></a>分治</h3><p>大问题拆成小问题，递归解决。</p>
+<p>归并排序和快速排序都用到了分治策略。</p>
+<hr>
+<h3 id="递归算法的时间复杂度计算"><a href="#递归算法的时间复杂度计算" class="headerlink" title="递归算法的时间复杂度计算"></a>递归算法的时间复杂度计算</h3><p>有一种奇妙的东西叫做<strong>主定理</strong>，（另话：关于时间复杂度的计算，$\text{Sukwants}$ 写了三篇较详细的文章，可以去看看）可以计算递归式的时间复杂度，形如：</p>
+<script type="math/tex; mode=display">
+T(n)=aT(\frac{n}{b})+f(n)
+\nonumber</script><p>有一个奇妙的公式，和做法，可以硬背。</p>
+<p>首先表明定义：</p>
+<ul>
+<li>$n$ 为求得序列的第几位，称为问题规模大小；</li>
+<li>$a$ 为原问题的子问题个数；</li>
+<li>$\frac{n}{b}$ 为子问题大小，这里假设每个子问题大小相同；</li>
+<li>$f(n)$ 为合并代价，即合并时间。</li>
+</ul>
+<p>用通俗的话来讲：首先考虑 $aT(\frac{n}{b})$ 的时间，有公式 $\mathcal O(\log_ba\times n)$ ，然后考虑 $f(n)$ 的时间复杂度（假设为 $\mathcal O(t)$），这里分为三种情况：</p>
+<ol>
+<li>如果 $\mathcal O(n^{\log_ba})&gt;\mathcal O(t)$ ，则 $T(n)=\mathcal O(n^{\log_ba})$ ；</li>
+<li>如果 $\mathcal O(n^{\log_ba})&lt;\mathcal O(t)$ ，则 $T(n)=\mathcal O(t)$ ；</li>
+<li>如果 $\mathcal O(n^{\log_ba})=\mathcal O(t)$ ，则 $T(n)=\mathcal O(n\log t)=\mathcal O(n\log\log_ba)$。</li>
+</ol>
+<p>严格而言，上述三种情况其实是：</p>
+<ol>
+<li>若函数 $n^{\log_ba}$ 更大，则 $T(n)=\Theta(n^{\log_ba})$ ；</li>
+<li>若函数 $f(n)$ 更大，且满足 $af(\frac{n}{b})\leq cf(n)$ ，则 $T(n)=\Theta(f(n))$ ；</li>
+<li>若两函数相等，则 $T(n)=\Theta(n^{\log_ba}\log^{k+1}n)$ 。</li>
+</ol>
+<p>我也不知道为什么，背就完了。</p>
+<p>举几个例子，可能就有所理解了。</p>
+<p>二分：$T(n)=T(\frac{n}{2})+\Theta(1)$</p>
+<p>得到 $a=1,b=2,f(n)=1$ ，则 $\mathcal O(n^{\log_ba})=0=\Theta(1)$ ，则时间复杂度为 $\mathcal O(\log n)$ 。</p>
+<p>归并：$T(n)=2T(\frac{n}{2})+\Theta(n)$</p>
+<p>得到 $a=2,b=2,f(n)=n$ ，则 $\mathcal O(n^{\log_ba})=n=\Theta(n)$ ，则时间复杂度为 $\mathcal O(n\log n)$ 。</p>
+<p>二叉树遍历：$T(n)=2T(\frac{n}{2})+\mathcal O(1)$</p>
+<p>得到 $a=2,b=2,f(n)=1$ ，则 $\mathcal O(n^{\log_ba})=n&gt;1=\mathcal O(n)$ ，则时间复杂度为 $\mathcal O(n)$ 。</p>
+<hr>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>处理数据的骨架。</p>
+<h3 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h3><h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><p>$\text{FILO}$ 式数据结构。（$\text{First Input ,Last Output}$ ，先进后出）</p>
+<p>常用于深度优先搜索（$\text{dfs}$）。</p>
+<hr>
+<h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p>$\text{FIFO}$ 式数据结构。（$\text{First Input ,First Output}$ ，先进先出）</p>
+<p>常用于宽度优先搜索（$\text{bfs}$，也称作广度优先搜索）</p>
+<hr>
+<h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><p>每一个数都只有一个指针指向自己的下一位，从何由指针组成一条完整的链。</p>
+<p>插入删除不需要移动元素，不许事先估计存储空间，所需空间与线性表长度成正比，但不支持随机访问。（因为内存不连续）</p>
+<hr>
+<h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><p>$n$ 个结点，$n-1$ 条边，所有结点连通且没有环的图。</p>
+<p>森林：树的集合。</p>
+<h4 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h4><p>每一个结点至多有 $2$ 个子结点的有根树。</p>
+<p>一棵深度为 $i$ 的二叉树每一层数量至多为 $2^{i-1}$ ，一共结点至多为 $2^i-1$ 。</p>
+<p>满（完美）二叉树（结点为 $2^i-1$ 的二叉树），完全二叉树为 $i-1$ 层都满的二叉树，完全线段树就是一种完全二叉树。</p>
+<p>二叉树有 $3$ 种遍历方式：前序遍历，中序遍历，后序遍历。</p>
+<p>前序遍历：根结点 $\to$ 左子树 $\to$ 右子树。<br><br>中序遍历：左子树 $\to$ 根结点 $\to$ 右子树。<br><br>后序遍历：左子树 $\to$ 右子树 $\to$ 根结点。</p>
+<p>其中，前序遍历扩展到普通树型结构，并区分轻重儿子，就是树链剖分的 $dfn$ 序。</p>
+<p>后序遍历的最后一个就是整棵树的根结点，在中序遍历里根结点左端的点在结点的左子树，根结点右端的点在结点右子树。</p>
+<p>通过中序遍历和后序遍历推出前序遍历，就是用分治的思想，拆分区间。</p>
+<h4 id="表达式树"><a href="#表达式树" class="headerlink" title="表达式树"></a>表达式树</h4><p>用树型结构表达一个算式。一般而言，表达式树的中序遍历就是我们常见的形式。</p>
+<hr>
+<h3 id="图"><a href="#图" class="headerlink" title="图"></a>图</h3><p>分为<strong>有向图</strong>和<strong>无向图</strong>。结点和边可能带权。</p>
+<p>有两个集合 $V,E$ 表示顶点和边，边连接结点。</p>
+<p>每个节点有一个参数表示进入的边数和出去的边数，称为<strong>度数</strong>。</p>
+<p>重边：几条性质相同的边（连接结点一致，方向一致）。<br><br>自环：一条连接了两个相同结点的边。</p>
+<p>简单图：无重边，无自环的图。<br><br>完全图：指任意两个结点都存在边的图，有 $\frac{n(n-1)}{2}$ 条边。（这里指无向图）</p>
+<hr>
+<h4 id="图的存储"><a href="#图的存储" class="headerlink" title="图的存储"></a>图的存储</h4><p>一般有 $3$ 种方式：邻接矩阵，邻接表，链式前向星。</p>
+<p>邻接矩阵空间复杂度 $\mathcal O(n^2)$ ，一般用于稠密图。<br><br>邻接表空间复杂度 $\mathcal O(m)$ 需要动态申请，一般用 <code>std::vector</code> 实现。<br><br>链式前向星用类似于链表的结构组成，和邻接表类似，不过不需要动态申请内存。</p>
+<hr>
+<h4 id="图论算法"><a href="#图论算法" class="headerlink" title="图论算法"></a>图论算法</h4><p>单源最短路径算法：$\text{Dijkstra,SPFA}$ ，时间复杂度分别为 $\mathcal O(n\log n),\mathcal O(kn)$ 。<br><br>多源最短路径算法：$\text{Floyd,Johnson}$ ，时间复杂度分别为 $\mathcal O(n^3),\mathcal O(nm\log m)$<br><br>最小生成树：$\text{Prim,Kruskal}$ ，时间复杂度 $\mathcal O(n^2),\mathcal O(m\log m)$ 。<br><br>欧拉回路：一笔画问题，只能最多 $2$ 个奇数度的结点。 </p>
+<hr>
+<h2 id="数论"><a href="#数论" class="headerlink" title="数论"></a>数论</h2><h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><p>$k$ 进制转 $10$ 进制：</p>
+<p>$(\overline{a_1a_2\dots a_m})_k=a_m\times k^0+a_{m-1}\times k^1+a_{m-2}\times k^2+\dots a_{1}\times k^{m-1}$</p>
+<p>$10$ 进制转 $k $ 进制：</p>
+<p>将这个数除以 $k$ 直到比 $k$ 小，把每一次得到的余数从小位到大位组合，就是 $k$ 进制下的答案。这个方法被称为<strong>短除法</strong>。</p>
+<p><strong>这里仅仅讨论非负整数</strong>。</p>
+
+    </div>
+
+    
+    
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="related-posts">
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/100-test/">随机100题(29/100)</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/fractional-programming/">分数规划</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E6%A8%A1%E6%8B%9F%E8%B5%9B-%E6%AF%94%E8%B5%9B/202208xx/">夏记，但是被吊打</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/divided-conquer/">点分治</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-chain-segmentation/">树链剖分 & 树上差分</a></li>
+  
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Eternity/tags/%E6%95%B0%E8%AE%BA/" rel="tag"># 数论</a>
+              <a href="/Eternity/tags/%E9%98%9F%E5%88%97/" rel="tag"># 队列</a>
+              <a href="/Eternity/tags/bfs/" rel="tag"># bfs</a>
+              <a href="/Eternity/tags/dfs/" rel="tag"># dfs</a>
+              <a href="/Eternity/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+              <a href="/Eternity/tags/%E8%BF%9B%E5%88%B6/" rel="tag"># 进制</a>
+              <a href="/Eternity/tags/%E4%BA%8C%E5%88%86/" rel="tag"># 二分</a>
+              <a href="/Eternity/tags/%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84/" rel="tag"># 树型结构</a>
+              <a href="/Eternity/tags/%E5%88%86%E6%B2%BB/" rel="tag"># 分治</a>
+              <a href="/Eternity/tags/%E6%8C%87%E9%92%88/" rel="tag"># 指针</a>
+              <a href="/Eternity/tags/I-T/" rel="tag"># I.T</a>
+              <a href="/Eternity/tags/%E6%8E%92%E5%BA%8F/" rel="tag"># 排序</a>
+              <a href="/Eternity/tags/%E9%93%BE%E8%A1%A8/" rel="tag"># 链表</a>
+              <a href="/Eternity/tags/%E4%B8%BB%E5%AE%9A%E7%90%86/" rel="tag"># 主定理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Eternity/%E9%A2%98%E8%A7%A3/p2397/" rel="prev" title="P2397 yyy loves Maths VI (mode)">
+      <i class="fa fa-chevron-left"></i> P2397 yyy loves Maths VI (mode)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Eternity/%E9%A2%98%E8%A7%A3/p1110/" rel="next" title="P1110 [ZJOI2007] 报表统计">
+      P1110 [ZJOI2007] 报表统计 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%8E%86%E5%8F%B2"><span class="nav-text">信息学历史</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90"><span class="nav-text">计算机组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%8D%A2%E7%AE%97"><span class="nav-text">内存换算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%91%A9%E5%B0%94%E5%AE%9A%E5%BE%8B"><span class="nav-text">摩尔定律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-text">软件系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81"><span class="nav-text">编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NOI-%E7%B3%BB%E5%88%97"><span class="nav-text">NOI 系列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="nav-text">程序设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-text">算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F"><span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="nav-text">计数排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F"><span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F"><span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="nav-text">堆排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83"><span class="nav-text">贪心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86"><span class="nav-text">二分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E6%8E%A8%E9%80%92%E5%BD%92"><span class="nav-text">递推递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%B2%BB"><span class="nav-text">分治</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="nav-text">递归算法的时间复杂度计算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="nav-text">线性表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%88"><span class="nav-text">栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%9F%E5%88%97"><span class="nav-text">队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8"><span class="nav-text">链表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91"><span class="nav-text">树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-text">二叉树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%A0%91"><span class="nav-text">表达式树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE"><span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8"><span class="nav-text">图的存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E8%AE%BA%E7%AE%97%E6%B3%95"><span class="nav-text">图论算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E8%AE%BA"><span class="nav-text">数论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E5%88%B6"><span class="nav-text">进制</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fallen Shadow"
+      src="/Eternity/images/Guess.png">
+  <p class="site-author-name" itemprop="name">Fallen Shadow</p>
+  <div class="site-description" itemprop="description">誰も悪くないから、辛いだな。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Eternity/archives/">
+        
+          <span class="site-state-item-count">119</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Eternity/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Eternity/tags/">
+          
+        <span class="site-state-item-count">268</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/VioletEternal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VioletEternal" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/356159259?spm_id_from=333.1007.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;356159259?spm_id_from&#x3D;333.1007.0.0" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/444040" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;444040" rel="noopener" target="_blank"><i class="fab fa-luogu fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/artist?id=52150816" title="CloudMusic → https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;52150816" rel="noopener" target="_blank"><i class="fab fa-cloudmusic fa-fw"></i>CloudMusic</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">痛失网名巨佬赵悦岑</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房巨佬_Live_</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kney.blog.luogu.org/" title="https:&#x2F;&#x2F;kney.blog.luogu.org&#x2F;" rel="noopener" target="_blank">吟游的诗人kney</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">Ynoi之神dyd-true</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io&#x2F;" rel="noopener" target="_blank">Au爷mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io&#x2F;" rel="noopener" target="_blank">省队大跌Rusun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://evrgardenviolet.github.io/" title="https:&#x2F;&#x2F;evrgardenviolet.github.io&#x2F;" rel="noopener" target="_blank">Violet前辈闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io&#x2F;" rel="noopener" target="_blank">IOI大跌Lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/2008429483" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;2008429483" rel="noopener" target="_blank">墨逸moki酱</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VioletEternal</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">947k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">14:21</span>
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+<span id="busuanzi_container_page_pv">本文热度<span id="busuanzi_value_page_pv"></span>℃</span>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/Eternity/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/Eternity/lib/anime.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Eternity/js/utils.js"></script>
+
+<script src="/Eternity/js/motion.js"></script>
+
+
+<script src="/Eternity/js/schemes/pisces.js"></script>
+
+
+<script src="/Eternity/js/next-boot.js"></script>
+
+
+  <script defer src="true"></script>
+    <script defer src="/Eternity/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/Eternity/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/Eternity/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://rusunoi.github.io/mathjax/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="https://rusunoi.github.io/gitalk/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://rusunoi.github.io/gitalk/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'c547d8099919a2d14d96',
+      clientSecret: '10a714b915e252d47a7c076cbd8f01fadb85bd41',
+      repo        : 'Eternity',
+      owner       : 'VioletEternal',
+      admin       : ['VioletEternal'],
+      id          : 'ae882acd4cfd921d10190000fca15e1f',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
