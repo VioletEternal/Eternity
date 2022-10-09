@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Eternity/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Eternity/images/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Eternity/images/eternity.png">
+  <link rel="mask-icon" href="/Eternity/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Eternity/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ma Shan Zheng:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Zhi Mang Xing:300,300italic,400,400italic,700,700italic|Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/Eternity/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="minimal">
+  <script src="true"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"violeteternal.github.io","root":"/Eternity/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"gitalk":null}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <meta name="description" content="“自命之神人，敢于直面第二次的，重启人生。”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kruskal重构树">
+<meta property="og:url" content="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/kruskal-refactoring/index.html">
+<meta property="og:site_name" content="Eternity">
+<meta property="og:description" content="“自命之神人，敢于直面第二次的，重启人生。”">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-26T06:44:09.000Z">
+<meta property="article:modified_time" content="2022-09-26T11:45:34.459Z">
+<meta property="article:author" content="Fallen Shadow">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="树型结构">
+<meta property="article:tag" content="生成树">
+<meta property="article:tag" content="LCA">
+<meta property="article:tag" content="树链剖分">
+<meta property="article:tag" content="最小生成树">
+<meta property="article:tag" content="Kruskal">
+<meta property="article:tag" content="重构树">
+<meta property="article:tag" content="倍增">
+<meta property="article:tag" content="森林">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/kruskal-refactoring/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+  <title>Kruskal重构树 | Eternity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Eternity/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Eternity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Until The End</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Eternity/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/Eternity/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">271</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">123</span></a>
+
+  </li>
+        <li class="menu-item menu-item-归程">
+
+    <a href="/Eternity/road/" rel="section"><i class="fa fa-road fa-fw"></i>归程</a>
+
+  </li>
+        <li class="menu-item menu-item-友人">
+
+    <a href="/Eternity/friends/" rel="section"><i class="fa fa-paper-plane fa-fw"></i>友人</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/kruskal-refactoring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Eternity/images/Guess.png">
+      <meta itemprop="name" content="Fallen Shadow">
+      <meta itemprop="description" content="誰も悪くないから、辛いだな。<br>自卑的人，往往只剩下温柔了啊……">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eternity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kruskal重构树
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-26 14:44:09 / 修改时间：19:45:34" itemprop="dateCreated datePublished" datetime="2022-09-26T14:44:09+08:00">2022-09-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/" itemprop="url" rel="index"><span itemprop="name">OI</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>“自命之神人，敢于直面第二次的，重启人生。”</p>
+<span id="more"></span>
+<h2 id="Kruskal-算法"><a href="#Kruskal-算法" class="headerlink" title="Kruskal 算法"></a>Kruskal 算法</h2><p>首先复习一下最小生成树的算法——$\text{Kruskal}$ ，是一种基于贪心的最小生成树算法，在最短路领域相当于 $\text{Spfa}$ ，但虽然很少被卡，总体思路在于维护一个并查集，并以权值排序枚举边，并以此加边构成一张图的最小生成树，无解情况在于 $m&lt;n-1$ 或者图不连通，代码极其简洁：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Edges</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> u,v,val;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Edges &amp;x) <span class="type">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> val&lt;x.val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;Ed[MAXM&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> res,Rt[MAXN],<span class="function">cnt</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//init</span></span><br><span class="line">    std::<span class="built_in">sort</span>(Ed+<span class="number">1</span>,Ed+M+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=M;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> e=Ed[i];</span><br><span class="line">        e.u=<span class="built_in">getRt</span>(e.u),e.v=<span class="built_in">getRt</span>(e.v);</span><br><span class="line">        <span class="keyword">if</span>(Rt[e.u]!=Rt[e.v])</span><br><span class="line">        &#123;</span><br><span class="line">            Rt[e.u]=e.v;</span><br><span class="line">            res+=e.val,++cnt;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt==N<span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">write</span>(res);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">write</span>(<span class="string">&quot;No Solution!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一种普及选手都需要学习的算法，时间复杂度 $\mathcal O(m\log m)$ 。</p>
+<hr>
+<h2 id="重构树"><a href="#重构树" class="headerlink" title="重构树"></a>重构树</h2><p>所谓重构树，大概意思是指，对于一张图，我们重构这张图使其成为一棵<strong>二叉树</strong>，这棵二叉树有 $n$ 个<strong>叶</strong>结点，对应原来图的 $n$ 个结点。</p>
+<p>然后这样构造出来的树并没有什么特点，因为我们并不知道如何去连接两个叶结点，合并集合。然后就随便搞一个算法给它怼上去，直到使用 $\text{Kruskal}$ 。</p>
+<p>依然选择从小到大枚举边权，依然选择连接 $(u,v,val)$ ，如果当前 $u,v$ 未连通，则构建一个结点 $f$ ，表示为 $u,v$ 的父结点，其点权为 $val$ 。然后依次向上，会发现，因为我们按照贪心思路由小到大，那么，对于重构树上的一条路径，从根出发，向下，点权递减。</p>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>很巧妙，不会证。</p>
+<ul>
+<li>$\text{Kruskal}$ 重构树有 $2n-1$ 个结点，$n$ 个叶结点。</li>
+<li>如果将整棵树看作<strong>堆</strong>，则重构树必然是一个堆（取决于 $\text{Kruskal}$ 的运作方式），小根堆对应最大生成树，大根堆对应最小生成树。</li>
+<li>叶结点是原图的<strong>点</strong>，非叶结点是原图的<strong>边</strong>。</li>
+<li>原图中两个结点<strong>所有</strong>简单路径的边权最大值的最小值 $=$ 最小生成树中两个结点简单路径的边权最大值 $=$ 重构树中两个结点的最近公共祖先的点权。</li>
+</ul>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="P2245-星际迷航"><a href="#P2245-星际迷航" class="headerlink" title="P2245 星际迷航"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2245">P2245 星际迷航</a></h4><p>曾经做过，用一种更暴力的算法，求最小生成树的最大边权，则直接把树给它建出来，然后树剖线段树查询区间最大值即可，跑到 $519ms$ ，也比较快了。</p>
+<p>然后想想怎么重构树做出来。</p>
+<p>上面已知了，我们只需要把重构树建出来，然后在这棵二叉树上跑 $\text{Lca}$ 找到点权即可，注意到，图并非连通，所以这其实是重构森林。</p>
+<p>有一个性质，在于，如果像动态开点线段树那样加点的话，深度越大的点编号越小，导致我们倒序枚举点编号看当前树是否已经剖分过，第一次找到的一定是当前树的根结点，比较神仙。</p>
+<p>然后一遍板子过去即可，记得开双倍空间，跑了 $276ms$ ，次优解。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">2e5</span>+<span class="number">10</span>,MAXM=<span class="number">3e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> N,M,Q,Idx,Val[MAXN];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">G</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> next,to;</span><br><span class="line">&#125;Edge[MAXM&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edges</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> fr,to,val;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Edges &amp;x) <span class="type">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> val&lt;x.val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;Ed[MAXM];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Dsu</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> Rt[MAXN];</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">2</span>*n;++i) Rt[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getRt</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Rt[x]==x?x:Rt[x]=<span class="built_in">getRt</span>(Rt[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> p=<span class="built_in">getRt</span>(x),q=<span class="built_in">getRt</span>(y);</span><br><span class="line">        Rt[p]=Rt[q]=++Idx;</span><br><span class="line">        <span class="keyword">return</span> Idx;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">connect</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> p=<span class="built_in">getRt</span>(x),q=<span class="built_in">getRt</span>(y);</span><br><span class="line">        <span class="keyword">return</span> p==q;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;Dsu;</span><br><span class="line"><span class="type">int</span> Head[MAXN],Total;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">addEdge</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Edge[++Total]=(G)&#123;Head[u],v&#125;;Head[u]=Total;</span><br><span class="line">    Edge[++Total]=(G)&#123;Head[v],u&#125;;Head[v]=Total;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">bool</span> Vis[MAXN];</span><br><span class="line"><span class="type">int</span> Fa[MAXN],Siz[MAXN],Son[MAXN],Dep[MAXN];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfsTree</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> last)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Fa[x]=last,Siz[x]=Vis[x]=<span class="number">1</span>,Dep[x]=Dep[last]+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> e=Head[x],v;e;e=Edge[e].next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>((v=Edge[e].to)==last) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfsTree</span>(v,x);</span><br><span class="line">        Siz[x]+=Siz[v];</span><br><span class="line">        <span class="keyword">if</span>(!Son[x]||Siz[v]&gt;Siz[Son[x]]) Son[x]=v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Top[MAXN];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfsChain</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> topf)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Top[x]=topf;</span><br><span class="line">    <span class="keyword">if</span>(!Son[x]) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="built_in">dfsChain</span>(Son[x],topf);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> e=Head[x],v;e;e=Edge[e].next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>((v=Edge[e].to)==Son[x]||v==Fa[x]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfsChain</span>(v,v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getLca</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(Top[x]!=Top[y])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(Dep[Top[x]]&lt;Dep[Top[y]]) std::<span class="built_in">swap</span>(x,y);</span><br><span class="line">        x=Fa[Top[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Dep[x]&gt;Dep[y]?y:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(N,M);Idx=N;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=M;++i) <span class="built_in">read</span>(Ed[i].fr,Ed[i].to,Ed[i].val);</span><br><span class="line">    std::<span class="built_in">sort</span>(Ed+<span class="number">1</span>,Ed+M+<span class="number">1</span>);</span><br><span class="line">    Dsu.<span class="built_in">init</span>(N);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=M;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> e=Ed[i];</span><br><span class="line">        <span class="type">int</span> p1=Dsu.<span class="built_in">getRt</span>(e.fr),p2=Dsu.<span class="built_in">getRt</span>(e.to);</span><br><span class="line">        <span class="keyword">if</span>(p1==p2) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="type">int</span> lca=Dsu.<span class="built_in">merge</span>(p1,p2);Val[lca]=e.val;</span><br><span class="line">        <span class="built_in">addEdge</span>(p1,lca),<span class="built_in">addEdge</span>(p2,lca);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Idx;i&gt;=<span class="number">1</span>;--i)</span><br><span class="line">        <span class="keyword">if</span>(!Vis[i])</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">dfsTree</span>(i,<span class="number">0</span>),</span><br><span class="line">            <span class="built_in">dfsChain</span>(i,i);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="built_in">read</span>(Q);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> qx,qy;Q--;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">read</span>(qx,qy);</span><br><span class="line">        <span class="keyword">if</span>(Dsu.<span class="built_in">connect</span>(qx,qy)) <span class="built_in">write</span>(Val[<span class="built_in">getLca</span>(qx,qy)],<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;impossible&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">4 5</span></span><br><span class="line"><span class="comment">1 2 5</span></span><br><span class="line"><span class="comment">1 3 2</span></span><br><span class="line"><span class="comment">2 3 11</span></span><br><span class="line"><span class="comment">2 4 6</span></span><br><span class="line"><span class="comment">3 4 4</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">2 3</span></span><br><span class="line"><span class="comment">1 4</span></span><br><span class="line"><span class="comment">1 2</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+<h4 id="P1967-NOIP2013-提高组-货车运输"><a href="#P1967-NOIP2013-提高组-货车运输" class="headerlink" title="P1967 [NOIP2013 提高组] 货车运输"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1967">P1967 [NOIP2013 提高组] 货车运输</a></h4><p>双倍经验，不过求的是最大生成树，改一下 <code>operator</code> 即可。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">2e4</span>+<span class="number">10</span>,MAXM=<span class="number">5e4</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> N,M,Q,Idx,Val[MAXN];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">G</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> next,to;</span><br><span class="line">&#125;Edge[MAXM&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> Head[MAXN],Total;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">addEdge</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Edge[++Total]=(G)&#123;Head[u],v&#125;;Head[u]=Total;</span><br><span class="line">    Edge[++Total]=(G)&#123;Head[v],u&#125;;Head[v]=Total;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Dsu</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> Rt[MAXN];</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">2</span>*n;++i) Rt[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getRt</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Rt[x]==x?x:Rt[x]=<span class="built_in">getRt</span>(Rt[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> p=<span class="built_in">getRt</span>(x),q=<span class="built_in">getRt</span>(y);</span><br><span class="line">        Rt[p]=Rt[q]=++Idx;</span><br><span class="line">        <span class="keyword">return</span> Idx;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">connect</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> p=<span class="built_in">getRt</span>(x),q=<span class="built_in">getRt</span>(y);</span><br><span class="line">        <span class="keyword">return</span> p==q;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;Dsu;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edges</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> fr,to,val;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Edges &amp;x) <span class="type">const</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> val&gt;x.val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;Ed[MAXM];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Kruskal</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=M;++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> e=Ed[i];</span><br><span class="line">        <span class="type">int</span> p1=Dsu.<span class="built_in">getRt</span>(e.fr),p2=Dsu.<span class="built_in">getRt</span>(e.to);</span><br><span class="line">        <span class="keyword">if</span>(p1==p2) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="type">int</span> lca=Dsu.<span class="built_in">merge</span>(p1,p2);Val[lca]=e.val;</span><br><span class="line">        <span class="built_in">addEdge</span>(lca,p1),<span class="built_in">addEdge</span>(lca,p2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">bool</span> Vis[MAXN];</span><br><span class="line"><span class="type">int</span> Son[MAXN],Siz[MAXN],Dep[MAXN],Fa[MAXN];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfsTree</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> last)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Dep[x]=Dep[last]+<span class="number">1</span>,Siz[x]=Vis[x]=<span class="number">1</span>,Fa[x]=last;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> e=Head[x],v;e;e=Edge[e].next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>((v=Edge[e].to)==last) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfsTree</span>(v,x);</span><br><span class="line">        Siz[x]+=Siz[v];</span><br><span class="line">        <span class="keyword">if</span>(!Son[x]||Siz[v]&gt;Siz[Son[x]]) Son[x]=v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Top[MAXN];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfsChain</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> topf)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Top[x]=topf;</span><br><span class="line">    <span class="keyword">if</span>(!Son[x]) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="built_in">dfsChain</span>(Son[x],topf);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> e=Head[x],v;e;e=Edge[e].next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>((v=Edge[e].to)==Fa[x]||v==Son[x]) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="built_in">dfsChain</span>(v,v);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getLca</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(Top[x]!=Top[y])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(Dep[Top[x]]&lt;Dep[Top[y]]) std::<span class="built_in">swap</span>(x,y);</span><br><span class="line">        x=Fa[Top[x]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Dep[x]&gt;Dep[y]?y:x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(N,M);Idx=N;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=M;++i) <span class="built_in">read</span>(Ed[i].fr,Ed[i].to,Ed[i].val);</span><br><span class="line">    std::<span class="built_in">sort</span>(Ed+<span class="number">1</span>,Ed+M+<span class="number">1</span>);</span><br><span class="line">    Dsu.<span class="built_in">init</span>(N);</span><br><span class="line">    <span class="built_in">Kruskal</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=Idx;i&gt;=<span class="number">1</span>;--i)</span><br><span class="line">        <span class="keyword">if</span>(!Vis[i]) <span class="built_in">dfsTree</span>(i,<span class="number">0</span>),<span class="built_in">dfsChain</span>(i,i);</span><br><span class="line">    <span class="built_in">read</span>(Q);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> qx,qy;Q--;)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">read</span>(qx,qy);</span><br><span class="line">        <span class="keyword">if</span>(Dsu.<span class="built_in">connect</span>(qx,qy)) <span class="built_in">write</span>(Val[<span class="built_in">getLca</span>(qx,qy)],<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">&quot;-1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">4 3</span></span><br><span class="line"><span class="comment">1 2 4</span></span><br><span class="line"><span class="comment">2 3 3</span></span><br><span class="line"><span class="comment">3 1 1</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">1 3</span></span><br><span class="line"><span class="comment">1 4</span></span><br><span class="line"><span class="comment">1 3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+<hr>
+
+    </div>
+
+    
+    
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="related-posts">
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-chain-segmentation/">树链剖分 & 树上差分</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/mo-algo/">莫队</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/lca/">树上最近公共祖先(LCA)</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/fractional-programming/">分数规划</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/link-cut-tree/">Link-Cut Tree</a></li>
+  
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Eternity/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
+              <a href="/Eternity/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+              <a href="/Eternity/tags/%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84/" rel="tag"># 树型结构</a>
+              <a href="/Eternity/tags/%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag"># 生成树</a>
+              <a href="/Eternity/tags/LCA/" rel="tag"># LCA</a>
+              <a href="/Eternity/tags/%E6%A0%91%E9%93%BE%E5%89%96%E5%88%86/" rel="tag"># 树链剖分</a>
+              <a href="/Eternity/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag"># 最小生成树</a>
+              <a href="/Eternity/tags/Kruskal/" rel="tag"># Kruskal</a>
+              <a href="/Eternity/tags/%E9%87%8D%E6%9E%84%E6%A0%91/" rel="tag"># 重构树</a>
+              <a href="/Eternity/tags/%E5%80%8D%E5%A2%9E/" rel="tag"># 倍增</a>
+              <a href="/Eternity/tags/%E6%A3%AE%E6%9E%97/" rel="tag"># 森林</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Eternity/%E9%A2%98%E8%A7%A3/p3599-cf487c/" rel="prev" title="P3599 Koishi Loves Construction & CF487C Prefix Product Sequence">
+      <i class="fa fa-chevron-left"></i> P3599 Koishi Loves Construction & CF487C Prefix Product Sequence
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Eternity/%E5%B0%91%E5%B9%B4%E6%B2%89%E5%85%A5%E8%BF%87%E7%9A%84%E6%A2%A6/%E6%B3%9B%E9%BB%84%E4%B9%A6%E9%A1%B5/novel-strangers/" rel="next" title="《今夜，即便这份恋情从世界消散》——梦，擦肩而过">
+      《今夜，即便这份恋情从世界消散》——梦，擦肩而过 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kruskal-%E7%AE%97%E6%B3%95"><span class="nav-text">Kruskal 算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E6%9E%84%E6%A0%91"><span class="nav-text">重构树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%B4%A8"><span class="nav-text">性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P2245-%E6%98%9F%E9%99%85%E8%BF%B7%E8%88%AA"><span class="nav-text">P2245 星际迷航</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#P1967-NOIP2013-%E6%8F%90%E9%AB%98%E7%BB%84-%E8%B4%A7%E8%BD%A6%E8%BF%90%E8%BE%93"><span class="nav-text">P1967 [NOIP2013 提高组] 货车运输</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fallen Shadow"
+      src="/Eternity/images/Guess.png">
+  <p class="site-author-name" itemprop="name">Fallen Shadow</p>
+  <div class="site-description" itemprop="description">誰も悪くないから、辛いだな。<br>自卑的人，往往只剩下温柔了啊……</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Eternity/archives/">
+        
+          <span class="site-state-item-count">123</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Eternity/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Eternity/tags/">
+          
+        <span class="site-state-item-count">271</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/VioletEternal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VioletEternal" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/356159259?spm_id_from=333.1007.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;356159259?spm_id_from&#x3D;333.1007.0.0" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/444040" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;444040" rel="noopener" target="_blank"><i class="fab fa-luogu fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/artist?id=52150816" title="CloudMusic → https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;52150816" rel="noopener" target="_blank"><i class="fab fa-cloudmusic fa-fw"></i>CloudMusic</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/eternity-81-90" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;eternity-81-90" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">痛失网名巨佬赵悦岑</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房巨佬_Live_</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kneyvetch.github.io/" title="https:&#x2F;&#x2F;kneyvetch.github.io&#x2F;" rel="noopener" target="_blank">吟游的诗人kney</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">Ynoi之神dyd-true</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io&#x2F;" rel="noopener" target="_blank">Au爷mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io&#x2F;" rel="noopener" target="_blank">省队大跌Rusun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://evrgardenviolet.github.io/" title="https:&#x2F;&#x2F;evrgardenviolet.github.io&#x2F;" rel="noopener" target="_blank">Violet前辈闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io&#x2F;" rel="noopener" target="_blank">IOI大跌Lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/2008429483" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;2008429483" rel="noopener" target="_blank">墨逸moki酱</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VioletEternal</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">972k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">14:43</span>
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+<span id="busuanzi_container_page_pv">本文热度<span id="busuanzi_value_page_pv"></span>℃</span>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/Eternity/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/Eternity/lib/anime.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Eternity/js/utils.js"></script>
+
+<script src="/Eternity/js/motion.js"></script>
+
+
+<script src="/Eternity/js/schemes/pisces.js"></script>
+
+
+<script src="/Eternity/js/next-boot.js"></script>
+
+
+  <script defer src="true"></script>
+    <script defer src="/Eternity/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/Eternity/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/Eternity/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://rusunoi.github.io/mathjax/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="https://rusunoi.github.io/gitalk/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://rusunoi.github.io/gitalk/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'c547d8099919a2d14d96',
+      clientSecret: '10a714b915e252d47a7c076cbd8f01fadb85bd41',
+      repo        : 'Eternity',
+      owner       : 'VioletEternal',
+      admin       : ['VioletEternal'],
+      id          : '43adbf27ba4004fc2bf6e772505be6ea',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

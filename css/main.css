@@ -1218,7 +1218,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #fb5061;
+  background: #149106;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1555,7 +1555,7 @@ pre .javascript .function {
   top: 0;
 }
 .post-body {
-  font-family: 'ZCOOL KuaiLe', 'Ma Shan Zheng', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Ma Shan Zheng', 'Ma Shan Zheng', "PingFang SC", "Microsoft YaHei", sans-serif;
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -1853,7 +1853,7 @@ pre .javascript .function {
 }
 .posts-expand .post-meta {
   color: #999;
-  font-family: 'ZCOOL KuaiLe', 'Ma Shan Zheng', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Ma Shan Zheng', 'Ma Shan Zheng', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 0.75em;
   margin: 3px 0 60px 0;
   text-align: center;
@@ -2762,6 +2762,14 @@ body {
 }
 .fa-cloudmusic {
   background: url("/Eternity/images/cloudmusic.svg");
+  background-position: 50% 75%;
+  background-repeat: no-repeat;
+  height: 1rem;
+  width: 1rem;
+  opacity: 0.8;
+}
+.fa-zhihu {
+  background: url("/Eternity/images/zhihu.svg");
   background-position: 50% 75%;
   background-repeat: no-repeat;
   height: 1rem;
