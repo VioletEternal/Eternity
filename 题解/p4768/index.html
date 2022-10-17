@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Eternity/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Eternity/images/32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Eternity/images/eternity.png">
+  <link rel="mask-icon" href="/Eternity/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Eternity/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ma Shan Zheng:300,300italic,400,400italic,700,700italic|ZCOOL KuaiLe:300,300italic,400,400italic,700,700italic|Zhi Mang Xing:300,300italic,400,400italic,700,700italic|Fira Code:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/Eternity/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="minimal">
+  <script src="true"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"violeteternal.github.io","root":"/Eternity/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":{"gitalk":null}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+
+  <meta name="description" content="“当梦想指路至无知的远方，醒来时分的少年，是否应该考虑随着漫雨，踏上归途。”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="P4768 [NOI2018] 归程">
+<meta property="og:url" content="https://violeteternal.github.io/Eternity/%E9%A2%98%E8%A7%A3/p4768/index.html">
+<meta property="og:site_name" content="Eternity">
+<meta property="og:description" content="“当梦想指路至无知的远方，醒来时分的少年，是否应该考虑随着漫雨，踏上归途。”">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-10-10T13:25:03.000Z">
+<meta property="article:modified_time" content="2022-10-10T13:49:56.785Z">
+<meta property="article:author" content="Fallen Shadow">
+<meta property="article:tag" content="最短路">
+<meta property="article:tag" content="图论">
+<meta property="article:tag" content="数据结构">
+<meta property="article:tag" content="建图">
+<meta property="article:tag" content="树型结构">
+<meta property="article:tag" content="可持久化数据结构">
+<meta property="article:tag" content="并查集">
+<meta property="article:tag" content="最小生成树">
+<meta property="article:tag" content="Kruskal">
+<meta property="article:tag" content="重构树">
+<meta property="article:tag" content="倍增">
+<meta property="article:tag" content="Dijkstra">
+<meta property="article:tag" content="可持久化并查集">
+<meta property="article:tag" content="树上倍增">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://violeteternal.github.io/Eternity/%E9%A2%98%E8%A7%A3/p4768/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+  <title>P4768 [NOI2018] 归程 | Eternity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/Eternity/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Eternity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Until The End</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Eternity/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/Eternity/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/Eternity/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">274</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/Eternity/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">18</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Eternity/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">125</span></a>
+
+  </li>
+        <li class="menu-item menu-item-归程">
+
+    <a href="/Eternity/road/" rel="section"><i class="fa fa-road fa-fw"></i>归程</a>
+
+  </li>
+        <li class="menu-item menu-item-友人">
+
+    <a href="/Eternity/friends/" rel="section"><i class="fa fa-paper-plane fa-fw"></i>友人</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://violeteternal.github.io/Eternity/%E9%A2%98%E8%A7%A3/p4768/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Eternity/images/Guess.png">
+      <meta itemprop="name" content="Fallen Shadow">
+      <meta itemprop="description" content="誰も悪くないから、辛いだな。<br>自卑的人，往往只剩下温柔了啊……">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eternity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          P4768 [NOI2018] 归程
+        </h1>
+
+        <div class="post-meta">
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-10-10 21:25:03 / 修改时间：21:49:56" itemprop="dateCreated datePublished" datetime="2022-10-10T21:25:03+08:00">2022-10-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Eternity/categories/%E9%A2%98%E8%A7%A3/" itemprop="url" rel="index"><span itemprop="name">题解</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>“当梦想指路至无知的远方，醒来时分的少年，是否应该考虑随着漫雨，踏上归途。”</p>
+<span id="more"></span>
+<hr>
+<p><del>损失一个亿的调题技巧</del>。（指错失了 $\text{l18q AK IOI}$ 的机会，$\textcolor{gold}{\text{Au}}$ 爷久久不能释怀）</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4768">洛谷指路</a>和<a target="_blank" rel="noopener" href="https://loj.ac/p/2718">$\text{Loj}$ 官方</a>的双倍经验。</p>
+<hr>
+<p>首先，$n,m,q$ 都是 $\mathcal O(n\log n)$ 级别的，说明不能限制在 $q$ 上，得考虑一大堆预处理。然后把图建出来之后会发现，因为车子只能使用一次，那么我们能够零体力到达的点一定是一个包含了起点，且海拔皆在水位线之上的一个连通块，而对于其他部分，最短路径不变，可以预处理：用 $\text{Dijkstra}$ 预处理可以达到 $\mathcal O(n\log m)$ ，注意：这里并不能使用 $\text{Spfa}$ ，会被卡掉。（出题人出言“$\text{Spfa}$ 已经死了”）</p>
+<p>我们所求的答案就是该连通块 $\text{S}$ 里的 $\displaystyle\min_{s\in S}Dist[s]$ 。那有没有方法可以快速找到所在连通块，且与询问无关呢？考虑一种贪心思路，即按照海拔高度依次处理使得对于 $Dp[x]$ 则是之前所有里的答案。</p>
+<p>然后我们还要保证连通，则肯定不考虑 $\mathcal O(1)$ 查询，考虑 $\mathcal O(\log)$ 。如果是数据结构的话，可以考虑<strong>堆</strong>，满足顺序的性质，但是并不太好搞连通性，于是考虑从堆开始扩展，联想到 $\text{Kruskal}$ 重构树，然后理所当然出来一个性质，海拔从子结点到父结点依次变小，然后用 $Dp[x]$ 表示以 $x$ 为根的子树内的最小答案，一个简单的树型 $\text{dp}$ 直接 $\mathcal O(n)$ 搞掉。</p>
+<p>然后考虑如何从询问扩展到已处理部分——能够到达的连通块肯定满足 $l_i&gt;s$ ，而重构树内海拔由小到大，我们就需要找到一个深度最小的点，满足 $l_e&gt;s$ ，然后 $dp[e]$ 就是我们所求的答案。</p>
+<p>调了老半天的原因有几个，拿来避雷：</p>
+<ul>
+<li>在进行 $\text{Dijkstra}$ 预处理的时候，点数为 $n$ ，而在重构树之后，点数会变成 $2n-1$ ，所以 <code>for</code> 循环应该套的是 <code>Idx</code> 而不是 <code>N</code> 。</li>
+<li>空间十分玄学（也不是很玄学），同样因为是重构树，导致很多东西都需要开到两倍。</li>
+<li>多组数据，记得清空；以及如果最短路和重构树共用一个链式前向星的话，也要记得清空。</li>
+</ul>
+<p>因为打的时候比较紊乱，所以写的也就比较紊乱，所需要的变量都是定义在函数之前的，比较分散，也就导致 <code>Dist[MAXN]</code> 没有二倍。</p>
+<details>
+    <summary>AC Code</summary>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Problem: P4768 [NOI2018] 归程</span></span><br><span class="line"><span class="comment">// Contest: Luogu</span></span><br><span class="line"><span class="comment">// URL: https://www.luogu.com.cn/problem/P4768</span></span><br><span class="line"><span class="comment">// Memory Limit: 512 MB</span></span><br><span class="line"><span class="comment">// Time Limit: 4000 ms</span></span><br><span class="line"><span class="comment">// Written by: Eternity</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> re register</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> ch=<span class="built_in">getchar</span>(),t=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(ch&lt;<span class="string">&#x27;0&#x27;</span>||ch&gt;<span class="string">&#x27;9&#x27;</span>) t|=ch==<span class="string">&#x27;-&#x27;</span>,ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">while</span>(ch&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;ch&lt;=<span class="string">&#x27;9&#x27;</span>) x=(x&lt;&lt;<span class="number">3</span>)+(x&lt;&lt;<span class="number">1</span>)+(ch^<span class="number">48</span>),ch=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">if</span>(t) x=-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T,<span class="keyword">class</span> ...T1&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">read</span><span class="params">(T &amp;x,T1 &amp;...x1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(x),<span class="built_in">read</span>(x1...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>),x=-x;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">9</span>) <span class="built_in">write</span>(x/<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(<span class="type">char</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">putchar</span>(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(<span class="type">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(*s!=<span class="string">&#x27;\0&#x27;</span>) <span class="built_in">putchar</span>(*s++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(*s!=<span class="string">&#x27;\0&#x27;</span>) <span class="built_in">putchar</span>(*s++);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T,<span class="keyword">class</span> ...T1&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">write</span><span class="params">(T x,T1 ...x1)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">write</span>(x),<span class="built_in">write</span>(x1...);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">checkMax</span><span class="params">(T &amp;x,T y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=x&gt;y?x:y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">checkMin</span><span class="params">(T &amp;x,T y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x=x&lt;y?x:y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MAXN=<span class="number">2e5</span>+<span class="number">10</span>,MAXM=<span class="number">4e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> Test,N,M,Q,K,S,Val[MAXN&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">G</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> next,to,val;</span><br><span class="line">&#125;Edge[MAXM&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Edges</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> u,v,h;</span><br><span class="line">&#125;Ed[MAXM];</span><br><span class="line"><span class="type">int</span> Head[MAXN&lt;&lt;<span class="number">1</span>],Total;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">addEdge</span><span class="params">(<span class="type">int</span> u,<span class="type">int</span> v,<span class="type">int</span> w)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Edge[++Total]=(G)&#123;Head[u],v,w&#125;;Head[u]=Total;</span><br><span class="line">	Edge[++Total]=(G)&#123;Head[v],u,w&#125;;Head[v]=Total;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(Head,<span class="number">0</span>,<span class="built_in">sizeof</span>(Head)),Total=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">read</span>(N,M);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>,u,v,l,h;i&lt;=M;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">read</span>(u,v,l,h);<span class="built_in">addEdge</span>(u,v,l);</span><br><span class="line">		Ed[i]=(Edges)&#123;u,v,h&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">read</span>(Q,K,S);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Que</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> x,d;</span><br><span class="line">	<span class="built_in">Que</span>(<span class="type">int</span> x=<span class="number">0</span>,<span class="type">int</span> d=<span class="number">0</span>):<span class="built_in">x</span>(x),<span class="built_in">d</span>(d)&#123;&#125;</span><br><span class="line">	<span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> Que &amp;x) <span class="type">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> x.d&lt;d;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> Dist[MAXN];</span><br><span class="line"><span class="type">bool</span> Vis[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Dijkstra</span><span class="params">(<span class="type">int</span> st)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	std::priority_queue&lt;Que&gt;Q;</span><br><span class="line">	Q.<span class="built_in">push</span>(<span class="built_in">Que</span>(st,<span class="number">0</span>));</span><br><span class="line">	<span class="built_in">memset</span>(Dist,<span class="number">0x3f</span>,<span class="built_in">sizeof</span>(Dist)),Dist[st]=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">memset</span>(Vis,<span class="number">0</span>,<span class="built_in">sizeof</span>(Vis));</span><br><span class="line">	<span class="keyword">while</span>(!Q.<span class="built_in">empty</span>())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> u=Q.<span class="built_in">top</span>().x;Q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">if</span>(Vis[u]) <span class="keyword">continue</span>;</span><br><span class="line">		Vis[u]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> e=Head[u],v;e;e=Edge[e].next)</span><br><span class="line">		&#123;</span><br><span class="line">			v=Edge[e].to;</span><br><span class="line">			<span class="keyword">if</span>(Dist[v]&gt;Dist[u]+Edge[e].val)</span><br><span class="line">			&#123;</span><br><span class="line">				Dist[v]=Dist[u]+Edge[e].val;</span><br><span class="line">				<span class="keyword">if</span>(!Vis[v]) Q.<span class="built_in">push</span>(<span class="built_in">Que</span>(v,Dist[v]));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Idx;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Dsu</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> Rt[MAXN&lt;&lt;<span class="number">1</span>];</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">2</span>*n;++i) Rt[i]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getRt</span><span class="params">(<span class="type">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Rt[x]==x?x:Rt[x]=<span class="built_in">getRt</span>(Rt[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> p=<span class="built_in">getRt</span>(x),q=<span class="built_in">getRt</span>(y);</span><br><span class="line">        Rt[p]=Rt[q]=++Idx;</span><br><span class="line">        <span class="keyword">return</span> Idx;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">connect</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="type">int</span> p=<span class="built_in">getRt</span>(x),q=<span class="built_in">getRt</span>(y);</span><br><span class="line">        <span class="keyword">return</span> p==q;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;Dsu;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">bool</span> <span class="title">cmp</span><span class="params">(Edges a,Edges b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.h&gt;b.h;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Kruskal</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(Head,<span class="number">0</span>,<span class="built_in">sizeof</span>(Head)),Total=<span class="number">0</span>;</span><br><span class="line">	Idx=N;</span><br><span class="line">	std::<span class="built_in">sort</span>(Ed+<span class="number">1</span>,Ed+M+<span class="number">1</span>,cmp);</span><br><span class="line">	Dsu.<span class="built_in">init</span>(N);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=M;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">auto</span> e=Ed[i];</span><br><span class="line">		<span class="type">int</span> p1=Dsu.<span class="built_in">getRt</span>(e.u),p2=Dsu.<span class="built_in">getRt</span>(e.v);</span><br><span class="line">		<span class="keyword">if</span>(p1==p2) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="type">int</span> lca=Dsu.<span class="built_in">merge</span>(p1,p2);Val[lca]=e.h;</span><br><span class="line">		<span class="built_in">addEdge</span>(lca,p1,<span class="number">0</span>),<span class="built_in">addEdge</span>(lca,p2,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> Dp[MAXN&lt;&lt;<span class="number">1</span>],Mul[MAXN&lt;&lt;<span class="number">1</span>][<span class="number">25</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfsTree</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> last)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Dp[x]=Dist[x];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> e=Head[x],v;e;e=Edge[e].next)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>((v=Edge[e].to)==last) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="built_in">dfsTree</span>(v,x);</span><br><span class="line">		Mul[v][<span class="number">0</span>]=x;</span><br><span class="line">		<span class="built_in">checkMin</span>(Dp[x],Dp[v]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Multi</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;<span class="number">25</span>;++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> x=<span class="number">1</span>;x&lt;=Idx;++x)</span><br><span class="line">			Mul[x][i]=Mul[Mul[x][i<span class="number">-1</span>]][i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">int</span> <span class="title">getLc</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">24</span>;i&gt;=<span class="number">0</span>;--i) <span class="keyword">if</span>(Val[Mul[x][i]]&gt;val) x=Mul[x][i];</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(Test);</span><br><span class="line">    <span class="keyword">while</span>(Test--)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="built_in">init</span>();</span><br><span class="line">    	<span class="built_in">Dijkstra</span>(<span class="number">1</span>),<span class="built_in">Kruskal</span>();</span><br><span class="line">    	<span class="built_in">dfsTree</span>(Idx,<span class="number">0</span>),<span class="built_in">Multi</span>();</span><br><span class="line">    	<span class="type">int</span> lastans=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> st,s;Q--;)</span><br><span class="line">    	&#123;</span><br><span class="line">    		<span class="built_in">read</span>(st,s);</span><br><span class="line">			st=(st+K*lastans<span class="number">-1</span>)%N+<span class="number">1</span>,s=(s+K*lastans)%(S+<span class="number">1</span>);</span><br><span class="line">			<span class="built_in">write</span>(lastans=Dp[<span class="built_in">getLc</span>(st,s)],<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    	&#125;	</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+</details>
+
+    </div>
+
+    
+    
+    
+      
+
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="related-posts">
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/kruskal-refactoring/">Kruskal重构树</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/100-tests/">随机100题(29/100)</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/p4556/">P4556 [Vani有约会]雨天的尾巴 /【模板】线段树合并</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E9%A2%98%E8%A7%A3/qtree/">Q-Tree系列</a></li>
+  
+      <li class="related-posts-item"><a href="/Eternity/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/OI/tree-chain-segmentation/">树链剖分 & 树上差分</a></li>
+  
+  </ul>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/Eternity/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF/" rel="tag"># 最短路</a>
+              <a href="/Eternity/tags/%E5%9B%BE%E8%AE%BA/" rel="tag"># 图论</a>
+              <a href="/Eternity/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
+              <a href="/Eternity/tags/%E5%BB%BA%E5%9B%BE/" rel="tag"># 建图</a>
+              <a href="/Eternity/tags/%E6%A0%91%E5%9E%8B%E7%BB%93%E6%9E%84/" rel="tag"># 树型结构</a>
+              <a href="/Eternity/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 可持久化数据结构</a>
+              <a href="/Eternity/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag"># 并查集</a>
+              <a href="/Eternity/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" rel="tag"># 最小生成树</a>
+              <a href="/Eternity/tags/Kruskal/" rel="tag"># Kruskal</a>
+              <a href="/Eternity/tags/%E9%87%8D%E6%9E%84%E6%A0%91/" rel="tag"># 重构树</a>
+              <a href="/Eternity/tags/%E5%80%8D%E5%A2%9E/" rel="tag"># 倍增</a>
+              <a href="/Eternity/tags/Dijkstra/" rel="tag"># Dijkstra</a>
+              <a href="/Eternity/tags/%E5%8F%AF%E6%8C%81%E4%B9%85%E5%8C%96%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag"># 可持久化并查集</a>
+              <a href="/Eternity/tags/%E6%A0%91%E4%B8%8A%E5%80%8D%E5%A2%9E/" rel="tag"># 树上倍增</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Eternity/%E5%B0%91%E5%B9%B4%E6%B2%89%E5%85%A5%E8%BF%87%E7%9A%84%E6%A2%A6/%E6%B3%9B%E9%BB%84%E4%B9%A6%E9%A1%B5/novel-strangers/" rel="prev" title="《今夜，即便这份恋情从世界消散》——梦，擦肩而过">
+      <i class="fa fa-chevron-left"></i> 《今夜，即便这份恋情从世界消散》——梦，擦肩而过
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Eternity/Until-The-End/my-dream/" rel="next" title="D.R.E.A.M">
+      D.R.E.A.M <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Fallen Shadow"
+      src="/Eternity/images/Guess.png">
+  <p class="site-author-name" itemprop="name">Fallen Shadow</p>
+  <div class="site-description" itemprop="description">誰も悪くないから、辛いだな。<br>自卑的人，往往只剩下温柔了啊……</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Eternity/archives/">
+        
+          <span class="site-state-item-count">125</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/Eternity/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/Eternity/tags/">
+          
+        <span class="site-state-item-count">274</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/VioletEternal" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;VioletEternal" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/356159259?spm_id_from=333.1007.0.0" title="Bilibili → https:&#x2F;&#x2F;space.bilibili.com&#x2F;356159259?spm_id_from&#x3D;333.1007.0.0" rel="noopener" target="_blank"><i class="fab fa-bilibili fa-fw"></i>Bilibili</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/444040" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;444040" rel="noopener" target="_blank"><i class="fab fa-luogu fa-fw"></i>Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://music.163.com/#/artist?id=52150816" title="CloudMusic → https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;artist?id&#x3D;52150816" rel="noopener" target="_blank"><i class="fab fa-cloudmusic fa-fw"></i>CloudMusic</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.zhihu.com/people/eternity-81-90" title="Zhihu → https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;eternity-81-90" rel="noopener" target="_blank"><i class="fab fa-zhihu fa-fw"></i>Zhihu</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      友链
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://2745518585.github.io/" title="https:&#x2F;&#x2F;2745518585.github.io&#x2F;" rel="noopener" target="_blank">痛失网名巨佬赵悦岑</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://sukwants.github.io/" title="https:&#x2F;&#x2F;sukwants.github.io&#x2F;" rel="noopener" target="_blank">技术总监Sukwog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kevinlive.github.io/" title="https:&#x2F;&#x2F;kevinlive.github.io&#x2F;" rel="noopener" target="_blank">机房巨佬_Live_</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://kneyvetch.github.io/" title="https:&#x2F;&#x2F;kneyvetch.github.io&#x2F;" rel="noopener" target="_blank">吟游的诗人kney</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://dyd-true.github.io/" title="https:&#x2F;&#x2F;dyd-true.github.io&#x2F;" rel="noopener" target="_blank">Ynoi之神dyd-true</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://mydcwfy.github.io/" title="https:&#x2F;&#x2F;mydcwfy.github.io&#x2F;" rel="noopener" target="_blank">Au爷mydcwfy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://rusunoi.github.io/" title="https:&#x2F;&#x2F;rusunoi.github.io&#x2F;" rel="noopener" target="_blank">省队大跌Rusun</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://evrgardenviolet.github.io/" title="https:&#x2F;&#x2F;evrgardenviolet.github.io&#x2F;" rel="noopener" target="_blank">Violet前辈闲人</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://luckyleaves.github.io/" title="https:&#x2F;&#x2F;luckyleaves.github.io&#x2F;" rel="noopener" target="_blank">IOI大跌Lucky叶</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://space.bilibili.com/2008429483" title="https:&#x2F;&#x2F;space.bilibili.com&#x2F;2008429483" rel="noopener" target="_blank">墨逸moki酱</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">VioletEternal</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">978k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">14:49</span>
+</div>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+
+<span id="busuanzi_container_page_pv">本文热度<span id="busuanzi_value_page_pv"></span>℃</span>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="/Eternity/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/Eternity/lib/anime.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.min.js"></script>
+  <script src="/Eternity/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Eternity/js/utils.js"></script>
+
+<script src="/Eternity/js/motion.js"></script>
+
+
+<script src="/Eternity/js/schemes/pisces.js"></script>
+
+
+<script src="/Eternity/js/next-boot.js"></script>
+
+
+  <script defer src="true"></script>
+    <script defer src="/Eternity/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/Eternity/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/Eternity/lib/pdf/web/viewer.html?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://rusunoi.github.io/mathjax/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+<link rel="stylesheet" href="https://rusunoi.github.io/gitalk/dist/gitalk.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('https://rusunoi.github.io/gitalk/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'c547d8099919a2d14d96',
+      clientSecret: '10a714b915e252d47a7c076cbd8f01fadb85bd41',
+      repo        : 'Eternity',
+      owner       : 'VioletEternal',
+      admin       : ['VioletEternal'],
+      id          : 'f758b62a7059af07502000dc248df38b',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
